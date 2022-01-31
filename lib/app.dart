@@ -3,7 +3,7 @@ import 'package:client/layout/client_options.dart';
 import 'package:client/colors.dart';
 import 'package:client/home.dart';
 import 'package:client/layout/letter_spacing.dart';
-import 'package:client/views/login/login_page.dart';
+import 'package:client/controller/login_page.dart';
 import 'package:client/routes.dart' as routes;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,7 +32,7 @@ class AreaApp extends StatelessWidget {
         initialRoute: loginRoute,
         routes: <String, WidgetBuilder>{
           homeRoute: (context) => const HomePage(),
-          loginRoute: (context) => const LoginPage()
+          loginRoute: (context) => const LoginPageController()
         });
   }
 
