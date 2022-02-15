@@ -6,12 +6,15 @@ import 'package:client/views/login/password_input.dart';
 import 'package:client/views/login/thumb_button.dart';
 import 'package:client/views/login/topbar.dart';
 import 'package:client/views/login/username_input.dart';
+import 'package:client/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginMainView extends StatelessWidget {
   final TextEditingController usernameController;
 
   final TextEditingController passwordController;
+
   const LoginMainView(
       {Key? key,
       required this.usernameController,
@@ -21,6 +24,8 @@ class LoginMainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
+    final auth = FirebaseAuth.instance;
+
     List<Widget> listViewChildren;
 
     if (isDesktop) {
@@ -54,6 +59,12 @@ class LoginMainView extends StatelessWidget {
     ]);
   }
 
-  void _login(BuildContext context) =>
-      Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
+  Future _login(BuildContext context) async {
+    User? user = await EPAuthentication.signInUsingEmailPassword(
+      context: context,
+      email: usernameController.text,
+      password: passwordController.text,
+    );
+    Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
+  }
 }
