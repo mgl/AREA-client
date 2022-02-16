@@ -15,7 +15,7 @@ RUN apt-get install -y bash \
     libglu1-mesa \
     openjdk-11-jdk
 
-ARG ANDROID_SDK_VERSION=7583922
+ARG ANDROID_SDK_VERSION=8092744
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
@@ -23,7 +23,7 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/tools && \
     rm *tools*linux*.zip
 
-ARG FLUTTER_VERSION=2.8.1
+ARG FLUTTER_VERSION=2.10.1
 RUN curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
 RUN tar xf flutter.tar.xz -C /usr/local
 
