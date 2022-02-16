@@ -19,39 +19,6 @@ class EPAuthentication {
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
-    /*await auth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );*/
-    /*UserCredential userCredential = await auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );*/
-/*
-    try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          EPAuthentication.customSnackBar(
-            content: 'The password provided is too weak.',
-          ),
-        );
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          EPAuthentication.customSnackBar(
-            content: 'The account already exists for that email.',
-          ),
-        );
-      }
-    } catch (e) {
-      print(e);
-    }*/
 
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
