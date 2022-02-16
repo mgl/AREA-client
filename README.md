@@ -1,4 +1,4 @@
-# client
+# Client
 
 A Flutter client made for the Epitech AREA project. Work on mobile and desktop.
 Complete project is avalaible [here](https://github.com/MaelTeyssedre/AREA)
