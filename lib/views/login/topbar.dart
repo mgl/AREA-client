@@ -36,7 +36,7 @@ class TopBar extends StatelessWidget {
             Text('Login No Account',
                 style: Theme.of(context).textTheme.subtitle1),
             spacing,
-            const BorderButton(text: 'Sign Up')
+            //const BorderButton(text: 'Sign Up')
           ])
         ]));
   }

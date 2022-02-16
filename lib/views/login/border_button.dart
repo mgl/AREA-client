@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 class BorderButton extends StatelessWidget {
   final String text;
 
-  const BorderButton({Key? key, required this.text}) : super(key: key);
+  final VoidCallback onPressed;
+  const BorderButton({Key? key, required this.text, required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,8 @@ class BorderButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             )),
-        onPressed: () =>
-            Navigator.of(context).restorablePushNamed(AreaApp.homeRoute),
+        onPressed: () => onPressed,
+        //Navigator.of(context).restorablePushNamed(AreaApp.homeRoute),
         child: Text(text));
   }
 }

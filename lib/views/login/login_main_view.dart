@@ -16,7 +16,6 @@ class LoginMainView extends StatelessWidget {
 
   final TextEditingController passwordController;
 
-
   const LoginMainView(
       {Key? key,
       required this.usernameController,
@@ -37,14 +36,20 @@ class LoginMainView extends StatelessWidget {
         const SizedBox(height: 12),
         PasswordInput(
             maxWidth: desktopMaxWidth, passwordController: passwordController),
-        LoginButton(maxWidth: desktopMaxWidth, onTap: () => _login(context))
+        LoginButton(
+          maxWidth: desktopMaxWidth,
+          onTap: () => _login(context),
+          onTap2: () => _signup(context),
+        ),
+        //LoginButton(maxWidth: desktopMaxWidth, onTap: () => _signup(context)),
       ];
     } else {
       listViewChildren = [
         UsernameInput(usernameController: usernameController),
         const SizedBox(height: 12),
         PasswordInput(passwordController: passwordController),
-        ThumbButton(onTap: () => _login(context))
+        ThumbButton(onTap: () => _login(context)),
+        //  ThumbButton(onTap: () => _login(context)),
       ];
     }
     return Column(children: [
@@ -62,6 +67,15 @@ class LoginMainView extends StatelessWidget {
 
   Future _login(BuildContext context) async {
     User? user = await EPAuthentication.signInUsingEmailPassword(
+      context: context,
+      email: usernameController.text,
+      password: passwordController.text,
+    );
+    Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
+  }
+
+  Future _signup(BuildContext context) async {
+    User? user = await EPAuthentication.registerUsingEmailPassword(
       context: context,
       email: usernameController.text,
       password: passwordController.text,

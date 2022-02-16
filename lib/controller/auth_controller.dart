@@ -27,7 +27,7 @@ class EPAuthentication {
       email: email,
       password: password,
     );*/
-
+/*
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
         email: email,
@@ -51,7 +51,7 @@ class EPAuthentication {
       }
     } catch (e) {
       print(e);
-    }
+    }*/
 
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
@@ -72,7 +72,6 @@ class EPAuthentication {
   }
 
   static Future<User?> registerUsingEmailPassword({
-    required String name,
     required String email,
     required String password,
     required BuildContext context,
@@ -87,8 +86,6 @@ class EPAuthentication {
       );
 
       user = userCredential.user;
-      await user!.updateProfile(displayName: name);
-      await user.reload();
       user = auth.currentUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
