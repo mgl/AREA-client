@@ -28,13 +28,6 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
   
   <script>
-    var firebaseConfig = {
-    };
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-  </script>
-  
-  <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('flutter_service_worker.js');
