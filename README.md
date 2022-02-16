@@ -1,16 +1,13 @@
 # client
 
-A new Flutter project.
+A Flutter client made for the Epitech AREA project. Work on mobile and desktop.
+Complete project is avalaible [here](https://github.com/MaelTeyssedre/AREA)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Team
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Maël Tesseydre](https://github.com/MaelTeyssedre)
+- [Alban Bodenes](https://github.com/Alban-Bodenes)
+- [Jules Savang](https://github.com/Jsavang)
+- [Marius Glo](https://github.com/mgl)
+- [Romain Gabet](https://github.com/Romain-GABET)
