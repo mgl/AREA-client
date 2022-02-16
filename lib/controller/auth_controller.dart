@@ -19,31 +19,14 @@ class EPAuthentication {
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
-
-    try {
+    await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      user = userCredential.user;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          EPAuthentication.customSnackBar(
-            content: 'No user found for that email. Please create an account.',
-          ),
-        );
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          EPAuthentication.customSnackBar(
-            content: 'Wrong password provided.',
-          ),
-        );
-      }
-    }
-
     return user;
   }
 

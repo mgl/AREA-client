@@ -61,8 +61,11 @@ class LoginMainView extends StatelessWidget {
   }
 
   Future _login(BuildContext context) async {
-    FirebaseAuth.instance.createUserWithEmailAndPassword(email: usernameController.text, password: passwordController.text);
-    FirebaseAuth.instance.signInWithEmailAndPassword(email: usernameController.text, password: passwordController.text);
+    User? user = await EPAuthentication.signInUsingEmailPassword(
+      context: context,
+      email: usernameController.text,
+      password: passwordController.text,
+    );
     Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
   }
 }
