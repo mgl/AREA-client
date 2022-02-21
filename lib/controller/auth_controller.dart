@@ -35,6 +35,7 @@ class EPAuthentication {
       print(e);
     }
 
+    auth.currentUser?.getIdToken().then((value) => print(value));
     return user;
   }
 
@@ -74,6 +75,7 @@ class EPAuthentication {
       print(e);
     }
 
+    auth.currentUser?.getIdToken().then((value) => print(value));
     return user;
   }
 
