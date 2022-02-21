@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
+           - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter build apk --release
       - run: flutter build web --release
+      - run: flutter build apk --release
       - run: mv build/app/outputs/flutter-apk/app-release.apk build/web/client.apk
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_AREA_CLIENT }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_AREA_37A17 }}'
           channelId: live
-          projectId: area-client
+          projectId: area-37a17
