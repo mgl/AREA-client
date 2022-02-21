@@ -41,19 +41,23 @@ class LoginMainView extends StatelessWidget {
           onTap: () => _login(context),
           onTap2: () => _signup(context),
         ),
-        //LoginButton(maxWidth: desktopMaxWidth, onTap: () => _signup(context)),
       ];
     } else {
+      final screenMaxWidth = 400.0 + (cappedTextScale(context) - 1);
       listViewChildren = [
         UsernameInput(usernameController: usernameController),
         const SizedBox(height: 12),
         PasswordInput(passwordController: passwordController),
         ThumbButton(onTap: () => _login(context)),
-        //  ThumbButton(onTap: () => _login(context)),
+        LoginButton(
+          maxWidth: screenMaxWidth,
+          onTap: () => _login(context),
+          onTap2: () => _signup(context),
+        ),
       ];
     }
     return Column(children: [
-      if (isDesktop) const TopBar(),
+      const TopBar(),
       Expanded(
           child: Align(
               alignment: isDesktop ? Alignment.center : Alignment.topCenter,

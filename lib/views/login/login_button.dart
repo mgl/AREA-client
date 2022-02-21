@@ -29,8 +29,8 @@ class LoginButton extends StatelessWidget {
               const SizedBox(width: 12),
               const Text('Remember me'),
               const Expanded(child: SizedBox.shrink()),
-              //  const BorderButton(text: 'Sign Up'),
               FilledButton(text: "sign in", onTap: onTap),
+              Spacer(),
               FilledButton(text: "sign up", onTap: onTap2)
             ])));
   }

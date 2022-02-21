@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:client/views/login/border_button.dart';
 import 'package:client/layout/text_scale.dart';
 import 'package:client/layout/image_placeholder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({Key? key}) : super(key: key);
@@ -32,12 +33,6 @@ class TopBar extends StatelessWidget {
                     fontSize: 35 / reducedTextScale(context),
                     fontWeight: FontWeight.w600))
           ]),
-          Row(mainAxisSize: MainAxisSize.min, children: [
-            Text('Login No Account',
-                style: Theme.of(context).textTheme.subtitle1),
-            spacing,
-            //const BorderButton(text: 'Sign Up')
-          ])
         ]));
   }
 }
