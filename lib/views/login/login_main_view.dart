@@ -10,10 +10,10 @@ import 'package:client/controller/auth_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:client/models/area_model.dart';
 
 class LoginMainView extends StatelessWidget {
   final TextEditingController usernameController;
-
   final TextEditingController passwordController;
 
   const LoginMainView(
@@ -48,7 +48,6 @@ class LoginMainView extends StatelessWidget {
         UsernameInput(usernameController: usernameController),
         const SizedBox(height: 12),
         PasswordInput(passwordController: passwordController),
-        ThumbButton(onTap: () => _login(context)),
         LoginButton(
           maxWidth: screenMaxWidth,
           onTap: () => _login(context),
@@ -69,21 +68,29 @@ class LoginMainView extends StatelessWidget {
     ]);
   }
 
-  Future _login(BuildContext context) async {
-    User? user = await EPAuthentication.signInUsingEmailPassword(
+  void _login(BuildContext context) {
+    EPAuthentication.signInUsingEmailPassword(
       context: context,
       email: usernameController.text,
       password: passwordController.text,
     );
-    Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
   }
 
-  Future _signup(BuildContext context) async {
-    User? user = await EPAuthentication.registerUsingEmailPassword(
+  void _signup(BuildContext context) {
+    EPAuthentication.registerUsingEmailPassword(
       context: context,
       email: usernameController.text,
       password: passwordController.text,
     );
-    Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
+  }
+
+  static SnackBar customSnackBar({required String content}) {
+    return SnackBar(
+      backgroundColor: Colors.black,
+      content: Text(
+        content,
+        style: const TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
+      ),
+    );
   }
 }

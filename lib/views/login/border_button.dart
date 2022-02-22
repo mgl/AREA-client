@@ -20,7 +20,6 @@ class BorderButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             )),
         onPressed: () => onPressed,
-        //Navigator.of(context).restorablePushNamed(AreaApp.homeRoute),
         child: Text(text));
   }
 }
