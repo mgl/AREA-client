@@ -21,8 +21,13 @@ class EPAuthentication {
   }) {
     Future<bool?> connectionValidation;
     connectionValidation = AreaModel.requestSignInUsingEmailPassword(
-        email: email, password: password, context: context).then((value) {if (value == true) {Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);}});
-    }
+            email: email, password: password, context: context)
+        .then((value) {
+      if (value == true) {
+        Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
+      }
+    });
+  }
 
   static registerUsingEmailPassword({
     required String email,
@@ -31,5 +36,10 @@ class EPAuthentication {
   }) {
     AreaModel.requestRegisterUsingEmailPassword(
         email: email, password: password, context: context);
+  }
+
+  static signInWithGoogle({required BuildContext context}) {
+    AreaModel.signInWithGoogle(context: context);
+    Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
   }
 }

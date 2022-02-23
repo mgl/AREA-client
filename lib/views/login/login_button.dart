@@ -22,7 +22,7 @@ class LoginButton extends StatelessWidget {
         alignment: Alignment.center,
         child: Container(
             constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
-            padding: const EdgeInsets.symmetric(vertical: 30),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Row(children: [
               const Icon(Icons.check_circle_outline,
                   color: ClientColors.buttonColor),
@@ -30,8 +30,43 @@ class LoginButton extends StatelessWidget {
               const Text('Remember me'),
               const Expanded(child: SizedBox.shrink()),
               FilledButton(text: "sign in", onTap: onTap),
-              Spacer(),
+              const Spacer(),
               FilledButton(text: "sign up", onTap: onTap2)
             ])));
+  }
+}
+
+class GoogleButton extends StatelessWidget {
+  final double? maxWidth;
+  final VoidCallback onTap;
+  const GoogleButton({Key? key, required this.onTap, this.maxWidth})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+        alignment: Alignment.center,
+        child: Container(
+            padding: const EdgeInsets.only(top: 12),
+            constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
+            child: TextButton(
+                style: TextButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    primary: Colors.black,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12))),
+                onPressed: onTap,
+                child: Row(children: [
+                  Container(
+                      height: 30,
+                      width: 30,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/google.jpg'),
+                              fit: BoxFit.cover),
+                          shape: BoxShape.circle)),
+                  const SizedBox(width: 20),
+                  const Text("Sign In With Google")
+                ]))));
   }
 }

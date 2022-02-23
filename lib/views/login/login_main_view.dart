@@ -22,58 +22,16 @@ class LoginMainView extends StatelessWidget {
       required this.passwordController})
       : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    final isDesktop = isDisplayDesktop(context);
-
-    List<Widget> listViewChildren;
-
-    if (isDesktop) {
-      final desktopMaxWidth = 400.0 + 100.0 * (cappedTextScale(context) - 1);
-      listViewChildren = [
-        UsernameInput(
-            usernameController: usernameController, maxWidth: desktopMaxWidth),
-        const SizedBox(height: 12),
-        PasswordInput(
-            maxWidth: desktopMaxWidth, passwordController: passwordController),
-        LoginButton(
-          maxWidth: desktopMaxWidth,
-          onTap: () => _login(context),
-          onTap2: () => _signup(context),
-        ),
-      ];
-    } else {
-      final screenMaxWidth = 400.0 + (cappedTextScale(context) - 1);
-      listViewChildren = [
-        UsernameInput(usernameController: usernameController),
-        const SizedBox(height: 12),
-        PasswordInput(passwordController: passwordController),
-        LoginButton(
-          maxWidth: screenMaxWidth,
-          onTap: () => _login(context),
-          onTap2: () => _signup(context),
-        ),
-      ];
-    }
-    return Column(children: [
-      const TopBar(),
-      Expanded(
-          child: Align(
-              alignment: isDesktop ? Alignment.center : Alignment.topCenter,
-              child: ListView(
-                  restorationId: 'login_list_view',
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  children: listViewChildren)))
-    ]);
-  }
-
   void _login(BuildContext context) {
     EPAuthentication.signInUsingEmailPassword(
       context: context,
       email: usernameController.text,
       password: passwordController.text,
     );
+  }
+
+  void _signInWithGoogle(BuildContext context) {
+    EPAuthentication.signInWithGoogle(context: context);
   }
 
   void _signup(BuildContext context) {
@@ -92,5 +50,55 @@ class LoginMainView extends StatelessWidget {
         style: const TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDesktop = isDisplayDesktop(context);
+
+    List<Widget> listViewChildren;
+
+    if (isDesktop) {
+      final desktopMaxWidth = 400.0 + 100.0 * (cappedTextScale(context) - 1);
+      listViewChildren = [
+        UsernameInput(
+            usernameController: usernameController, maxWidth: desktopMaxWidth),
+        const SizedBox(height: 12),
+        PasswordInput(
+            maxWidth: desktopMaxWidth, passwordController: passwordController),
+        GoogleButton(
+            onTap: () => _signInWithGoogle(context), maxWidth: desktopMaxWidth),
+        LoginButton(
+          maxWidth: desktopMaxWidth,
+          onTap: () => _login(context),
+          onTap2: () => _signup(context),
+        )
+      ];
+    } else {
+      final screenMaxWidth = 400.0 + (cappedTextScale(context) - 1);
+      listViewChildren = [
+        UsernameInput(usernameController: usernameController),
+        const SizedBox(height: 12),
+        PasswordInput(passwordController: passwordController),
+        GoogleButton(onTap: () => _signInWithGoogle(context)),
+        LoginButton(
+          maxWidth: screenMaxWidth,
+          onTap: () => _login(context),
+          onTap2: () => _signup(context),
+        )
+      ];
+    }
+
+    return Column(children: [
+      const TopBar(),
+      Expanded(
+          child: Align(
+              alignment: isDesktop ? Alignment.center : Alignment.topCenter,
+              child: ListView(
+                  restorationId: 'login_list_view',
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  children: listViewChildren)))
+    ]);
   }
 }
