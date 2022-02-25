@@ -24,10 +24,7 @@ class LoginButton extends StatelessWidget {
             constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Row(children: [
-              const Icon(Icons.check_circle_outline,
-                  color: ClientColors.buttonColor),
               const SizedBox(width: 12),
-              const Text('Remember me'),
               const Expanded(child: SizedBox.shrink()),
               FilledButton(text: "sign in", onTap: onTap),
               const Spacer(),

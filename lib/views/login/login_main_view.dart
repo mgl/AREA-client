@@ -77,6 +77,7 @@ class LoginMainView extends StatelessWidget {
     } else {
       final screenMaxWidth = 400.0 + (cappedTextScale(context) - 1);
       listViewChildren = [
+        const SizedBox(height: 30),
         UsernameInput(usernameController: usernameController),
         const SizedBox(height: 12),
         PasswordInput(passwordController: passwordController),
