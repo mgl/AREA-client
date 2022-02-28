@@ -30,8 +30,8 @@ class LoginMainView extends StatelessWidget {
     );
   }
 
-  void _signInWithGoogle(BuildContext context) {
-    EPAuthentication.signInWithGoogle(context: context);
+  void _signInWithGoogle(BuildContext context, bool isOnMobile) {
+    EPAuthentication.signInWithGoogle(context: context, IsOnMobile: isOnMobile);
   }
 
   void _signup(BuildContext context) {
@@ -67,7 +67,7 @@ class LoginMainView extends StatelessWidget {
         PasswordInput(
             maxWidth: desktopMaxWidth, passwordController: passwordController),
         GoogleButton(
-            onTap: () => _signInWithGoogle(context), maxWidth: desktopMaxWidth),
+            onTap: () => _signInWithGoogle(context, false), maxWidth: desktopMaxWidth),
         LoginButton(
           maxWidth: desktopMaxWidth,
           onTap: () => _login(context),
@@ -81,7 +81,7 @@ class LoginMainView extends StatelessWidget {
         UsernameInput(usernameController: usernameController),
         const SizedBox(height: 12),
         PasswordInput(passwordController: passwordController),
-        GoogleButton(onTap: () => _signInWithGoogle(context)),
+        GoogleButton(onTap: () => _signInWithGoogle(context, true)),
         LoginButton(
           maxWidth: screenMaxWidth,
           onTap: () => _login(context),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:client/app.dart';
@@ -38,8 +40,14 @@ class EPAuthentication {
         email: email, password: password, context: context);
   }
 
-  static signInWithGoogle({required BuildContext context}) {
-    AreaModel.signInWithGoogle(context: context);
+  static signInWithGoogle(
+      {required BuildContext context, required bool IsOnMobile}) async {
+    if (IsOnMobile) {
+      AreaModel.signInWithGoogleMobile(context: context);
+    } else {
+      AreaModel.signInWithGoogleDesktop(context: context);
+    }
+    sleep(const Duration(seconds: 10));
     Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
   }
 }
