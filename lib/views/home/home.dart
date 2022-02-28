@@ -1,5 +1,6 @@
-import 'package:client/layout/adaptive.dart';
-import 'package:client/layout/text_scale.dart';
+// import 'package:client/layout/adaptive.dart';
+// import 'package:client/layout/text_scale.dart';
+import 'package:client/views/home/action_list.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,12 +12,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDesktop = isDisplayDesktop(context);
+    // final theme = Theme.of(context);
+    // final isDesktop = isDisplayDesktop(context);
     const drawerHeader = UserAccountsDrawerHeader(
         accountName: Text('name'),
         accountEmail: Text('email@test.com'),
@@ -41,9 +40,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(title: const Text('AREA PROJECT')),
         body: const Center(
-            child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text('Work In Progress'))),
+            child: Padding(padding: EdgeInsets.all(50.0), child: ActionList())),
         drawer: Drawer(child: drawerItems));
   }
 }
