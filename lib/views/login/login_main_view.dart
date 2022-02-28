@@ -10,10 +10,10 @@ import 'package:client/controller/auth_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:client/models/area_model.dart';
 
 class LoginMainView extends StatelessWidget {
   final TextEditingController usernameController;
-
   final TextEditingController passwordController;
 
   const LoginMainView(
@@ -21,6 +21,36 @@ class LoginMainView extends StatelessWidget {
       required this.usernameController,
       required this.passwordController})
       : super(key: key);
+
+  void _login(BuildContext context) {
+    EPAuthentication.signInUsingEmailPassword(
+      context: context,
+      email: usernameController.text,
+      password: passwordController.text,
+    );
+  }
+
+  void _signInWithGoogle(BuildContext context, bool isOnMobile) {
+    EPAuthentication.signInWithGoogle(context: context, IsOnMobile: isOnMobile);
+  }
+
+  void _signup(BuildContext context) {
+    EPAuthentication.registerUsingEmailPassword(
+      context: context,
+      email: usernameController.text,
+      password: passwordController.text,
+    );
+  }
+
+  static SnackBar customSnackBar({required String content}) {
+    return SnackBar(
+      backgroundColor: Colors.black,
+      content: Text(
+        content,
+        style: const TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,24 +66,32 @@ class LoginMainView extends StatelessWidget {
         const SizedBox(height: 12),
         PasswordInput(
             maxWidth: desktopMaxWidth, passwordController: passwordController),
+        GoogleButton(
+            onTap: () => _signInWithGoogle(context, false), maxWidth: desktopMaxWidth),
         LoginButton(
           maxWidth: desktopMaxWidth,
           onTap: () => _login(context),
           onTap2: () => _signup(context),
-        ),
-        //LoginButton(maxWidth: desktopMaxWidth, onTap: () => _signup(context)),
+        )
       ];
     } else {
+      final screenMaxWidth = 400.0 + (cappedTextScale(context) - 1);
       listViewChildren = [
+        const SizedBox(height: 30),
         UsernameInput(usernameController: usernameController),
         const SizedBox(height: 12),
         PasswordInput(passwordController: passwordController),
-        ThumbButton(onTap: () => _login(context)),
-        //  ThumbButton(onTap: () => _login(context)),
+        GoogleButton(onTap: () => _signInWithGoogle(context, true)),
+        LoginButton(
+          maxWidth: screenMaxWidth,
+          onTap: () => _login(context),
+          onTap2: () => _signup(context),
+        )
       ];
     }
+
     return Column(children: [
-      if (isDesktop) const TopBar(),
+      const TopBar(),
       Expanded(
           child: Align(
               alignment: isDesktop ? Alignment.center : Alignment.topCenter,
@@ -63,23 +101,5 @@ class LoginMainView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   children: listViewChildren)))
     ]);
-  }
-
-  Future _login(BuildContext context) async {
-    User? user = await EPAuthentication.signInUsingEmailPassword(
-      context: context,
-      email: usernameController.text,
-      password: passwordController.text,
-    );
-    Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
-  }
-
-  Future _signup(BuildContext context) async {
-    User? user = await EPAuthentication.registerUsingEmailPassword(
-      context: context,
-      email: usernameController.text,
-      password: passwordController.text,
-    );
-    Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
   }
 }

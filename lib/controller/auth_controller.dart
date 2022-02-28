@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:client/app.dart';
+import 'package:client/models/area_model.dart';
 
 class EPAuthentication {
   static SnackBar customSnackBar({required String content}) {
@@ -7,84 +11,43 @@ class EPAuthentication {
       backgroundColor: Colors.black,
       content: Text(
         content,
-        style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
+        style: const TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
       ),
     );
   }
 
-  static Future<User?> signInUsingEmailPassword({
+  static signInUsingEmailPassword({
     required String email,
     required String password,
     required BuildContext context,
-  }) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
-
-    try {
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+  }) {
+    Future<bool?> connectionValidation;
+    connectionValidation = AreaModel.requestSignInUsingEmailPassword(
+            email: email, password: password, context: context)
+        .then((value) {
+      if (value == true) {
+        Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
       }
-    } catch (e) {
-      print(e);
-    }
-
-    auth.currentUser?.getIdToken().then((value) => print(value));
-    return user;
+    });
   }
 
-  static Future<User?> registerUsingEmailPassword({
+  static registerUsingEmailPassword({
     required String email,
     required String password,
     required BuildContext context,
-  }) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
-
-    try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
-      user = userCredential.user;
-      user = auth.currentUser;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          EPAuthentication.customSnackBar(
-            content: 'The password provided is too weak.',
-          ),
-        );
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          EPAuthentication.customSnackBar(
-            content: 'The account already exists for that email.',
-          ),
-        );
-      }
-    } catch (e) {
-      print(e);
-    }
-
-    auth.currentUser?.getIdToken().then((value) => print(value));
-    return user;
+  }) {
+    AreaModel.requestRegisterUsingEmailPassword(
+        email: email, password: password, context: context);
   }
 
-  static Future<User?> refreshUser(User user) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-
-    await user.reload();
-    User? refreshedUser = auth.currentUser;
-
-    return refreshedUser;
+  static signInWithGoogle(
+      {required BuildContext context, required bool IsOnMobile}) async {
+    if (IsOnMobile) {
+      AreaModel.signInWithGoogleMobile(context: context);
+    } else {
+      AreaModel.signInWithGoogleDesktop(context: context);
+    }
+    sleep(const Duration(seconds: 10));
+    Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
   }
 }

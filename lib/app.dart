@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:client/layout/client_options.dart';
 import 'package:client/colors.dart';
-import 'package:client/home.dart';
+import 'package:client/views/home/home.dart';
 import 'package:client/layout/letter_spacing.dart';
 import 'package:client/controller/login_page.dart';
 import 'package:client/routes.dart' as routes;
