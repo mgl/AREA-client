@@ -1,3 +1,4 @@
+import 'package:client/views/reaction/reaction_page.dart';
 import 'package:flutter/material.dart';
 
 class ActionList extends StatelessWidget {
@@ -15,6 +16,12 @@ class ActionList extends StatelessWidget {
         children: [
           for (int index = 1; index < 50; index++)
             ListTile(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                    return ReactionPage();
+                  }));
+                },
                 leading: ExcludeSemantics(
                     child: CircleAvatar(child: Text('$index'))),
                 title: Text('Action n°$index'),
