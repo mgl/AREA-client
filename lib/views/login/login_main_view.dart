@@ -1,16 +1,16 @@
-import 'package:client/app.dart';
 import 'package:client/layout/adaptive.dart';
 import 'package:client/layout/text_scale.dart';
 import 'package:client/views/login/login_button.dart';
 import 'package:client/views/login/password_input.dart';
-import 'package:client/views/login/thumb_button.dart';
 import 'package:client/views/login/topbar.dart';
 import 'package:client/views/login/username_input.dart';
 import 'package:client/controller/auth_controller.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:client/models/area_model.dart';
+/*
+=======
+import 'package:client/views/login/google_button.dart';
 
 class LoginMainView extends StatelessWidget {
   final TextEditingController usernameController;
@@ -103,3 +103,4 @@ class LoginMainView extends StatelessWidget {
     ]);
   }
 }
+*/

@@ -7,27 +7,31 @@ class ActionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          automaticallyImplyLeading: false, title: const Text('Action List')),
-      body: Scrollbar(
-          child: ListView(
-        restorationId: 'ActionList',
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        children: [
-          for (int index = 1; index < 50; index++)
-            ListTile(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                    return ReactionPage();
-                  }));
-                },
-                leading: ExcludeSemantics(
-                    child: CircleAvatar(child: Text('$index'))),
-                title: Text('Action n°$index'),
-                subtitle: const Text('Service'))
-        ],
-      )),
+      appBar: AppBar(title: const Text('Action List')),
+      body: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.deepPurple),
+            borderRadius: BorderRadius.circular(20)),
+        child: Scrollbar(
+            child: ListView(
+          restorationId: 'ActionList',
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          children: [
+            for (int index = 1; index < 51; index++)
+              ListTile(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return ReactionPage();
+                    }));
+                  },
+                  leading: ExcludeSemantics(
+                      child: CircleAvatar(child: Text('$index'))),
+                  title: Text('Action n°$index'),
+                  subtitle: const Text('Service'))
+          ],
+        )),
+      ),
     );
   }
 }

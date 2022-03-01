@@ -4,8 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:client/app.dart';
 import 'package:client/models/area_model.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
+/*
 class EPAuthentication {
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   static SnackBar customSnackBar({required String content}) {
     return SnackBar(
       backgroundColor: Colors.black,
@@ -26,7 +31,7 @@ class EPAuthentication {
             email: email, password: password, context: context)
         .then((value) {
       if (value == true) {
-        Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
+        Navigator.of(context).restorablePushNamed(AreaApp)
       }
     });
   }
@@ -50,4 +55,12 @@ class EPAuthentication {
     sleep(const Duration(seconds: 10));
     Navigator.of(context).restorablePushNamed(AreaApp.homeRoute);
   }
+/*
+  static String getProfileImageURLGoogle(
+    {required BuildContext context})
+  {
+    return (AreaModel.getImageURLGoogle(context: context));
+  }*/
+
 }
+*/
