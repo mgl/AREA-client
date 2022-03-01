@@ -3,7 +3,7 @@ import 'package:client/views/login/login_main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
+/*
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -21,12 +21,12 @@ class _LoginPageState extends State<LoginPage> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
-    return ApplyTextOptions(
+   /* return ApplyTextOptions(
         child: Scaffold(
             body: SafeArea(
                 child: LoginMainView(
                     usernameController: _usenameController.value,
-                    passwordController: _passwordController.value))));
+                    passwordController: _passwordController.value))));*/
   }
 
   @override
@@ -42,3 +42,4 @@ class _LoginPageState extends State<LoginPage> with RestorationMixin {
     registerForRestoration(_passwordController, restorationId);
   }
 }
+*/

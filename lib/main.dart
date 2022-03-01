@@ -4,13 +4,13 @@ import 'package:firebase_core/firebase_core.dart';
 
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
+   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp(
       options: const FirebaseOptions(
       apiKey: 'AIzaSyA_6vGnEbnslDskt6Y3DyQFFi6LFxI89Ic', 
-      appId: 'appId', 
+      appId: '1:613243542195:android:06ef0eec5ce705c70c2ec6', 
       messagingSenderId: 'messagingSenderId', 
-      projectId: 'projectId'),
+      projectId: 'area-37a17'),
     );
-  runApp(const AreaApp());
+  runApp(AreaApp());
 }

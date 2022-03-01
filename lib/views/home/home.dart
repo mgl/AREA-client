@@ -1,5 +1,6 @@
 // import 'package:client/layout/adaptive.dart';
 // import 'package:client/layout/text_scale.dart';
+import 'package:client/controller/auth_controller.dart';
 import 'package:client/views/home/action_list.dart';
 import 'package:flutter/material.dart';
 
