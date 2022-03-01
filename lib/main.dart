@@ -7,10 +7,12 @@ void main() async {
    WidgetsFlutterBinding.ensureInitialized();
    await Firebase.initializeApp(
       options: const FirebaseOptions(
-      apiKey: 'AIzaSyA_6vGnEbnslDskt6Y3DyQFFi6LFxI89Ic', 
-      appId: '1:613243542195:android:06ef0eec5ce705c70c2ec6', 
-      messagingSenderId: 'messagingSenderId', 
-      projectId: 'area-37a17'),
-    );
+      apiKey: "AIzaSyA_6vGnEbnslDskt6Y3DyQFFi6LFxI89Ic",
+  authDomain: "area-37a17.firebaseapp.com",
+  projectId: "area-37a17",
+  storageBucket: "area-37a17.appspot.com",
+  messagingSenderId: "613243542195",
+  appId: "1:613243542195:web:db0322be575c945c0c2ec6"
+    ));
   runApp(AreaApp());
 }
