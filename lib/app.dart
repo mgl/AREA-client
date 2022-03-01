@@ -85,33 +85,87 @@ import 'package:flutterfire_ui/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AreaApp extends StatelessWidget {
+  const AreaApp({Key? key}) : super(key: key);
+  static const String _loginRoute = routes.loginRoute;
+  static const String _homeRoute = routes.homeRoute;
+  final sharedZAxisTransitionBuilder = const SharedAxisPageTransitionsBuilder(
+      transitionType: SharedAxisTransitionType.scaled,
+      fillColor: ClientColors.primaryBackground);
+
+  TextTheme _buildClientTextTheme(TextTheme base) {
+    return base
+        .copyWith(
+            bodyText1: GoogleFonts.eczar(
+                fontSize: 40,
+                fontWeight: FontWeight.w400,
+                letterSpacing: letterSpacingOrNone(1.4)),
+            bodyText2: GoogleFonts.robotoCondensed(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                letterSpacing: letterSpacingOrNone(0.5)),
+            button: GoogleFonts.robotoCondensed(
+                fontWeight: FontWeight.w700,
+                letterSpacing: letterSpacingOrNone(2.8)),
+            headline5: GoogleFonts.eczar(
+                fontSize: 40,
+                fontWeight: FontWeight.w600,
+                letterSpacing: letterSpacingOrNone(1.4)))
+        .apply(displayColor: Colors.white, bodyColor: Colors.white);
+  }
+
+  ThemeData _buildClientTheme() {
+    final base = ThemeData.dark();
+    return ThemeData(
+        appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle.light,
+            backgroundColor: ClientColors.primaryBackground,
+            elevation: 0),
+        scaffoldBackgroundColor: ClientColors.primaryBackground,
+        primaryColor: ClientColors.primaryBackground,
+        focusColor: ClientColors.focusColor,
+        textTheme: _buildClientTextTheme(base.textTheme),
+        inputDecorationTheme: const InputDecorationTheme(
+            labelStyle: TextStyle(
+                color: ClientColors.gray, fontWeight: FontWeight.w500),
+            filled: true,
+            fillColor: ClientColors.inputBackground,
+            focusedBorder: InputBorder.none),
+        visualDensity: VisualDensity.standard);
+  }
+
   @override
   Widget build(BuildContext context) {
     const providerConfigs = [EmailProviderConfiguration()];
 
     return MaterialApp(
-      initialRoute:
-          FirebaseAuth.instance.currentUser == null ? '/sign-in' : '/homeRoute',
-      routes: {
-        '/sign-in': (context) {
-          return SignInScreen(
-            actions: [
+        debugShowCheckedModeBanner: false,
+        theme: _buildClientTheme().copyWith(
+            platform: ClientOptions.of(context)?.platform,
+            pageTransitionsTheme: PageTransitionsTheme(builders: {
+              for (var type in TargetPlatform.values)
+                type: sharedZAxisTransitionBuilder
+            })),
+        restorationScopeId: 'client_app',
+        title: 'Client',
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? _loginRoute
+            : _homeRoute,
+        routes: {
+          _loginRoute: (context) {
+            return SignInScreen(actions: [
               AuthStateChangeAction<SignedIn>((context, _) {
-                Navigator.of(context).pushReplacementNamed('/homeRoute');
-              }),
-            ],
-            providerConfigs: [
+                Navigator.of(context).pushReplacementNamed(_homeRoute);
+              })
+            ], providerConfigs: const [
               EmailProviderConfiguration(),
               GoogleProviderConfiguration(
-                clientId: '613243542195-99nqepgbskckj3k7083gjfeqpko07nla.apps.googleusercontent.com',
-              )
-            ],
-          );
-        },
-        '/homeRoute': (context) {
-          return HomePage();
-        },
-      },
-    );
+                  clientId:
+                      '613243542195-99nqepgbskckj3k7083gjfeqpko07nla.apps.googleusercontent.com')
+            ]);
+          },
+          _homeRoute: (context) {
+            return const HomePage();
+          }
+        });
   }
 }

@@ -39,7 +39,9 @@ class _HomePageState extends State<HomePage> {
           })
     ]);
     return Scaffold(
-        appBar: AppBar(title: const Text('AREA PROJECT')),
+        appBar: AppBar(
+            title: const Text('AREA PROJECT'),
+            automaticallyImplyLeading: false),
         body: const Center(
             child: Padding(padding: EdgeInsets.all(50.0), child: ActionList())),
         drawer: Drawer(child: drawerItems));
