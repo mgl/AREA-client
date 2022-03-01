@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:client/app.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
+/*
 class AreaModel {
   static Future<bool> requestSignInUsingEmailPassword(
       {required String email,
@@ -60,6 +60,10 @@ class AreaModel {
     await user.reload();
     User? refreshedUser = auth.currentUser;
     return refreshedUser;
+  }
+
+  static Future<String?> getImageURLGoogle() async {
+
   }
 
   // static Future<void> signInWithGoogle({required BuildContext context}) async {
@@ -117,3 +121,4 @@ class AreaModel {
     return user;
   }
 }
+*/

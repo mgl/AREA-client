@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 class UsernameInput extends StatelessWidget {
   final double? maxWidth;
@@ -20,3 +20,4 @@ class UsernameInput extends StatelessWidget {
                 decoration: const InputDecoration(labelText: 'Username'))));
   }
 }
+*/

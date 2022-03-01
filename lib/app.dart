@@ -1,5 +1,5 @@
-import 'package:animations/animations.dart';
 import 'package:client/layout/client_options.dart';
+import 'package:animations/animations.dart';
 import 'package:client/colors.dart';
 import 'package:client/views/home/home.dart';
 import 'package:client/layout/letter_spacing.dart';
@@ -8,7 +8,7 @@ import 'package:client/routes.dart' as routes;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+/*
 class AreaApp extends StatelessWidget {
   static const String loginRoute = routes.loginRoute;
   static const String homeRoute = routes.homeRoute;
@@ -75,5 +75,43 @@ class AreaApp extends StatelessWidget {
             fillColor: ClientColors.inputBackground,
             focusedBorder: InputBorder.none),
         visualDensity: VisualDensity.standard);
+  }
+}
+*/
+
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutterfire_ui/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class AreaApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    const providerConfigs = [EmailProviderConfiguration()];
+
+    return MaterialApp(
+      initialRoute:
+          FirebaseAuth.instance.currentUser == null ? '/sign-in' : '/homeRoute',
+      routes: {
+        '/sign-in': (context) {
+          return SignInScreen(
+            actions: [
+              AuthStateChangeAction<SignedIn>((context, _) {
+                Navigator.of(context).pushReplacementNamed('/homeRoute');
+              }),
+            ],
+            providerConfigs: [
+              EmailProviderConfiguration(),
+              GoogleProviderConfiguration(
+                clientId: '613243542195-99nqepgbskckj3k7083gjfeqpko07nla.apps.googleusercontent.com',
+              )
+            ],
+          );
+        },
+        '/homeRoute': (context) {
+          return HomePage();
+        },
+      },
+    );
   }
 }
