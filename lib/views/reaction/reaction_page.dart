@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ReactionPage extends StatefulWidget {
@@ -12,9 +11,6 @@ class _ReactionPageState extends State<ReactionPage> {
 
   @override
   Widget build(BuildContext context) {
-    // for (int j = 0; j < 51; j++) {
-    // _values.add(false);
-    // }
     return Scaffold(
         appBar: AppBar(title: const Text('Reaction List')),
         body: Container(
