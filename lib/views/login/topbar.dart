@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:client/views/login/border_button.dart';
 import 'package:client/layout/text_scale.dart';
 import 'package:client/layout/image_placeholder.dart';
@@ -65,3 +65,4 @@ class TopBar extends StatelessWidget {
         ]));
   }
 }
+*/
