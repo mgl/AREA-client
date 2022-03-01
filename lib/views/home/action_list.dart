@@ -7,7 +7,8 @@ class ActionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Action List')),
+      appBar: AppBar(
+          title: const Text('Action List'), automaticallyImplyLeading: false),
       body: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.deepPurple),
