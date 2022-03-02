@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:client/secret_key.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GithubButton extends StatefulWidget {
   const GithubButton({Key? key}) : super(key: key);
@@ -9,12 +11,21 @@ class GithubButton extends StatefulWidget {
 
 class _GithubButtonState extends State<GithubButton> {
   bool _connectedToGithub = false;
+
+
+  void onClickGitHubLoginButton() async {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
           setState(() {
-            _connectedToGithub = (!_connectedToGithub) ? true : false;
+            if (!_connectedToGithub) {
+              onClickGitHubLoginButton();
+            }
+            _connectedToGithub = true;
           });
         },
         style: TextButton.styleFrom(
