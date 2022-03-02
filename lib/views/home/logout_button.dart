@@ -1,21 +1,27 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:client/routes.dart' as routes;
 
 
-class GoogleButton extends StatefulWidget {
-  const GoogleButton({Key? key}) : super(key: key);
+class LogOutButton extends StatefulWidget {
+  const LogOutButton({Key? key}) : super(key: key);
   @override
-  State<GoogleButton> createState() => _GoogleButtonState();
+  State<LogOutButton> createState() => _LogOutButtonState();
 }
 
-class _GoogleButtonState extends State<GoogleButton> {
-  bool _connectedToGoogle = false;
+class _LogOutButtonState extends State<LogOutButton> {
+  static const String _loginRoute = routes.loginRoute;
+
+ // bool _connectedToGoogle = false;
   @override
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
           setState(() {
-            _connectedToGoogle = (!_connectedToGoogle) ? true : false;
+            FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushReplacementNamed(_loginRoute);
+
           });
         },
         style: TextButton.styleFrom(
@@ -24,21 +30,16 @@ class _GoogleButtonState extends State<GoogleButton> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12))),
         child: Row(children: [
-          Container(
+           Container(
             height: 30,
             width: 30,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/google.jpg'), fit: BoxFit.cover),
+                    image: AssetImage('assets/logout.png'), fit: BoxFit.cover),
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!_connectedToGoogle)
-              ? const Text('Connect to Google')
-              : const Text(
-                  'Connected to Google',
-                  style: TextStyle(color: Colors.green),
-                ),
+              const Text('logout')
         ]));
   }
 }

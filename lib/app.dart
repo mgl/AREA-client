@@ -160,7 +160,7 @@ class AreaApp extends StatelessWidget {
               EmailProviderConfiguration(),
               GoogleProviderConfiguration(
                   clientId:
-                      '613243542195-99nqepgbskckj3k7083gjfeqpko07nla.apps.googleusercontent.com')
+                      '...')
             ]);
           },
           _homeRoute: (context) {

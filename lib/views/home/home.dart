@@ -7,6 +7,7 @@ import 'package:client/views/home/gitlab_button.dart';
 import 'package:client/views/home/google_button.dart';
 import 'package:client/views/home/one_drive_button.dart';
 import 'package:client/views/home/twitter_button.dart';
+import 'package:client/views/home/logout_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // final theme = Theme.of(context);
     // final isDesktop = isDisplayDesktop(context);
+    
     const drawerHeader = UserAccountsDrawerHeader(
         accountName: Text('name'),
         accountEmail: Text('email@test.com'),
@@ -40,7 +42,10 @@ class _HomePageState extends State<HomePage> {
       SizedBox(height: 10),
       DiscordButton(),
       SizedBox(height: 10),
-      OneDriveButton()
+      OneDriveButton(),
+      SizedBox(height: 10),
+      LogOutButton(),
+
     ]);
     return Scaffold(
         appBar: AppBar(title: const Text('AREA PROJECT')),
