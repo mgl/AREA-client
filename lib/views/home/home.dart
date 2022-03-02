@@ -45,7 +45,6 @@ class _HomePageState extends State<HomePage> {
       OneDriveButton(),
       SizedBox(height: 10),
       LogOutButton(),
-
     ]);
     return Scaffold(
         appBar: AppBar(title: const Text('AREA PROJECT')),
