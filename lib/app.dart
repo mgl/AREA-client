@@ -136,7 +136,7 @@ class AreaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const providerConfigs = [EmailProviderConfiguration()];
-
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: _buildClientTheme().copyWith(
