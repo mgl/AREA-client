@@ -1,7 +1,13 @@
 // import 'package:client/layout/adaptive.dart';
 // import 'package:client/layout/text_scale.dart';
-import 'package:client/controller/auth_controller.dart';
 import 'package:client/views/home/action_list.dart';
+import 'package:client/views/home/discord_button.dart';
+import 'package:client/views/home/github_button.dart';
+import 'package:client/views/home/gitlab_button.dart';
+import 'package:client/views/home/google_button.dart';
+import 'package:client/views/home/one_drive_button.dart';
+import 'package:client/views/home/twitter_button.dart';
+import 'package:client/views/home/logout_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,26 +23,28 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // final theme = Theme.of(context);
     // final isDesktop = isDisplayDesktop(context);
+    
     const drawerHeader = UserAccountsDrawerHeader(
         accountName: Text('name'),
         accountEmail: Text('email@test.com'),
         currentAccountPicture: CircleAvatar(
             backgroundImage: AssetImage('assets/epilogo.png'),
-            backgroundColor: Colors.black87));
-    final drawerItems = ListView(children: [
+            backgroundColor: Color(0xFF33333D)));
+    final drawerItems = ListView(children: const [
       drawerHeader,
-      ListTile(
-          title: const Text('data'),
-          leading: const Icon(Icons.comment),
-          onTap: () {
-            Navigator.pop(context);
-          }),
-      ListTile(
-          title: const Text('data'),
-          leading: const Icon(Icons.comment),
-          onTap: () {
-            Navigator.pop(context);
-          })
+      GoogleButton(),
+      SizedBox(height: 10),
+      GithubButton(),
+      SizedBox(height: 10),
+      GitlabButton(),
+      SizedBox(height: 10),
+      TwitterButton(),
+      SizedBox(height: 10),
+      DiscordButton(),
+      SizedBox(height: 10),
+      OneDriveButton(),
+      SizedBox(height: 10),
+      LogOutButton(),
     ]);
     return Scaffold(
         appBar: AppBar(title: const Text('AREA PROJECT')),
