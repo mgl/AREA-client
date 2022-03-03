@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:client/secret_key.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:client/secret_key.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
 class GithubButton extends StatefulWidget {
   const GithubButton({Key? key}) : super(key: key);
@@ -11,9 +11,9 @@ class GithubButton extends StatefulWidget {
 
 class _GithubButtonState extends State<GithubButton> {
   bool _connectedToGithub = false;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
 
-
-  void onClickGitHubLoginButton() async {
+  Future<void> onClickGitHubLoginButton() async {
 
   }
 

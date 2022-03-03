@@ -3,7 +3,7 @@ import 'package:animations/animations.dart';
 import 'package:client/colors.dart';
 import 'package:client/views/home/home.dart';
 import 'package:client/layout/letter_spacing.dart';
-import 'package:client/controller/login_page.dart';
+// import 'package:client/controller/login_page.dart';
 import 'package:client/routes.dart' as routes;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -79,10 +79,10 @@ class AreaApp extends StatelessWidget {
 }
 */
 
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterfire_ui/auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AreaApp extends StatelessWidget {
   const AreaApp({Key? key}) : super(key: key);
@@ -135,7 +135,7 @@ class AreaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const providerConfigs = [EmailProviderConfiguration()];
+    // const providerConfigs = [EmailProviderConfiguration()];
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
