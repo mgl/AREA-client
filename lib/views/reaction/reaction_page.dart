@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ReactionPage extends StatefulWidget {
+  const ReactionPage({Key? key}) : super(key: key);
   @override
   _ReactionPageState createState() => _ReactionPageState();
 }
