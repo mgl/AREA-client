@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:client/secret_key.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
@@ -11,10 +12,15 @@ class GithubButton extends StatefulWidget {
 
 class _GithubButtonState extends State<GithubButton> {
   bool _connectedToGithub = false;
-  // final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> onClickGitHubLoginButton() async {
-
+  void onClickGitHubLoginButton() async {
+    const String url =
+        "https://github.com/login/oauth/authorize?client_id=63596a12d7d346bb211d&scope=public_repo%20read:user%20user:email";
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false, forceWebView: false);
+    } else {
+      print("CANNOT LAUNCH THIS URL!");
+    }
   }
 
   @override
