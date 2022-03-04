@@ -8,6 +8,8 @@ import 'package:client/views/home/google_button.dart';
 import 'package:client/views/home/one_drive_button.dart';
 import 'package:client/views/home/twitter_button.dart';
 import 'package:client/views/home/logout_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,28 +25,35 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // final theme = Theme.of(context);
     // final isDesktop = isDisplayDesktop(context);
-    
-    const drawerHeader = UserAccountsDrawerHeader(
-        accountName: Text('name'),
-        accountEmail: Text('email@test.com'),
+    String userName = 'user';
+    ImageProvider userPicture = AssetImage('assets/epilogo.png');
+    if (FirebaseAuth.instance.currentUser!.displayName != null) {
+      userName = FirebaseAuth.instance.currentUser!.displayName as String;
+      final src = FirebaseAuth.instance.currentUser!.photoURL as String;
+      userPicture = NetworkImage(src);
+    }
+    String userMail = FirebaseAuth.instance.currentUser!.email as String;
+    UserAccountsDrawerHeader drawerHeader = UserAccountsDrawerHeader(
+        accountName: Text(userName),
+        accountEmail: Text(userMail),
         currentAccountPicture: CircleAvatar(
-            backgroundImage: AssetImage('assets/epilogo.png'),
+            backgroundImage: userPicture,
             backgroundColor: Color(0xFF33333D)));
-    final drawerItems = ListView(children: const [
+    final drawerItems = ListView(children: [
       drawerHeader,
-      GoogleButton(),
-      SizedBox(height: 10),
-      GithubButton(),
-      SizedBox(height: 10),
-      GitlabButton(),
-      SizedBox(height: 10),
-      TwitterButton(),
-      SizedBox(height: 10),
-      DiscordButton(),
-      SizedBox(height: 10),
-      OneDriveButton(),
-      SizedBox(height: 10),
-      LogOutButton(),
+      const GoogleButton(),
+      const SizedBox(height: 10),
+      const GithubButton(),
+      const SizedBox(height: 10),
+      const GitlabButton(),
+      const SizedBox(height: 10),
+      const TwitterButton(),
+      const SizedBox(height: 10),
+      const DiscordButton(),
+      const SizedBox(height: 10),
+      const OneDriveButton(),
+      const SizedBox(height: 10),
+      const LogOutButton(),
     ]);
     return Scaffold(
         appBar: AppBar(title: const Text('AREA PROJECT')),
