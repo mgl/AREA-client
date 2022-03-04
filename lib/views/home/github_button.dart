@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 // import 'package:client/secret_key.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
@@ -12,15 +11,54 @@ class GithubButton extends StatefulWidget {
 
 class _GithubButtonState extends State<GithubButton> {
   bool _connectedToGithub = false;
+  String answer = "";
 
-  void onClickGitHubLoginButton() async {
-    const String url =
-        "https://github.com/login/oauth/authorize?client_id=63596a12d7d346bb211d&scope=public_repo%20read:user%20user:email";
-    if (await canLaunch(url)) {
-      await launch(url, forceSafariVC: false, forceWebView: false);
-    } else {
-      print("CANNOT LAUNCH THIS URL!");
-    }
+  void onClickGitHubLoginButton(BuildContext context) {
+    AlertDialog dialog = AlertDialog(
+        title: const Text('Github Connection',
+            style: TextStyle(color: Colors.black)),
+        content: const Text('Please enter your access token.',
+            style: TextStyle(color: Colors.black)),
+        actions: [
+          TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'Token'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) {
+                setState(() {
+                  answer = value;
+                });
+              }),
+          const SizedBox(height: 10),
+          Row(children: [
+            ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.deepPurple)),
+                child: const Text("Done"),
+                onPressed: () {
+                  setState(() {
+                    _connectedToGithub = true;
+                  });
+                  Navigator.of(context).pop('OK');
+                })
+          ], mainAxisAlignment: MainAxisAlignment.end)
+        ]);
+    Future<String> futureValue = showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return dialog;
+        }) as Future<String>;
+    Stream<String> stream = futureValue.asStream();
+    stream.listen((String data) {
+      String answerValue = data;
+      setState(() {
+        answer = answerValue;
+      });
+    });
   }
 
   @override
@@ -29,9 +67,8 @@ class _GithubButtonState extends State<GithubButton> {
         onPressed: () {
           setState(() {
             if (!_connectedToGithub) {
-              onClickGitHubLoginButton();
+              onClickGitHubLoginButton(context);
             }
-            _connectedToGithub = true;
           });
         },
         style: TextButton.styleFrom(
