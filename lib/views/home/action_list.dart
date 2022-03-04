@@ -23,7 +23,7 @@ class ActionList extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (BuildContext context) {
-                      return ReactionPage();
+                      return const ReactionPage();
                     }));
                   },
                   leading: ExcludeSemantics(

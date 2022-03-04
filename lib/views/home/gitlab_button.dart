@@ -8,13 +8,64 @@ class GitlabButton extends StatefulWidget {
 
 class _GitlabButtonState extends State<GitlabButton> {
   bool _connectedToGitlab = false;
+  String answer = "";
+
+  void onClickGitlabLoginButton(BuildContext context) {
+    AlertDialog dialog = AlertDialog(
+        title: const Text('Gitlab Connection',
+            style: TextStyle(color: Colors.black)),
+        content: const Text('Please enter your access token.',
+            style: TextStyle(color: Colors.black)),
+        actions: [
+          TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'Token'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) {
+                setState(() {
+                  answer = value;
+                });
+              }),
+          const SizedBox(height: 10),
+          Row(children: [
+            ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.deepPurple)),
+                child: const Text("Done"),
+                onPressed: () {
+                  setState(() {
+                    _connectedToGitlab = true;
+                  });
+                  Navigator.of(context).pop('OK');
+                })
+          ], mainAxisAlignment: MainAxisAlignment.end)
+        ]);
+    Future<String> futureValue = showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return dialog;
+        }) as Future<String>;
+    Stream<String> stream = futureValue.asStream();
+    stream.listen((String data) {
+      String answerValue = data;
+      setState(() {
+        answer = answerValue;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
           setState(() {
-            _connectedToGitlab = (!_connectedToGitlab) ? true : false;
+            if (!_connectedToGitlab) {
+              onClickGitlabLoginButton(context);
+            }
           });
         },
         style: TextButton.styleFrom(
