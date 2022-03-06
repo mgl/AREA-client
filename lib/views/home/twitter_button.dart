@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:client/controller/subscribe_controller.dart';
+import 'package:client/models/globals.dart';
 
 class TwitterButton extends StatefulWidget {
   const TwitterButton({Key? key}) : super(key: key);
@@ -8,25 +10,64 @@ class TwitterButton extends StatefulWidget {
 
 class _TwitterButtonState extends State<TwitterButton> {
   bool _connectedToTwitter = false;
-  String answer = "";
+  String appToken = "";
+  String appSecret = "";
+  String userToken = "";
+  String userSecret = "";
 
   void onClickTwitterLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Twitter Connection',
             style: TextStyle(color: Colors.black)),
-        content: const Text('Please enter your access token.',
+        content: const Text('Please enter your informations.',
             style: TextStyle(color: Colors.black)),
         actions: [
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Token'),
+                  border: OutlineInputBorder(), labelText: 'App Token'),
               maxLines: 1,
               maxLength: 100,
               onChanged: (value) {
                 setState(() {
-                  answer = value;
+                  appToken = value;
+                });
+              }),
+          TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'App Secret'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) {
+                setState(() {
+                  appSecret = value;
+                });
+              }),
+          TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'User Token'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) {
+                setState(() {
+                  userToken = value;
+                });
+              }),
+          TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'User Secret'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) {
+                setState(() {
+                  userSecret = value;
                 });
               }),
           const SizedBox(height: 10),
@@ -38,28 +79,36 @@ class _TwitterButtonState extends State<TwitterButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    _connectedToTwitter = true;
+                    if (_connectedToTwitter == true) {
+                      SubscribeController.unsubscribeTwitter();
+                      _connectedToTwitter = false;
+                    } else {
+                      SubscribeController.subscribeTwitter(
+                          appToken, userToken, userToken, userSecret);
+                      _connectedToTwitter = true;
+                    }
                   });
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue = showDialog(
+    showDialog(
         context: context,
         builder: (BuildContext context) {
           return dialog;
-        }) as Future<String>;
-    Stream<String> stream = futureValue.asStream();
-    stream.listen((String data) {
-      String answerValue = data;
-      setState(() {
-        answer = answerValue;
-      });
-    });
+        });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (globalContainer.service.isEmpty) {
+      return Container();
+    }
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "twitter") {
+        _connectedToTwitter = true;
+      }
+    }
     return TextButton(
         onPressed: () {
           setState(() {

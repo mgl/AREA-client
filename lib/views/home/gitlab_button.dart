@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:client/controller/subscribe_controller.dart';
+import 'package:client/models/globals.dart';
 
 class GitlabButton extends StatefulWidget {
   const GitlabButton({Key? key}) : super(key: key);
@@ -38,7 +40,13 @@ class _GitlabButtonState extends State<GitlabButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    _connectedToGitlab = true;
+                    if (_connectedToGitlab == true) {
+                      SubscribeController.unsubscribeGitlab();
+                      _connectedToGitlab = false;
+                    } else {
+                      SubscribeController.subscribeGitlab(answer);
+                      _connectedToGitlab = true;
+                    }
                   });
                   Navigator.of(context).pop('OK');
                 })
@@ -60,6 +68,14 @@ class _GitlabButtonState extends State<GitlabButton> {
 
   @override
   Widget build(BuildContext context) {
+    if (globalContainer.service.isEmpty) {
+      return Container();
+    }
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "gitlab") {
+        _connectedToGitlab = true;
+      }
+    }
     return TextButton(
         onPressed: () {
           setState(() {

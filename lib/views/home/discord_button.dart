@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:client/controller/subscribe_controller.dart';
+import 'package:client/models/globals.dart';
 
 class DiscordButton extends StatefulWidget {
   const DiscordButton({Key? key}) : super(key: key);
@@ -14,16 +16,17 @@ class _DiscordButtonState extends State<DiscordButton> {
     AlertDialog dialog = AlertDialog(
         title: const Text('Twitter Connection',
             style: TextStyle(color: Colors.black)),
-        content: const Text('Please enter your access token.',
+        content: const Text(
+            'Please enter the URL of the webhook of your server.',
             style: TextStyle(color: Colors.black)),
         actions: [
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Token'),
+                  border: OutlineInputBorder(), labelText: 'Webhook URL'),
               maxLines: 1,
-              maxLength: 100,
+              maxLength: 300,
               onChanged: (value) {
                 setState(() {
                   answer = value;
@@ -38,7 +41,13 @@ class _DiscordButtonState extends State<DiscordButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    _connectedToDiscord = true;
+                    if (_connectedToDiscord == true) {
+                      SubscribeController.unsubscribeDiscord();
+                      _connectedToDiscord = false;
+                    } else {
+                      SubscribeController.subscribeDiscord(answer);
+                      _connectedToDiscord = true;
+                    }
                   });
                   Navigator.of(context).pop('OK');
                 })
@@ -60,6 +69,14 @@ class _DiscordButtonState extends State<DiscordButton> {
 
   @override
   Widget build(BuildContext context) {
+    if (globalContainer.service.isEmpty) {
+      return Container();
+    }
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "discord") {
+        _connectedToDiscord = true;
+      }
+    }
     return TextButton(
         onPressed: () {
           setState(() {

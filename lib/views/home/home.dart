@@ -1,16 +1,26 @@
-// import 'package:client/layout/adaptive.dart';
-// import 'package:client/layout/text_scale.dart';
+import 'package:client/models/globals.dart';
 import 'package:client/views/home/action_list.dart';
-import 'package:client/views/home/discord_button.dart';
-import 'package:client/views/home/github_button.dart';
-import 'package:client/views/home/gitlab_button.dart';
-import 'package:client/views/home/google_button.dart';
-import 'package:client/views/home/one_drive_button.dart';
-import 'package:client/views/home/twitter_button.dart';
-import 'package:client/views/home/logout_button.dart';
+import 'package:client/controller/setup_controller.dart';
+import 'package:client/views/home/addActionButtons/button_action_codebase_push.dart';
+import 'package:client/views/home/addActionButtons/button_action_codebase_ticket_creation.dart';
+import 'package:client/views/home/addActionButtons/button_action_codebase_ticket_update.dart';
+import 'package:client/views/home/addActionButtons/button_action_github_issue.dart';
+import 'package:client/views/home/addActionButtons/button_action_github_issue_comment.dart';
+import 'package:client/views/home/addActionButtons/button_action_github_label.dart';
+import 'package:client/views/home/addActionButtons/button_action_github_milestone.dart';
+import 'package:client/views/home/addActionButtons/button_action_github_pull_request.dart';
+import 'package:client/views/home/addActionButtons/button_action_gitlab_comment.dart';
+import 'package:client/views/home/addActionButtons/button_action_gitlab_issue.dart';
+import 'package:client/views/home/addActionButtons/button_action_gitlab_merge_request.dart';
+import 'package:client/views/home/addActionButtons/button_action_gitlab_push.dart';
+import 'package:client/views/home/addActionButtons/button_action_github_push.dart';
+import 'package:client/views/home/addActionButtons/button_action_gitlab_wiki.dart';
+import 'package:client/views/home/select_action_page.dart';
+import 'package:client/views/home/home_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:client/views/home/addActionButtons/button_action_codebase_merge_request.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,44 +31,67 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(const Duration(seconds: 3), (Timer t) => setup());
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  void setup() async {
+    if (!setuped) {
+      String token = await FirebaseAuth.instance.currentUser!.getIdToken();
+      SetupController.SetupArea(token);
+    }
+  }
+
+  void onClickOnAddButton(BuildContext context) {
+    AlertDialog dialog = const AlertDialog(
+        scrollable: true,
+        actions: [
+
+        ],
+        backgroundColor: Color.fromRGBO(0, 0, 0, 0));
+    Future<String> futureValue = showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return dialog;
+        }) as Future<String>;
+    Stream<String> stream = futureValue.asStream();
+    stream.listen((String data) {});
+  }
+
+  // onTap: () {
+  //   Navigator.push(context,
+  //       MaterialPageRoute(builder: (BuildContext context) {
+  //     return const ReactionPage();
+  //   }));
+  // },
+
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
-    // final isDesktop = isDisplayDesktop(context);
-    String userName = 'user';
-    ImageProvider userPicture = AssetImage('assets/epilogo.png');
-    if (FirebaseAuth.instance.currentUser!.displayName != null) {
-      userName = FirebaseAuth.instance.currentUser!.displayName as String;
-      final src = FirebaseAuth.instance.currentUser!.photoURL as String;
-      userPicture = NetworkImage(src);
-    }
-    String userMail = FirebaseAuth.instance.currentUser!.email as String;
-    UserAccountsDrawerHeader drawerHeader = UserAccountsDrawerHeader(
-        accountName: Text(userName),
-        accountEmail: Text(userMail),
-        currentAccountPicture: CircleAvatar(
-            backgroundImage: userPicture,
-            backgroundColor: Color(0xFF33333D)));
-    final drawerItems = ListView(children: [
-      drawerHeader,
-      const GoogleButton(),
-      const SizedBox(height: 10),
-      const GithubButton(),
-      const SizedBox(height: 10),
-      const GitlabButton(),
-      const SizedBox(height: 10),
-      const TwitterButton(),
-      const SizedBox(height: 10),
-      const DiscordButton(),
-      const SizedBox(height: 10),
-      const OneDriveButton(),
-      const SizedBox(height: 10),
-      const LogOutButton(),
-    ]);
     return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              // onClickOnAddButton(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return SelectActionPage();
+              }));
+            },
+            backgroundColor: Colors.deepPurple,
+            child: const Icon(Icons.add, color: Colors.black)),
         appBar: AppBar(title: const Text('AREA PROJECT')),
         body: const Center(
             child: Padding(padding: EdgeInsets.all(50.0), child: ActionList())),
-        drawer: Drawer(child: drawerItems));
+        drawer: const Drawer(child: HomeDrawer()));
   }
 }

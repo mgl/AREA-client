@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:client/secret_key.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:client/controller/subscribe_controller.dart';
+import 'package:client/models/globals.dart';
 
 class GithubButton extends StatefulWidget {
   const GithubButton({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class GithubButton extends StatefulWidget {
 class _GithubButtonState extends State<GithubButton> {
   bool _connectedToGithub = false;
   String answer = "";
+  String userName = "";
 
   void onClickGitHubLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
@@ -32,6 +35,18 @@ class _GithubButtonState extends State<GithubButton> {
                   answer = value;
                 });
               }),
+        /*  TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'UserName'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) {
+                setState(() {
+                  userName = value;
+                });
+              }),*/
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -41,7 +56,13 @@ class _GithubButtonState extends State<GithubButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    _connectedToGithub = true;
+                    if (_connectedToGithub == true) {
+                      SubscribeController.unsubscribeGithub();
+                      _connectedToGithub = false;
+                    } else {
+                      SubscribeController.subscribeGithub(answer);
+                      _connectedToGithub = true;
+                    }
                   });
                   Navigator.of(context).pop('OK');
                 })
@@ -63,6 +84,14 @@ class _GithubButtonState extends State<GithubButton> {
 
   @override
   Widget build(BuildContext context) {
+    if (globalContainer.service.isEmpty) {
+      return Container();
+    }
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "github") {
+        _connectedToGithub = true;
+      }
+    }
     return TextButton(
         onPressed: () {
           setState(() {
