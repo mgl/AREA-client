@@ -3,48 +3,50 @@ import 'package:client/models/subscribe_model.dart';
 import 'package:http/http.dart';
 
 class SubscribeController {
-  static void subscribeGithub() {
-    SubscribeModel().subscribeGithub();
+  static void subscribeGithub(String value) {
+    SubscribeModel().subscribeGithub(value);
   }
 
   static void unsubscribeGithub() {
     SubscribeModel().unsubscribeGithub();
   }
 
-  static void subscribeCodebase() {
-    SubscribeModel().subscribeCodebase();
+  static void subscribeCodebase(String value) {
+    SubscribeModel().subscribeCodebase(value);
   }
 
   static void unsubscribeCodebase() {
     SubscribeModel().unsubscribeCodebase();
   }
 
-  static void subscribeGitlab() {
-    SubscribeModel().subscribeGitlab();
+  static void subscribeGitlab(String value) {
+    SubscribeModel().subscribeGitlab(value);
   }
 
   static void unsubscribeGitlab() {
     SubscribeModel().unsubscribeGitlab();
   }
 
-  static void subscribeDiscord() {
-    SubscribeModel().subscribeDiscord();
+  static void subscribeDiscord(String value) {
+    SubscribeModel().subscribeDiscord(value);
   }
 
   static void unsubscribeDiscord() {
     SubscribeModel().unsubscribeDiscord();
   }
 
-  static void subscribeGoogle() {
-    SubscribeModel().subscribeDiscord();
+  static void subscribeGoogle(String value) {
+    SubscribeModel().subscribeGoogle();
   }
 
   static void unsubscribeGoogle() {
     SubscribeModel().unsubscribeDiscord();
   }
 
-  static void subscribeTwitter() {
-    SubscribeModel().subscribeDiscord();
+  static void subscribeTwitter(
+      String appToken, String appSecret, String userToken, String userSecret) {
+    SubscribeModel()
+        .subscribeTwitter(appToken, appSecret, userToken, userSecret);
   }
 
   static void unsubscribeTwitter() {

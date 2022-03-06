@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
+import 'package:client/models/globals.dart';
 
 class ButtonActionGitlabComment extends StatefulWidget {
   const ButtonActionGitlabComment({Key? key}) : super(key: key);
@@ -49,26 +50,32 @@ class _ButtonActionGitlabCommentState extends State<ButtonActionGitlabComment> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () {
-          onClickButtonActionGitlabComment(context);
-        },
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.grey[200],
-            primary: Colors.black,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12))),
-        child: Row(children: [
-          Container(
-            height: 30,
-            width: 30,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/gitlab.png'), fit: BoxFit.cover),
-                shape: BoxShape.circle),
-          ),
-          const SizedBox(width: 20),
-          const Text('Gitlab - Comment')
-        ]));
+    for (int i = 0; i < globalContainer!.service.length; i++) {
+      if (globalContainer!.service[i].name == "gitlab") {
+        return TextButton(
+            onPressed: () {
+              onClickButtonActionGitlabComment(context);
+            },
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                primary: Colors.black,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12))),
+            child: Row(children: [
+              Container(
+                height: 30,
+                width: 30,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/gitlab.png'),
+                        fit: BoxFit.cover),
+                    shape: BoxShape.circle),
+              ),
+              const SizedBox(width: 20),
+              const Text('Gitlab - Comment')
+            ]));
+      }
+    }
+    return Container();
   }
 }

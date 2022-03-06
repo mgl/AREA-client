@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:client/controller/subscribe_controller.dart';
+import 'package:client/models/globals.dart';
 
 class GoogleButton extends StatefulWidget {
   const GoogleButton({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _GoogleButtonState extends State<GoogleButton> {
                       SubscribeController.unsubscribeGoogle();
                       _connectedToGoogle = false;
                     } else {
-                      SubscribeController.subscribeGoogle();
+                      SubscribeController.subscribeGoogle(answer);
                       _connectedToGoogle = true;
                     }
                   });
@@ -68,6 +69,14 @@ class _GoogleButtonState extends State<GoogleButton> {
 
   @override
   Widget build(BuildContext context) {
+    if (globalContainer.service.isEmpty) {
+      return Container();
+    }
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "google") {
+        _connectedToGoogle = true;
+      }
+    }
     return TextButton(
         onPressed: () {
           setState(() {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:client/controller/add_action_controller.dart';
+import 'package:client/models/globals.dart';
 
 class ButtonActionGithubMilestone extends StatefulWidget {
   const ButtonActionGithubMilestone({Key? key}) : super(key: key);
@@ -48,6 +50,7 @@ class _ButtonActionGithubMilestoneState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
+                  AddActionController.GithubMilestone(repo, owner);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -61,26 +64,32 @@ class _ButtonActionGithubMilestoneState
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () {
-          onClickButtonActionGithubMilestone(context);
-        },
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.grey[200],
-            primary: Colors.black,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12))),
-        child: Row(children: [
-          Container(
-            height: 30,
-            width: 30,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/Octocat.png'), fit: BoxFit.cover),
-                shape: BoxShape.circle),
-          ),
-          const SizedBox(width: 20),
-          const Text('Github - Milestone')
-        ]));
+    for (int i = 0; i < globalContainer!.service.length; i++) {
+      if (globalContainer!.service[i].name == "github") {
+        return TextButton(
+            onPressed: () {
+              onClickButtonActionGithubMilestone(context);
+            },
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                primary: Colors.black,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12))),
+            child: Row(children: [
+              Container(
+                height: 30,
+                width: 30,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/Octocat.png'),
+                        fit: BoxFit.cover),
+                    shape: BoxShape.circle),
+              ),
+              const SizedBox(width: 20),
+              const Text('Github - Milestone')
+            ]));
+      }
+    }
+    return Container();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
+import 'package:client/models/globals.dart';
 
 class CodebaseButton extends StatefulWidget {
   const CodebaseButton({Key? key}) : super(key: key);
@@ -15,14 +16,14 @@ class _CodebaseButtonState extends State<CodebaseButton> {
     AlertDialog dialog = AlertDialog(
         title: const Text('Codebase Connection',
             style: TextStyle(color: Colors.black)),
-        content: const Text('Please enter your access token.',
+        content: const Text('Please enter your API key.',
             style: TextStyle(color: Colors.black)),
         actions: [
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Token'),
+                  border: OutlineInputBorder(), labelText: 'Username'),
               maxLines: 1,
               maxLength: 100,
               onChanged: (value) {
@@ -39,12 +40,9 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    if (_connectedToCodebase == true) {
-                      SubscribeController.unsubscribeCodebase();
-                      _connectedToCodebase = false;
-                    } else {
-                    SubscribeController.subscribeCodebase();
-                    _connectedToCodebase = true;
+                    if (_connectedToCodebase == false) {
+                      SubscribeController.subscribeCodebase(answer);
+                      _connectedToCodebase = true;
                     }
                   });
                   Navigator.of(context).pop('OK');
@@ -67,11 +65,22 @@ class _CodebaseButtonState extends State<CodebaseButton> {
 
   @override
   Widget build(BuildContext context) {
+    if (globalContainer.service.isEmpty) {
+      return Container();
+    }
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "codebase") {
+        _connectedToCodebase = true;
+      }
+    }
     return TextButton(
         onPressed: () {
           setState(() {
             if (!_connectedToCodebase) {
               onClickCodebaseLoginButton(context);
+            } else {
+              SubscribeController.unsubscribeCodebase();
+              _connectedToCodebase = false;
             }
           });
         },

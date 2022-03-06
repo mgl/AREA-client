@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:client/models/globals.dart';
+import 'package:client/controller/add_action_controller.dart';
 
 class ButtonActionCodebasePush extends StatefulWidget {
   const ButtonActionCodebasePush({Key? key}) : super(key: key);
@@ -21,6 +23,7 @@ class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
+                  AddActionController.CodebasePush();
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -34,26 +37,32 @@ class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () {
-          onClickButtonActionCodebasePush(context);
-        },
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.grey[200],
-            primary: Colors.black,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12))),
-        child: Row(children: [
-          Container(
-            height: 30,
-            width: 30,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/code.png'), fit: BoxFit.cover),
-                shape: BoxShape.circle),
-          ),
-          const SizedBox(width: 20),
-          const Text('Codebase - Push')
-        ]));
+    for (int i = 0; i < globalContainer!.service.length; i++) {
+      if (globalContainer!.service[i].name == "codebase") {
+        return TextButton(
+            onPressed: () {
+              onClickButtonActionCodebasePush(context);
+            },
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                primary: Colors.black,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12))),
+            child: Row(children: [
+              Container(
+                height: 30,
+                width: 30,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/code.png'),
+                        fit: BoxFit.cover),
+                    shape: BoxShape.circle),
+              ),
+              const SizedBox(width: 20),
+              const Text('Codebase - Push')
+            ]));
+      }
+    }
+    return Container();
   }
 }

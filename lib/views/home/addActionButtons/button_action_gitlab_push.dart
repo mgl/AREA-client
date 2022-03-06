@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
+import 'package:client/models/globals.dart';
 
 class ButtonActionGitlabPush extends StatefulWidget {
   const ButtonActionGitlabPush({Key? key}) : super(key: key);
@@ -48,26 +49,32 @@ class _ButtonActionGitlabPushState extends State<ButtonActionGitlabPush> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () {
-          onClickButtonActionGitlabPush(context);
-        },
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.grey[200],
-            primary: Colors.black,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12))),
-        child: Row(children: [
-          Container(
-            height: 30,
-            width: 30,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/gitlab.png'), fit: BoxFit.cover),
-                shape: BoxShape.circle),
-          ),
-          const SizedBox(width: 20),
-          const Text('Gitlab - Push')
-        ]));
+    for (int i = 0; i < globalContainer!.service.length; i++) {
+      if (globalContainer!.service[i].name == "gitlab") {
+        return TextButton(
+            onPressed: () {
+              onClickButtonActionGitlabPush(context);
+            },
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                primary: Colors.black,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12))),
+            child: Row(children: [
+              Container(
+                height: 30,
+                width: 30,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/gitlab.png'),
+                        fit: BoxFit.cover),
+                    shape: BoxShape.circle),
+              ),
+              const SizedBox(width: 20),
+              const Text('Gitlab - Push')
+            ]));
+      }
+    }
+    return Container();
   }
 }

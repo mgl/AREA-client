@@ -15,7 +15,7 @@ class _ActionListState extends State<ActionList> {
   List<ListTile> getAllActions() {
     List<ListTile> actionList = [];
     for (int i = 0;
-        i < globalContainer!.actionCodebaseMergeRequest.length;
+        i < globalContainer.actionCodebaseMergeRequest.length;
         i++) {
       list.add(ListTile(
           onTap: () {
@@ -28,7 +28,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Merge request'),
           subtitle: const Text('Codebase')));
     }
-    for (int i = 0; i < globalContainer!.actionCodebasePush.length; i++) {
+    for (int i = 0; i < globalContainer.actionCodebasePush.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -41,7 +41,7 @@ class _ActionListState extends State<ActionList> {
           subtitle: const Text('Codebase')));
     }
     for (int i = 0;
-        i < globalContainer!.actionCodebaseTicketCreation.length;
+        i < globalContainer.actionCodebaseTicketCreation.length;
         i++) {
       list.add(ListTile(
           onTap: () {
@@ -55,7 +55,7 @@ class _ActionListState extends State<ActionList> {
           subtitle: const Text('Codebase')));
     }
     for (int i = 0;
-        i < globalContainer!.actionCodebaseTicketUpdate.length;
+        i < globalContainer.actionCodebaseTicketUpdate.length;
         i++) {
       list.add(ListTile(
           onTap: () {
@@ -68,7 +68,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Ticket update'),
           subtitle: const Text('Codebase')));
     }
-    for (int i = 0; i < globalContainer!.actionGithubIssueComment.length; i++) {
+    for (int i = 0; i < globalContainer.actionGithubIssueComment.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -80,7 +80,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Issue comment'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < globalContainer!.actionGithubIssue.length; i++) {
+    for (int i = 0; i < globalContainer.actionGithubIssue.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -92,7 +92,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Issue'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < globalContainer!.actionGithubLabel.length; i++) {
+    for (int i = 0; i < globalContainer.actionGithubLabel.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -104,7 +104,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Label'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < globalContainer!.actionGithubMilestone.length; i++) {
+    for (int i = 0; i < globalContainer.actionGithubMilestone.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -116,7 +116,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Milestone'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < globalContainer!.actionGithubPullRequest.length; i++) {
+    for (int i = 0; i < globalContainer.actionGithubPullRequest.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -128,7 +128,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Pull request'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < globalContainer!.actionGithubPush.length; i++) {
+    for (int i = 0; i < globalContainer.actionGithubPush.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -140,7 +140,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Push'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < globalContainer!.actionGitlabComment.length; i++) {
+    for (int i = 0; i < globalContainer.actionGitlabComment.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -152,7 +152,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Comment'),
           subtitle: const Text('Gitlab')));
     }
-    for (int i = 0; i < globalContainer!.actionGitlabIssue.length; i++) {
+    for (int i = 0; i < globalContainer.actionGitlabIssue.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -164,7 +164,7 @@ class _ActionListState extends State<ActionList> {
           title: const Text('Issue'),
           subtitle: const Text('Gitlab')));
     }
-    for (int i = 0; i < globalContainer!.actionGitlabPush.length; i++) {
+    for (int i = 0; i < globalContainer.actionGitlabPush.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
@@ -177,9 +177,9 @@ class _ActionListState extends State<ActionList> {
           subtitle: const Text('Gitlab')));
     }
     for (int i = 0;
-        i < globalContainer!.actionGitlabMergeRequest.length;
+        i < globalContainer.actionGitlabMergeRequest.length;
         i++) {}
-    for (int i = 0; i < globalContainer!.actionGitlabWiki.length; i++) {
+    for (int i = 0; i < globalContainer.actionGitlabWiki.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,

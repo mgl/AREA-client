@@ -15,6 +15,7 @@ import 'package:client/views/home/addActionButtons/button_action_gitlab_merge_re
 import 'package:client/views/home/addActionButtons/button_action_gitlab_push.dart';
 import 'package:client/views/home/addActionButtons/button_action_github_push.dart';
 import 'package:client/views/home/addActionButtons/button_action_gitlab_wiki.dart';
+import 'package:client/views/home/select_action_page.dart';
 import 'package:client/views/home/home_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 15), (Timer t) => setup());
+    timer = Timer.periodic(const Duration(seconds: 3), (Timer t) => setup());
   }
 
   @override
@@ -55,21 +56,7 @@ class _HomePageState extends State<HomePage> {
     AlertDialog dialog = const AlertDialog(
         scrollable: true,
         actions: [
-          ButtonActionCodebaseMergeRequest(),
-          ButtonActionCodebasePush(),
-          ButtonActionCodebaseTicketCreation(),
-          ButtonActionCodebaseTicketUpdate(),
-          ButtonActionGithubIssueComment(),
-          ButtonActionGithubIssue(),
-          ButtonActionGithubLabel(),
-          ButtonActionGithubMilestone(),
-          ButtonActionGithubPullRequest(),
-          ButtonActionGithubPush(),
-          ButtonActionGitlabPush(),
-          ButtonActionGitlabComment(),
-          ButtonActionGitlabIssue(),
-          ButtonActionGitlabMergeRequest(),
-          ButtonActionGitlabWiki()
+
         ],
         backgroundColor: Color.fromRGBO(0, 0, 0, 0));
     Future<String> futureValue = showDialog(
@@ -81,13 +68,24 @@ class _HomePageState extends State<HomePage> {
     stream.listen((String data) {});
   }
 
+  // onTap: () {
+  //   Navigator.push(context,
+  //       MaterialPageRoute(builder: (BuildContext context) {
+  //     return const ReactionPage();
+  //   }));
+  // },
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
             onPressed: () {
-              onClickOnAddButton(context);
+              // onClickOnAddButton(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return SelectActionPage();
+              }));
             },
             backgroundColor: Colors.deepPurple,
             child: const Icon(Icons.add, color: Colors.black)),

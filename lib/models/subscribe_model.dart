@@ -2,10 +2,11 @@ import 'package:client/models/globals.dart';
 import 'package:http/http.dart';
 
 class SubscribeModel {
-  void subscribeGithub() async {
+  void subscribeGithub(String value) async {
     final url = Uri.parse('$urlPrefix/services/github/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-    await post(url, headers: header);
+    final body = {"token": value};
+    await post(url, headers: header, body: body);
   }
 
   void unsubscribeGithub() async {
@@ -14,10 +15,11 @@ class SubscribeModel {
     await delete(url, headers: header);
   }
 
-  void subscribeCodebase() async {
+  void subscribeCodebase(String value) async {
     final url = Uri.parse('$urlPrefix/services/codebase/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-    await post(url, headers: header);
+    final body = {"token": value};
+    await post(url, headers: header, body: body);
   }
 
   void unsubscribeCodebase() async {
@@ -26,10 +28,11 @@ class SubscribeModel {
     await delete(url, headers: header);
   }
 
-  void subscribeGitlab() async {
+  void subscribeGitlab(String value) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-    await post(url, headers: header);
+    final body = {"token": value};
+    await post(url, headers: header, body: body);
   }
 
   void unsubscribeGitlab() async {
@@ -38,10 +41,11 @@ class SubscribeModel {
     await delete(url, headers: header);
   }
 
-  void subscribeDiscord() async {
+  void subscribeDiscord(String value) async {
     final url = Uri.parse('$urlPrefix/services/discord/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-    await post(url, headers: header);
+    final body = {"token": value};
+    await post(url, headers: header, body: body);
   }
 
   void unsubscribeDiscord() async {
@@ -62,15 +66,23 @@ class SubscribeModel {
     await delete(url, headers: header);
   }
 
-  void subscribeTwitter() async {
+  void subscribeTwitter(String appToken, String appSecret, String userToken,
+      String userSecret) async {
     final url = Uri.parse('$urlPrefix/services/twitter/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-    await post(url, headers: header);
+    final body = {
+      "appKey": appToken,
+      "appSecret": appSecret,
+      "accessSecret": userSecret,
+      "accessToken": userToken
+    };
+    await post(url, headers: header, body: body);
   }
 
   void unsubscribeTwitter() async {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
+
     await delete(url, headers: header);
   }
 }

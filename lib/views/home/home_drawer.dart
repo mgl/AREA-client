@@ -18,14 +18,16 @@ class HomeDrawer extends StatefulWidget {
 class _HomeDrawerState extends State<HomeDrawer> {
   @override
   Widget build(BuildContext context) {
-    String userName = 'user';
+    String userName = '';
     ImageProvider userPicture = const AssetImage('assets/epilogo.png');
+    String userMail = FirebaseAuth.instance.currentUser!.email as String;
     if (FirebaseAuth.instance.currentUser!.displayName != null) {
       userName = FirebaseAuth.instance.currentUser!.displayName as String;
       final src = FirebaseAuth.instance.currentUser!.photoURL as String;
       userPicture = NetworkImage(src);
+    } else {
+      userName = userMail.split('@').first;
     }
-    String userMail = FirebaseAuth.instance.currentUser!.email as String;
     UserAccountsDrawerHeader drawerHeader = UserAccountsDrawerHeader(
         accountName: Text(userName),
         accountEmail: Text(userMail),
