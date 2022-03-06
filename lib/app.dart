@@ -1,6 +1,6 @@
 import 'package:client/layout/client_options.dart';
 import 'package:animations/animations.dart';
-import 'package:client/colors.dart';
+import 'package:client/models/colors.dart';
 import 'package:client/views/home/home.dart';
 import 'package:client/layout/letter_spacing.dart';
 import 'package:client/routes.dart' as routes;
@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterfire_ui/auth.dart';
+
 
 class AreaApp extends StatelessWidget {
   const AreaApp({Key? key}) : super(key: key);
