@@ -4,7 +4,7 @@ import 'package:client/views/home/discord_button.dart';
 import 'package:client/views/home/github_button.dart';
 import 'package:client/views/home/gitlab_button.dart';
 import 'package:client/views/home/google_button.dart';
-import 'package:client/views/home/one_drive_button.dart';
+import 'package:client/views/home/codebase_button.dart';
 import 'package:client/views/home/twitter_button.dart';
 import 'package:client/views/home/logout_button.dart';
 
@@ -44,7 +44,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
       const SizedBox(height: 10),
       const DiscordButton(),
       const SizedBox(height: 10),
-      const OneDriveButton(),
+      const CodebaseButton(),
       const SizedBox(height: 10),
       const LogOutButton(),
     ]);

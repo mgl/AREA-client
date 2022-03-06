@@ -14,7 +14,6 @@ import 'package:client/models/actions/action_gitlab_push.dart';
 import 'package:client/models/actions/action_gitlab_wiki.dart';
 import 'package:client/models/service.dart';
 import 'package:client/models/actions/action_github_push.dart';
-import 'package:flutter/material.dart';
 import 'dart:core';
 
 class ActionContainer {

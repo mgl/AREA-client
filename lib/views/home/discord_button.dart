@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:client/controller/subscribe_controller.dart';
 
 class DiscordButton extends StatefulWidget {
   const DiscordButton({Key? key}) : super(key: key);
@@ -38,7 +39,13 @@ class _DiscordButtonState extends State<DiscordButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    _connectedToDiscord = true;
+                    if (_connectedToDiscord == true) {
+                      SubscribeController.unsubscribeDiscord();
+                      _connectedToDiscord = false;
+                    } else {
+                      SubscribeController.subscribeDiscord();
+                      _connectedToDiscord = true;
+                    }
                   });
                   Navigator.of(context).pop('OK');
                 })

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
 import 'package:client/controller/subscribe_controller.dart';
 
-class GoogleButton extends StatefulWidget {
-  const GoogleButton({Key? key}) : super(key: key);
+class CodebaseButton extends StatefulWidget {
+  const CodebaseButton({Key? key}) : super(key: key);
   @override
-  State<GoogleButton> createState() => _GoogleButtonState();
+  State<CodebaseButton> createState() => _CodebaseButtonState();
 }
 
-class _GoogleButtonState extends State<GoogleButton> {
-  bool _connectedToGoogle = false;
+class _CodebaseButtonState extends State<CodebaseButton> {
+  bool _connectedToCodebase = false;
   String answer = "";
 
-  void onClickGoogleLoginButton(BuildContext context) {
+  void onClickCodebaseLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
-        title: const Text('Google Connection',
+        title: const Text('Codebase Connection',
             style: TextStyle(color: Colors.black)),
         content: const Text('Please enter your access token.',
             style: TextStyle(color: Colors.black)),
@@ -40,12 +39,12 @@ class _GoogleButtonState extends State<GoogleButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    if (_connectedToGoogle == true) {
-                      SubscribeController.unsubscribeGoogle();
-                      _connectedToGoogle = false;
+                    if (_connectedToCodebase == true) {
+                      SubscribeController.unsubscribeCodebase();
+                      _connectedToCodebase = false;
                     } else {
-                      SubscribeController.subscribeGoogle();
-                      _connectedToGoogle = true;
+                    SubscribeController.subscribeCodebase();
+                    _connectedToCodebase = true;
                     }
                   });
                   Navigator.of(context).pop('OK');
@@ -71,8 +70,8 @@ class _GoogleButtonState extends State<GoogleButton> {
     return TextButton(
         onPressed: () {
           setState(() {
-            if (!_connectedToGoogle) {
-              onClickGoogleLoginButton(context);
+            if (!_connectedToCodebase) {
+              onClickCodebaseLoginButton(context);
             }
           });
         },
@@ -87,14 +86,14 @@ class _GoogleButtonState extends State<GoogleButton> {
             width: 30,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/google.jpg'), fit: BoxFit.cover),
+                    image: AssetImage('assets/code.png'), fit: BoxFit.cover),
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!_connectedToGoogle)
-              ? const Text('Connect to Google')
+          (!_connectedToCodebase)
+              ? const Text('Connect to Codebase')
               : const Text(
-                  'Connected to Google',
+                  'Connected to Codebase',
                   style: TextStyle(color: Colors.green),
                 ),
         ]));

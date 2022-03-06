@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:client/secret_key.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:client/controller/subscribe_controller.dart';
 
 class GithubButton extends StatefulWidget {
   const GithubButton({Key? key}) : super(key: key);
@@ -41,7 +42,13 @@ class _GithubButtonState extends State<GithubButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
+                    if (_connectedToGithub == true) {
+                      SubscribeController.unsubscribeGithub();
+                      _connectedToGithub = false;
+                    } else {
+                    SubscribeController.subscribeGithub();
                     _connectedToGithub = true;
+                    }
                   });
                   Navigator.of(context).pop('OK');
                 })

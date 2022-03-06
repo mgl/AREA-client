@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:client/controller/subscribe_controller.dart';
 
 class TwitterButton extends StatefulWidget {
   const TwitterButton({Key? key}) : super(key: key);
@@ -38,7 +39,13 @@ class _TwitterButtonState extends State<TwitterButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    _connectedToTwitter = true;
+                    if (_connectedToTwitter == true) {
+                      SubscribeController.unsubscribeTwitter();
+                      _connectedToTwitter = false;
+                    } else {
+                      SubscribeController.subscribeTwitter();
+                      _connectedToTwitter = true;
+                    }
                   });
                   Navigator.of(context).pop('OK');
                 })

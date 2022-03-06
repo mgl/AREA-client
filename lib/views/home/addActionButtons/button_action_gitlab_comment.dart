@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:client/controller/add_action_controller.dart';
 
-class OneDriveButton extends StatefulWidget {
-  const OneDriveButton({Key? key}) : super(key: key);
+class ButtonActionGitlabComment extends StatefulWidget {
+  const ButtonActionGitlabComment({Key? key}) : super(key: key);
   @override
-  State<OneDriveButton> createState() => _OneDriveButtonState();
+  State<ButtonActionGitlabComment> createState() =>
+      _ButtonActionGitlabCommentState();
 }
 
-class _OneDriveButtonState extends State<OneDriveButton> {
-  bool _connectedToOneDrive = false;
-  String answer = "";
-
-  void onClickOneDriveLoginButton(BuildContext context) {
+class _ButtonActionGitlabCommentState extends State<ButtonActionGitlabComment> {
+  String repoId = "";
+  void onClickButtonActionGitlabComment(BuildContext context) {
     AlertDialog dialog = AlertDialog(
-        title: const Text('OneDrive Connection',
-            style: TextStyle(color: Colors.black)),
-        content: const Text('Please enter your access token.',
-            style: TextStyle(color: Colors.black)),
+        title: const Text('Comment', style: TextStyle(color: Colors.black)),
+        content: const Text('Gitlab', style: TextStyle(color: Colors.black)),
         actions: [
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Token'),
+                  border: OutlineInputBorder(), labelText: 'RepoID'),
               maxLines: 1,
-              maxLength: 100,
+              maxLength: 25,
               onChanged: (value) {
                 setState(() {
-                  answer = value;
+                  repoId = value;
                 });
               }),
           const SizedBox(height: 10),
@@ -37,36 +35,23 @@ class _OneDriveButtonState extends State<OneDriveButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  setState(() {
-                    _connectedToOneDrive = true;
-                  });
+                  AddActionController.GitlabComment(repoId);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue = showDialog(
+    showDialog(
         context: context,
         builder: (BuildContext context) {
           return dialog;
-        }) as Future<String>;
-    Stream<String> stream = futureValue.asStream();
-    stream.listen((String data) {
-      String answerValue = data;
-      setState(() {
-        answer = answerValue;
-      });
-    });
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
-          setState(() {
-            if (!_connectedToOneDrive) {
-              onClickOneDriveLoginButton(context);
-            }
-          });
+          onClickButtonActionGitlabComment(context);
         },
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
@@ -79,16 +64,11 @@ class _OneDriveButtonState extends State<OneDriveButton> {
             width: 30,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/unnamed.png'), fit: BoxFit.cover),
+                    image: AssetImage('assets/gitlab.png'), fit: BoxFit.cover),
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!_connectedToOneDrive)
-              ? const Text('Connect to One Drive')
-              : const Text(
-                  'Connected to One Drive',
-                  style: TextStyle(color: Colors.green),
-                ),
+          const Text('Gitlab - Comment')
         ]));
   }
 }

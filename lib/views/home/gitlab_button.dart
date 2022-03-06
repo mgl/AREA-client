@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:client/controller/subscribe_controller.dart';
 
 class GitlabButton extends StatefulWidget {
   const GitlabButton({Key? key}) : super(key: key);
@@ -38,7 +39,13 @@ class _GitlabButtonState extends State<GitlabButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    _connectedToGitlab = true;
+                    if (_connectedToGitlab == true) {
+                      SubscribeController.unsubscribeGitlab();
+                      _connectedToGitlab = false;
+                    } else {
+                      SubscribeController.subscribeGitlab();
+                      _connectedToGitlab = true;
+                    }
                   });
                   Navigator.of(context).pop('OK');
                 })
