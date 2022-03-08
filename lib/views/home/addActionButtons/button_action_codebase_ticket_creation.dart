@@ -25,7 +25,7 @@ class _ButtonActionCodebaseTicketCreationState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.CodebaseTicketCreation();
+                  AddActionController.codebaseTicketCreation();
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -39,8 +39,8 @@ class _ButtonActionCodebaseTicketCreationState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer!.service.length; i++) {
-      if (globalContainer!.service[i].name == "codebase") {
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "codebase") {
         return TextButton(
             onPressed: () {
               onClickButtonActionCodebaseTicketCreation(context);

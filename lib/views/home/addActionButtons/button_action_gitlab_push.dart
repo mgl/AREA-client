@@ -35,7 +35,7 @@ class _ButtonActionGitlabPushState extends State<ButtonActionGitlabPush> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GitlabPush(repoId);
+                  AddActionController.gitlabPush(repoId);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -49,8 +49,8 @@ class _ButtonActionGitlabPushState extends State<ButtonActionGitlabPush> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer!.service.length; i++) {
-      if (globalContainer!.service[i].name == "gitlab") {
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "gitlab") {
         return TextButton(
             onPressed: () {
               onClickButtonActionGitlabPush(context);

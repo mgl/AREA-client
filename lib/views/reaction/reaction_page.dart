@@ -1,3 +1,4 @@
+import 'package:client/models/globals.dart';
 import 'package:flutter/material.dart';
 
 class ReactionPage extends StatefulWidget {
@@ -7,8 +8,8 @@ class ReactionPage extends StatefulWidget {
 }
 
 class _ReactionPageState extends State<ReactionPage> {
-  // const ReactionPage({Key? key}) : super(key: key);
   final _values = List<bool?>.filled(51, false);
+  
 
   @override
   Widget build(BuildContext context) {

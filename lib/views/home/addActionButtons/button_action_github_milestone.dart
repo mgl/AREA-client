@@ -50,7 +50,7 @@ class _ButtonActionGithubMilestoneState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GithubMilestone(repo, owner);
+                  AddActionController.githubMilestone(repo, owner);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -64,8 +64,8 @@ class _ButtonActionGithubMilestoneState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer!.service.length; i++) {
-      if (globalContainer!.service[i].name == "github") {
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "github") {
         return TextButton(
             onPressed: () {
               onClickButtonActionGithubMilestone(context);

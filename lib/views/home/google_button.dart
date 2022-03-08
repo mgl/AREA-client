@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
 import 'package:client/controller/subscribe_controller.dart';
 import 'package:client/models/globals.dart';
 
@@ -12,7 +11,6 @@ class GoogleButton extends StatefulWidget {
 class _GoogleButtonState extends State<GoogleButton> {
   bool _connectedToGoogle = false;
   String answer = "";
-
   void onClickGoogleLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Google Connection',

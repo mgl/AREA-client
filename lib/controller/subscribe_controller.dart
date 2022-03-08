@@ -1,6 +1,4 @@
-import 'package:client/models/globals.dart';
 import 'package:client/models/subscribe_model.dart';
-import 'package:http/http.dart';
 
 class SubscribeController {
   static void subscribeGithub(String value) {

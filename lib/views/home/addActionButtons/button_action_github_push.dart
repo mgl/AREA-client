@@ -48,7 +48,7 @@ class _ButtonActionGithubPushState extends State<ButtonActionGithubPush> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GithubPush(repo, owner);
+                  AddActionController.githubPush(repo, owner);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -62,8 +62,8 @@ class _ButtonActionGithubPushState extends State<ButtonActionGithubPush> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer!.service.length; i++) {
-      if (globalContainer!.service[i].name == "github") {
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "github") {
         return TextButton(
             onPressed: () {
               onClickButtonActionGithubPush(context);

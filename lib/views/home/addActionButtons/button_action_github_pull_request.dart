@@ -51,7 +51,7 @@ class _ButtonActionGithubPullRequestState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GithubPullRequest(repo, owner);
+                  AddActionController.githubPullRequest(repo, owner);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

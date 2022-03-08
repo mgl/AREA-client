@@ -51,7 +51,7 @@ class _ButtonActionGithubIssueCommentState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GithubIssueComment(repo, owner);
+                  AddActionController.githubIssueComment(repo, owner);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -65,8 +65,8 @@ class _ButtonActionGithubIssueCommentState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer!.service.length; i++) {
-      if (globalContainer!.service[i].name == "github") {
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "github") {
         return TextButton(
             onPressed: () {
               onClickButtonActionGithubIssueComment(context);

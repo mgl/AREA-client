@@ -4,26 +4,14 @@ import 'package:client/models/globals.dart';
 import 'package:http/http.dart';
 import 'dart:core';
 import 'package:uuid/uuid.dart';
-import 'package:client/models/actions/action_codebase_merge_request.dart';
-import 'package:client/models/actions/action_codebase_push.dart';
-import 'package:client/models/actions/action_codebase_ticket_creation.dart';
-import 'package:client/models/actions/action_codebase_ticket_update.dart';
-import 'package:client/models/actions/action_github_issue.dart';
-import 'package:client/models/actions/action_github_issue_comment.dart';
 import 'package:client/models/actions/action_github_label.dart';
 import 'package:client/models/actions/action_github_milestone.dart';
 import 'package:client/models/actions/action_github_pull_request.dart';
-import 'package:client/models/actions/action_gitlab_comment.dart';
-import 'package:client/models/actions/action_gitlab_issue.dart';
-import 'package:client/models/actions/action_gitlab_merge_request.dart';
-import 'package:client/models/actions/action_gitlab_push.dart';
 import 'package:client/models/actions/action_gitlab_wiki.dart';
-import 'package:client/models/service.dart';
 import 'package:client/models/actions/action_github_push.dart';
-import 'dart:core';
 
 class AddActionModel {
-  void GithubCreateIssuesActionCreate(String repoID, String owner) async {
+  void githubCreateIssuesActionCreate(String repoID, String owner) async {
     final url = Uri.parse('$urlPrefix/services/github/action/issues');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -32,7 +20,7 @@ class AddActionModel {
         tmp = globalContainer.service[i].token;
       }
     }
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
     final body = {
       "id": uuid,
       "token": tmp,
@@ -45,10 +33,11 @@ class AddActionModel {
     action.repo = repoID;
     action.token = tmp;
     globalContainer.actionGithubIssue.add(action);
-    await post(url, headers: header, body: body);
+    var response = await post(url, headers: header, body: body);
+    
   }
 
-  void GithubCreateIssueCommentActionCreate(String repoID, String owner) async {
+  void githubCreateIssueCommentActionCreate(String repoID, String owner) async {
     final url = Uri.parse('$urlPrefix/services/github/action/issue_comment');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -57,7 +46,7 @@ class AddActionModel {
         tmp = globalContainer.service[i].token;
       }
     }
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
     final body = {
       "id": uuid,
       "token": tmp,
@@ -73,7 +62,7 @@ class AddActionModel {
     await post(url, headers: header, body: body);
   }
 
-  void GithubCreateLabelActionCreate(String repoID, String owner) async {
+  void githubCreateLabelActionCreate(String repoID, String owner) async {
     final url = Uri.parse('$urlPrefix/services/github/action/label');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -82,7 +71,7 @@ class AddActionModel {
         tmp = globalContainer.service[i].token;
       }
     }
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
     final body = {
       "id": uuid,
       "token": tmp,
@@ -98,7 +87,7 @@ class AddActionModel {
     await post(url, headers: header, body: body);
   }
 
-  void GithubCreateMilestoneActionCreate(String repoID, String owner) async {
+  void githubCreateMilestoneActionCreate(String repoID, String owner) async {
     final url = Uri.parse('$urlPrefix/services/github/action/milestone');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -107,7 +96,7 @@ class AddActionModel {
         tmp = globalContainer.service[i].token;
       }
     }
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
     final body = {
       "id": uuid,
       "token": tmp,
@@ -123,7 +112,7 @@ class AddActionModel {
     await post(url, headers: header, body: body);
   }
 
-  void GithubCreatePullRequestActionCreate(String repoID, String owner) async {
+  void githubCreatePullRequestActionCreate(String repoID, String owner) async {
     final url = Uri.parse('$urlPrefix/services/github/action/pull_request');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -132,7 +121,7 @@ class AddActionModel {
         tmp = globalContainer.service[i].token;
       }
     }
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
     final body = {
       "id": uuid,
       "token": tmp,
@@ -148,7 +137,7 @@ class AddActionModel {
     await post(url, headers: header, body: body);
   }
 
-  void GithubCreatePushActionCreate(String repoID, String owner) async {
+  void githubCreatePushActionCreate(String repoID, String owner) async {
     final url = Uri.parse('$urlPrefix/services/github/action/push');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -157,7 +146,7 @@ class AddActionModel {
         tmp = globalContainer.service[i].token;
       }
     }
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
     final body = {
       "id": uuid,
       "token": tmp,
@@ -173,7 +162,7 @@ class AddActionModel {
     await post(url, headers: header, body: body);
   }
 
-  void GitlabWikiActionCreate(String repoID) async {
+  void gitlabWikiActionCreate(String repoID) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/wiki_page_events');
     final header = {"Authorization": "Bearer " + globalToken};
 
@@ -183,7 +172,7 @@ class AddActionModel {
         tmp = globalContainer.service[i].token;
       }
     }
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
     final body = {
       "id": uuid,
       "token": tmp,
@@ -197,7 +186,7 @@ class AddActionModel {
     await post(url, headers: header, body: body);
   }
 
-  void GitlabMergeRequestActionCreate(String repoID) async {
+  void gitlabMergeRequestActionCreate(String repoID) async {
     final url =
         Uri.parse('$urlPrefix/services/gitlab/action/merge_requests_events');
     final header = {"Authorization": "Bearer " + globalToken};
@@ -205,47 +194,47 @@ class AddActionModel {
     await post(url, headers: header, body: body);
   }
 
-  void GitlabIssuesActionCreate(String repoID) async {
+  void gitlabIssuesActionCreate(String repoID) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"repoName": repoID};
     await post(url, headers: header, body: body);
   }
 
-  void GitlabCommentActionCreate(String repoID) async {
+  void gitlabCommentActionCreate(String repoID) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"repoName": repoID};
     await post(url, headers: header, body: body);
   }
 
-  void GitlabPushActionCreate(String repoID) async {
+  void gitlabPushActionCreate(String repoID) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
     final header = {"Authorization": "Bearer " + globalToken};
     await post(url, headers: header);
   }
 
-  void CodebaseMergeRequestActionCreate() async {
+  void codebaseMergeRequestActionCreate() async {
     final url =
         Uri.parse('$urlPrefix/services/codebase/action/codebase_merge_request');
     final header = {"Authorization": "Bearer " + globalToken};
     await post(url, headers: header);
   }
 
-  void CodebasePushActionCreate() async {
+  void codebasePushActionCreate() async {
     final url = Uri.parse('$urlPrefix/services/codebase/action/codebase_push');
     final header = {"Authorization": "Bearer " + globalToken};
     await post(url, headers: header);
   }
 
-  void CodebaseTicketCreationActionCreate() async {
+  void codebaseTicketCreationActionCreate() async {
     final url = Uri.parse(
         '$urlPrefix/services/codebase/action/codebase_ticket_creation');
     final header = {"Authorization": "Bearer " + globalToken};
     await post(url, headers: header);
   }
 
-  void CodebaseTicketUpdateActionCreate() async {
+  void codebaseTicketUpdateActionCreate() async {
     final url =
         Uri.parse('$urlPrefix/services/codebase/action/codebase_ticket_update');
     final header = {"Authorization": "Bearer " + globalToken};

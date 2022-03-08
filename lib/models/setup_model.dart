@@ -2,7 +2,6 @@ import 'package:http/http.dart';
 import 'package:client/models/globals.dart';
 import 'package:client/models/service.dart';
 import 'package:client/models/actions/action_gitlab_push.dart';
-import 'package:client/models/actions/action_gitlab_push.dart';
 import 'package:client/models/actions/action_codebase_merge_request.dart';
 import 'package:client/models/actions/action_codebase_push.dart';
 import 'package:client/models/actions/action_codebase_ticket_creation.dart';
@@ -15,11 +14,8 @@ import 'package:client/models/actions/action_github_pull_request.dart';
 import 'package:client/models/actions/action_gitlab_comment.dart';
 import 'package:client/models/actions/action_gitlab_issue.dart';
 import 'package:client/models/actions/action_gitlab_merge_request.dart';
-import 'package:client/models/actions/action_gitlab_push.dart';
 import 'package:client/models/actions/action_gitlab_wiki.dart';
-import 'package:client/models/service.dart';
 import 'package:client/models/actions/action_github_push.dart';
-import 'package:flutter/material.dart';
 import 'dart:core';
 import 'package:client/models/reactions/reaction_discord_message.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';
@@ -38,7 +34,7 @@ class SetupModel {
       final serviceData = splitted.first.split('=');
       Service service =
           Service(serviceData.elementAt(0), serviceData.elementAt(1));
-      globalContainer?.service.add(service);
+      globalContainer.service.add(service);
       splitted.removeAt(0);
     }
   }
@@ -58,7 +54,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionCodeBaseMergeRequest(action.id, action);
-              globalContainer?.actionCodebaseMergeRequest.add(action);
+              globalContainer.actionCodebaseMergeRequest.add(action);
             }
             break;
           case "codebase_push":
@@ -67,7 +63,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionCodebasePush(action.id, action);
-              globalContainer?.actionCodebasePush.add(action);
+              globalContainer.actionCodebasePush.add(action);
             }
             break;
           case "codebase_ticket_creation":
@@ -77,7 +73,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionCodeBaseTicketCreation(action.id, action);
-              globalContainer?.actionCodebaseTicketCreation.add(action);
+              globalContainer.actionCodebaseTicketCreation.add(action);
             }
             break;
           case "codebase_ticket_update":
@@ -86,7 +82,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionCodeBaseTicketUpdate(action.id, action);
-              globalContainer?.actionCodebaseTicketUpdate.add(action);
+              globalContainer.actionCodebaseTicketUpdate.add(action);
             }
             break;
           case "github_issue_comment":
@@ -95,7 +91,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGithubIssueComment(action.id, action);
-              globalContainer?.actionGithubIssueComment.add(action);
+              globalContainer.actionGithubIssueComment.add(action);
             }
             break;
           case "github_issue":
@@ -104,7 +100,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGithubIssue(action.id, action);
-              globalContainer?.actionGithubIssue.add(action);
+              globalContainer.actionGithubIssue.add(action);
             }
             break;
           case "github_label":
@@ -113,7 +109,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGithubLabel(action.id, action);
-              globalContainer?.actionGithubLabel.add(action);
+              globalContainer.actionGithubLabel.add(action);
             }
             break;
           case "github_milestone":
@@ -122,7 +118,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGithubMilestone(action.id, action);
-              globalContainer?.actionGithubMilestone.add(action);
+              globalContainer.actionGithubMilestone.add(action);
             }
             break;
           case "github_pull_request":
@@ -131,7 +127,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGithubPullRequest(action.id, action);
-              globalContainer?.actionGithubPullRequest.add(action);
+              globalContainer.actionGithubPullRequest.add(action);
             }
             break;
           case "github_push":
@@ -140,7 +136,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGithubPush(action.id, action);
-              globalContainer?.actionGithubPush.add(action);
+              globalContainer.actionGithubPush.add(action);
             }
             break;
           case "github_issues":
@@ -149,7 +145,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGithubIssue(action.id, action);
-              globalContainer?.actionGithubIssue.add(action);
+              globalContainer.actionGithubIssue.add(action);
             }
             break;
           case "gitlab_comment":
@@ -158,7 +154,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGitlabComment(action.id, action);
-              globalContainer?.actionGitlabComment.add(action);
+              globalContainer.actionGitlabComment.add(action);
             }
             break;
           case "gitlab_issue":
@@ -167,7 +163,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGitlabIssue(action.id, action);
-              globalContainer?.actionGitlabIssue.add(action);
+              globalContainer.actionGitlabIssue.add(action);
             }
             break;
           case "gitlab_merge_request":
@@ -176,7 +172,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGitlabMergeRequest(action.id, action);
-              globalContainer?.actionGitlabMergeRequest.add(action);
+              globalContainer.actionGitlabMergeRequest.add(action);
             }
             break;
           case "gitlab_push":
@@ -185,7 +181,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGitlabPush(action.id, action);
-              globalContainer?.actionGitlabPush.add(action);
+              globalContainer.actionGitlabPush.add(action);
             }
             break;
           case "gitlab_wiki":
@@ -194,7 +190,7 @@ class SetupModel {
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
               getReactionGitlabWiki(action.id, action);
-              globalContainer?.actionGitlabWiki.add(action);
+              globalContainer.actionGitlabWiki.add(action);
             }
             break;
           default:

@@ -51,7 +51,7 @@ class _ButtonActionGithubIssueState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GithubIssue(repo, owner);
+                  AddActionController.githubIssue(repo, owner);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

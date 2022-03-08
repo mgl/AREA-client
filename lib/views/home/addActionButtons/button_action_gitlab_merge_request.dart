@@ -38,7 +38,7 @@ class _ButtonActionGitlabMergeRequestState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GitlabMergeRequest(repoId);
+                  AddActionController.gitlabMergeRequest(repoId);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -52,8 +52,8 @@ class _ButtonActionGitlabMergeRequestState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer!.service.length; i++) {
-      if (globalContainer!.service[i].name == "gitlab") {
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "gitlab") {
         return TextButton(
             onPressed: () {
               onClickButtonActionGitlabMergeRequest(context);

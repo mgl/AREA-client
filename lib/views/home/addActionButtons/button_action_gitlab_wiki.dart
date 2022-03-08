@@ -35,7 +35,7 @@ class _ButtonActionGitlabWikiState extends State<ButtonActionGitlabWiki> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GitlabWiki(repoId);
+                  AddActionController.gitlabWiki(repoId);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

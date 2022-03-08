@@ -36,7 +36,7 @@ class _ButtonActionGitlabIssueState extends State<ButtonActionGitlabIssue> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GitlabIssues(repoId);
+                  AddActionController.gitlabIssues(repoId);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

@@ -49,7 +49,7 @@ class _ButtonActionGithubLabelState extends State<ButtonActionGithubLabel> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.GithubLabel(repo, owner);
+                  AddActionController.githubLabel(repo, owner);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -63,8 +63,8 @@ class _ButtonActionGithubLabelState extends State<ButtonActionGithubLabel> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer!.service.length; i++) {
-      if (globalContainer!.service[i].name == "github") {
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "github") {
         return TextButton(
             onPressed: () {
               onClickButtonActionGithubLabel(context);

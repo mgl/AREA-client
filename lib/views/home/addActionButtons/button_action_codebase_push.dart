@@ -23,7 +23,7 @@ class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.CodebasePush();
+                  AddActionController.codebasePush();
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -37,8 +37,8 @@ class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer!.service.length; i++) {
-      if (globalContainer!.service[i].name == "codebase") {
+    for (int i = 0; i < globalContainer.service.length; i++) {
+      if (globalContainer.service[i].name == "codebase") {
         return TextButton(
             onPressed: () {
               onClickButtonActionCodebasePush(context);
