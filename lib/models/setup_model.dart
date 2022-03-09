@@ -23,12 +23,15 @@ import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
+import 'package:flutter/material.dart';
 
 class SetupModel {
   void getServices() async {
     final url = Uri.parse('$urlPrefix/service_list');
     final header = {"Authorization": "Bearer " + globalToken};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final serviceData = splitted.first.split('=');
@@ -43,6 +46,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/action_list');
     final header = {"Authorization": "Bearer " + globalToken};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -207,6 +212,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -272,6 +279,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -338,6 +347,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -404,6 +415,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -470,6 +483,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -535,6 +550,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -600,6 +617,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -666,6 +685,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -732,6 +753,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -797,6 +820,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -862,6 +887,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -927,6 +954,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -993,6 +1022,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -1058,6 +1089,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -1123,6 +1156,8 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
+    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
