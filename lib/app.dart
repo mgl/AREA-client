@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:client/models/globals.dart';
+
 
 
 class AreaApp extends StatelessWidget {
@@ -74,6 +76,7 @@ class AreaApp extends StatelessWidget {
             })),
         restorationScopeId: 'client_app',
         title: 'Client',
+        scaffoldMessengerKey: snackbarKey,
         initialRoute: FirebaseAuth.instance.currentUser == null
             ? _loginRoute
             : _homeRoute,
