@@ -1,6 +1,21 @@
+import 'package:client/models/actions/action_gitlab_push.dart';
 import 'package:client/models/globals.dart';
-import 'package:client/views/reaction/reaction_page.dart';
+import 'package:client/views/reaction/action_codebase_merge_request_reaction_page.dart';
+import 'package:client/views/reaction/action_codebase_push_reaction_page.dart';
+import 'package:client/views/reaction/action_codebase_ticket_creation_reaction_page.dart';
+import 'package:client/views/reaction/action_codebase_ticket_update_reaction_page.dart';
+import 'package:client/views/reaction/action_github_issue_comment_reaction_page.dart';
+import 'package:client/views/reaction/action_github_issue_reaction_page.dart';
+import 'package:client/views/reaction/action_github_label_reaction_page.dart';
+import 'package:client/views/reaction/action_github_milestone_reaction_page.dart';
+import 'package:client/views/reaction/action_github_pull_request_reaction_page.dart';
+import 'package:client/views/reaction/action_github_push_reaction_page.dart';
+import 'package:client/views/reaction/action_gitlab_comment_reaction_page.dart';
+import 'package:client/views/reaction/action_gitlab_issue_reaction_page.dart';
+import 'package:client/views/reaction/action_gitlab_merge_request_reaction_page.dart';
+import 'package:client/views/reaction/action_gitlab_push_reaction_page.dart';
 import 'package:flutter/material.dart';
+import 'package:client/views/reaction/action_gitlab_wiki_reaction_page.dart';
 
 class ActionList extends StatefulWidget {
   const ActionList({Key? key}) : super(key: key);
@@ -21,7 +36,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionCodebaseMergeRequestReactionPage(
+                  id: globalContainer.actionCodebaseMergeRequest[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -33,7 +49,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionCodebasePushReactionPage(
+                  id: globalContainer.actionCodebasePush[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -47,7 +64,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionCodebaseTicketCreationReactionPage(
+                  id: globalContainer.actionCodebaseTicketCreation[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -61,7 +79,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionCodebaseTicketUpdateReactionPage(
+                  id: globalContainer.actionCodebaseTicketUpdate[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -73,7 +92,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGithubIssueCommentReactionPage(
+                  id: globalContainer.actionGithubIssueComment[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -85,7 +105,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGithubIssueReactionPage(
+                  id: globalContainer.actionGithubIssue[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -97,7 +118,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGithubLabelReactionPage(
+                  id: globalContainer.actionGithubLabel[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -109,7 +131,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGithubMilestoneReactionPage(
+                  id: globalContainer.actionGithubMilestone[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -121,7 +144,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGithubPullRequestReactionPage(
+                  id: globalContainer.actionGithubPullRequest[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -133,7 +157,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGithubPushReactionPage(
+                  id: globalContainer.actionGithubPush[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -145,7 +170,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGitlabCommentReactionPage(
+                  id: globalContainer.actionGitlabComment[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -157,7 +183,8 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGitlabIssueReactionPage(
+                  id: globalContainer.actionGitlabIssue[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
@@ -169,26 +196,38 @@ class _ActionListState extends State<ActionList> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGitlabPushReactionPage(
+                  id: globalContainer.actionGitlabPush[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Push'),
           subtitle: const Text('Gitlab')));
     }
-    for (int i = 0;
-        i < globalContainer.actionGitlabMergeRequest.length;
-        i++) {}
+    for (int i = 0; i < globalContainer.actionGitlabMergeRequest.length; i++) {
+      list.add(ListTile(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (BuildContext context) {
+              return ActionGitlabMergeRequestReactionPage(
+                  id: globalContainer.actionGitlabMergeRequest[i].id);
+            }));
+          },
+          leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
+          title: const Text('Merge request'),
+          subtitle: const Text('Gitlab')));
+    }
     for (int i = 0; i < globalContainer.actionGitlabWiki.length; i++) {
       list.add(ListTile(
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const ReactionPage();
+              return ActionGitlabWikiReactionPage(
+                  id: globalContainer.actionGitlabWiki[i].id);
             }));
           },
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
-          title: const Text('Merge request'),
+          title: const Text('Wiki'),
           subtitle: const Text('Gitlab')));
     }
     return actionList;
