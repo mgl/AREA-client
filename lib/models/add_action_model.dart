@@ -35,7 +35,7 @@ class AddActionModel {
     action.token = tmp;
     globalContainer.actionGithubIssue.add(action);
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -62,7 +62,7 @@ class AddActionModel {
     action.token = tmp;
     globalContainer.actionGithubIssueComment.add(action);
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -89,7 +89,7 @@ class AddActionModel {
     action.token = tmp;
     globalContainer.actionGithubLabel.add(action);
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -116,7 +116,7 @@ class AddActionModel {
     action.token = tmp;
     globalContainer.actionGithubMilestone.add(action);
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -143,7 +143,7 @@ class AddActionModel {
     action.token = tmp;
     globalContainer.actionGithubPullRequest.add(action);
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -170,7 +170,7 @@ class AddActionModel {
     action.token = tmp;
     globalContainer.actionGithubPush.add(action);
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -196,7 +196,7 @@ class AddActionModel {
     action.token = tmp;
     globalContainer.actionGitlabWiki.add(action);
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -206,7 +206,7 @@ class AddActionModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"repoName": repoID};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -215,7 +215,7 @@ class AddActionModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"repoName": repoID};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -224,7 +224,7 @@ class AddActionModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"repoName": repoID};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -232,7 +232,7 @@ class AddActionModel {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await post(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -241,7 +241,7 @@ class AddActionModel {
         Uri.parse('$urlPrefix/services/codebase/action/codebase_merge_request');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await post(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -249,7 +249,7 @@ class AddActionModel {
     final url = Uri.parse('$urlPrefix/services/codebase/action/codebase_push');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await post(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -258,7 +258,7 @@ class AddActionModel {
         '$urlPrefix/services/codebase/action/codebase_ticket_creation');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await post(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -267,7 +267,7 @@ class AddActionModel {
         Uri.parse('$urlPrefix/services/codebase/action/codebase_ticket_update');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await post(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.toString()));
+    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 }
