@@ -1,3 +1,4 @@
+import 'package:client/views/reaction/add_reaction_page.dart';
 import 'package:flutter/material.dart';
 import 'package:client/models/globals.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
@@ -54,6 +55,16 @@ class _ActionCodebaseMergeRequestReactionPageState
   Widget build(BuildContext context) {
     getReaction();
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return const AddReactionPage();
+              }));
+            },
+            backgroundColor: Colors.deepPurple,
+            child: const Icon(Icons.add, color: Colors.black)),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         appBar: AppBar(title: const Text('Reaction List')),
         body: Container(
             decoration: BoxDecoration(
