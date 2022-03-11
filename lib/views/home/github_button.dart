@@ -30,23 +30,7 @@ class _GithubButtonState extends State<GithubButton> {
                   border: OutlineInputBorder(), labelText: 'Token'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  answer = value;
-                });
-              }),
-        /*  TextField(
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'UserName'),
-              maxLines: 1,
-              maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  userName = value;
-                });
-              }),*/
+              onChanged: (value) => setState(() => answer = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -68,17 +52,13 @@ class _GithubButtonState extends State<GithubButton> {
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue = showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        }) as Future<String>;
+    Future<String> futureValue =
+        showDialog(context: context, builder: (BuildContext context) => dialog)
+            as Future<String>;
     Stream<String> stream = futureValue.asStream();
     stream.listen((String data) {
       String answerValue = data;
-      setState(() {
-        answer = answerValue;
-      });
+      setState(() => answer = answerValue);
     });
   }
 
@@ -93,13 +73,11 @@ class _GithubButtonState extends State<GithubButton> {
       }
     }
     return TextButton(
-        onPressed: () {
-          setState(() {
-            if (!_connectedToGithub) {
-              onClickGitHubLoginButton(context);
-            }
-          });
-        },
+        onPressed: () => setState(() {
+              if (!_connectedToGithub) {
+                onClickGitHubLoginButton(context);
+              }
+            }),
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -117,10 +95,8 @@ class _GithubButtonState extends State<GithubButton> {
           const SizedBox(width: 20),
           (!_connectedToGithub)
               ? const Text('Connect to Github')
-              : const Text(
-                  'Connected to Github',
-                  style: TextStyle(color: Colors.green),
-                ),
+              : const Text('Connected to Github',
+                  style: TextStyle(color: Colors.green))
         ]));
   }
 }

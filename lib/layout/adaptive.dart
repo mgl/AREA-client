@@ -4,6 +4,5 @@ import 'package:flutter/material.dart';
 bool isDisplayDesktop(BuildContext context) =>
     getWindowType(context) >= AdaptiveWindowType.medium;
 
-bool isDisplaySmallDesktop(BuildContext context) {
-  return getWindowType(context) == AdaptiveWindowType.medium;
-}
+bool isDisplaySmallDesktop(BuildContext context) =>
+    getWindowType(context) == AdaptiveWindowType.medium;

@@ -9,14 +9,12 @@ class ButtonActionGithubIssue extends StatefulWidget {
       _ButtonActionGithubIssueState();
 }
 
-class _ButtonActionGithubIssueState
-    extends State<ButtonActionGithubIssue> {
+class _ButtonActionGithubIssueState extends State<ButtonActionGithubIssue> {
   String repo = "";
   String owner = "";
   void onClickButtonActionGithubIssue(BuildContext context) {
     AlertDialog dialog = AlertDialog(
-        title:
-            const Text('Issue', style: TextStyle(color: Colors.black)),
+        title: const Text('Issue', style: TextStyle(color: Colors.black)),
         content: const Text('Github', style: TextStyle(color: Colors.black)),
         actions: [
           TextField(
@@ -26,11 +24,7 @@ class _ButtonActionGithubIssueState
                   border: OutlineInputBorder(), labelText: 'Repository'),
               maxLines: 1,
               maxLength: 25,
-              onChanged: (value) {
-                setState(() {
-                  repo = value;
-                });
-              }),
+              onChanged: (value) => setState(() => repo = value)),
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
@@ -38,11 +32,7 @@ class _ButtonActionGithubIssueState
                   border: OutlineInputBorder(), labelText: 'Owner'),
               maxLines: 1,
               maxLength: 25,
-              onChanged: (value) {
-                setState(() {
-                  owner = value;
-                });
-              }),
+              onChanged: (value) => setState(() => owner = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -56,11 +46,7 @@ class _ButtonActionGithubIssueState
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        });
+    showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
   @override
@@ -68,9 +54,7 @@ class _ButtonActionGithubIssueState
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "github") {
         return TextButton(
-            onPressed: () {
-              onClickButtonActionGithubIssue(context);
-            },
+            onPressed: () => onClickButtonActionGithubIssue(context),
             style: TextButton.styleFrom(
                 backgroundColor: Colors.grey[200],
                 primary: Colors.black,
@@ -78,14 +62,13 @@ class _ButtonActionGithubIssueState
                     borderRadius: BorderRadius.circular(12))),
             child: Row(children: [
               Container(
-                height: 30,
-                width: 30,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/Octocat.png'),
-                        fit: BoxFit.cover),
-                    shape: BoxShape.circle),
-              ),
+                  height: 30,
+                  width: 30,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/Octocat.png'),
+                          fit: BoxFit.cover),
+                      shape: BoxShape.circle)),
               const SizedBox(width: 20),
               const Text('Github - Issue')
             ]));

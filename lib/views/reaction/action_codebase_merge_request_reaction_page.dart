@@ -56,12 +56,11 @@ class _ActionCodebaseMergeRequestReactionPageState
     getReaction();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                return const AddReactionPage();
-              }));
-            },
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        const AddReactionPage())),
             backgroundColor: Colors.deepPurple,
             child: const Icon(Icons.add, color: Colors.black)),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

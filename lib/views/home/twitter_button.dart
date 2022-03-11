@@ -29,11 +29,7 @@ class _TwitterButtonState extends State<TwitterButton> {
                   border: OutlineInputBorder(), labelText: 'App Token'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  appToken = value;
-                });
-              }),
+              onChanged: (value) => setState(() => appToken = value)),
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
@@ -41,11 +37,7 @@ class _TwitterButtonState extends State<TwitterButton> {
                   border: OutlineInputBorder(), labelText: 'App Secret'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  appSecret = value;
-                });
-              }),
+              onChanged: (value) => setState(() => appSecret = value)),
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
@@ -53,11 +45,7 @@ class _TwitterButtonState extends State<TwitterButton> {
                   border: OutlineInputBorder(), labelText: 'User Token'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  userToken = value;
-                });
-              }),
+              onChanged: (value) => setState(() => userToken = value)),
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
@@ -65,11 +53,7 @@ class _TwitterButtonState extends State<TwitterButton> {
                   border: OutlineInputBorder(), labelText: 'User Secret'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  userSecret = value;
-                });
-              }),
+              onChanged: (value) => setState(() => userSecret = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -92,11 +76,7 @@ class _TwitterButtonState extends State<TwitterButton> {
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        });
+    showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
   @override
@@ -110,13 +90,11 @@ class _TwitterButtonState extends State<TwitterButton> {
       }
     }
     return TextButton(
-        onPressed: () {
-          setState(() {
-            if (!_connectedToTwitter) {
-              onClickTwitterLoginButton(context);
-            }
-          });
-        },
+        onPressed: () => setState(() {
+              if (!_connectedToTwitter) {
+                onClickTwitterLoginButton(context);
+              }
+            }),
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -124,21 +102,18 @@ class _TwitterButtonState extends State<TwitterButton> {
                 borderRadius: BorderRadius.circular(12))),
         child: Row(children: [
           Container(
-            height: 30,
-            width: 30,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/twitter-logo.jpg'),
-                    fit: BoxFit.cover),
-                shape: BoxShape.circle),
-          ),
+              height: 30,
+              width: 30,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/twitter-logo.jpg'),
+                      fit: BoxFit.cover),
+                  shape: BoxShape.circle)),
           const SizedBox(width: 20),
           (!_connectedToTwitter)
               ? const Text('Connect to Twitter')
-              : const Text(
-                  'Connected to Twitter',
-                  style: TextStyle(color: Colors.green),
-                ),
+              : const Text('Connected to Twitter',
+                  style: TextStyle(color: Colors.green))
         ]));
   }
 }

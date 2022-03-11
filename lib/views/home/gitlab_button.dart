@@ -26,11 +26,7 @@ class _GitlabButtonState extends State<GitlabButton> {
                   border: OutlineInputBorder(), labelText: 'Token'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  answer = value;
-                });
-              }),
+              onChanged: (value) => setState(() => answer = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -52,17 +48,13 @@ class _GitlabButtonState extends State<GitlabButton> {
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue = showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        }) as Future<String>;
+    Future<String> futureValue =
+        showDialog(context: context, builder: (BuildContext context) => dialog)
+            as Future<String>;
     Stream<String> stream = futureValue.asStream();
     stream.listen((String data) {
       String answerValue = data;
-      setState(() {
-        answer = answerValue;
-      });
+      setState(() => answer = answerValue);
     });
   }
 
@@ -77,13 +69,11 @@ class _GitlabButtonState extends State<GitlabButton> {
       }
     }
     return TextButton(
-        onPressed: () {
-          setState(() {
-            if (!_connectedToGitlab) {
-              onClickGitlabLoginButton(context);
-            }
-          });
-        },
+        onPressed: () => setState(() {
+              if (!_connectedToGitlab) {
+                onClickGitlabLoginButton(context);
+              }
+            }),
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -101,10 +91,8 @@ class _GitlabButtonState extends State<GitlabButton> {
           const SizedBox(width: 20),
           (!_connectedToGitlab)
               ? const Text('Connect to Gitlab')
-              : const Text(
-                  'Connected to Gitlab',
-                  style: TextStyle(color: Colors.green),
-                ),
+              : const Text('Connected to Gitlab',
+                  style: TextStyle(color: Colors.green))
         ]));
   }
 }

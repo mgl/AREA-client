@@ -40,38 +40,25 @@ class _HomePageState extends State<HomePage> {
   void onClickOnAddButton(BuildContext context) {
     AlertDialog dialog = const AlertDialog(
         scrollable: true,
-        actions: [
-
-        ],
+        actions: [],
         backgroundColor: Color.fromRGBO(0, 0, 0, 0));
-    Future<String> futureValue = showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        }) as Future<String>;
+    Future<String> futureValue =
+        showDialog(context: context, builder: (BuildContext context) => dialog)
+            as Future<String>;
     Stream<String> stream = futureValue.asStream();
     stream.listen((String data) {});
   }
-
-  // onTap: () {
-  //   Navigator.push(context,
-  //       MaterialPageRoute(builder: (BuildContext context) {
-  //     return const ReactionPage();
-  //   }));
-  // },
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              // onClickOnAddButton(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                return const SelectActionPage();
-              }));
-            },
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        const SelectActionPage())),
             backgroundColor: Colors.deepPurple,
             child: const Icon(Icons.add, color: Colors.black)),
         appBar: AppBar(title: const Text('AREA PROJECT')),

@@ -105,7 +105,6 @@ class SubscribeModel {
   void unsubscribeTwitter() async {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-
     var response = await delete(url, headers: header);
     final SnackBar snackBar = SnackBar(content: Text(response.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);

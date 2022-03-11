@@ -178,7 +178,7 @@ class AddActionModel {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/wiki_page_events');
     final header = {"Authorization": "Bearer " + globalToken};
 
-     String tmp = "";
+    String tmp = "";
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "github") {
         tmp = globalContainer.service[i].token;

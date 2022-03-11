@@ -30,11 +30,7 @@ class _ButtonActionCodebaseTicketUpdateState
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        });
+    showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
   @override
@@ -42,9 +38,7 @@ class _ButtonActionCodebaseTicketUpdateState
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "codebase") {
         return TextButton(
-            onPressed: () {
-              onClickButtonActionCodebaseTicketUpdate(context);
-            },
+            onPressed: () => onClickButtonActionCodebaseTicketUpdate(context),
             style: TextButton.styleFrom(
                 backgroundColor: Colors.grey[200],
                 primary: Colors.black,
@@ -52,14 +46,13 @@ class _ButtonActionCodebaseTicketUpdateState
                     borderRadius: BorderRadius.circular(12))),
             child: Row(children: [
               Container(
-                height: 30,
-                width: 30,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/code.png'),
-                        fit: BoxFit.cover),
-                    shape: BoxShape.circle),
-              ),
+                  height: 30,
+                  width: 30,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/code.png'),
+                          fit: BoxFit.cover),
+                      shape: BoxShape.circle)),
               const SizedBox(width: 20),
               const Text('Codebase - Ticket update')
             ]));
