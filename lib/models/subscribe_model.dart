@@ -8,7 +8,8 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("subscribeGithub" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -16,7 +17,8 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("unsubscribeGithub" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -25,7 +27,8 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("subscribeCodebase" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -33,7 +36,8 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("unsubscribeCodebase" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -42,7 +46,8 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("subscribeGitlab" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -50,7 +55,8 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("unsubscribeGitlab" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -59,7 +65,8 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("subscribeDiscord" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -67,7 +74,8 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("unsubscribeDiscord" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -75,7 +83,8 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/google/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await post(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("subscribeGoogle" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -83,7 +92,8 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("unsubscribeGoogle" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -98,7 +108,8 @@ class SubscribeModel {
       "accessToken": userToken
     };
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("subscribeTwitter" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -106,7 +117,8 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
+    final SnackBar snackBar =
+        SnackBar(content: Text("unsubscribeTwitter" + response.statusCode.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 }
