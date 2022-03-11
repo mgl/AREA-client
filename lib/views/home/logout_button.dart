@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:client/routes.dart' as routes;
 
-
 class LogOutButton extends StatefulWidget {
   const LogOutButton({Key? key}) : super(key: key);
   @override
@@ -12,33 +11,29 @@ class LogOutButton extends StatefulWidget {
 class _LogOutButtonState extends State<LogOutButton> {
   static const String _loginRoute = routes.loginRoute;
 
- // bool _connectedToGoogle = false;
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {
-          setState(() {
-            FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacementNamed(_loginRoute);
-
-          });
-        },
+        onPressed: () => setState(() {
+              FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushReplacementNamed(_loginRoute);
+            }),
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12))),
         child: Row(children: [
-           Container(
-            height: 30,
-            width: 30,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/logout.png'), fit: BoxFit.cover),
-                shape: BoxShape.circle),
-          ),
+          Container(
+              height: 30,
+              width: 30,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/logout.png'),
+                      fit: BoxFit.cover),
+                  shape: BoxShape.circle)),
           const SizedBox(width: 20),
-              const Text('logout')
+          const Text('logout')
         ]));
   }
 }

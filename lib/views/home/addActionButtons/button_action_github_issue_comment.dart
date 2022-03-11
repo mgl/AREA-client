@@ -26,11 +26,7 @@ class _ButtonActionGithubIssueCommentState
                   border: OutlineInputBorder(), labelText: 'Repository'),
               maxLines: 1,
               maxLength: 25,
-              onChanged: (value) {
-                setState(() {
-                  repo = value;
-                });
-              }),
+              onChanged: (value) => setState(() => repo = value)),
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
@@ -38,11 +34,7 @@ class _ButtonActionGithubIssueCommentState
                   border: OutlineInputBorder(), labelText: 'Owner'),
               maxLines: 1,
               maxLength: 25,
-              onChanged: (value) {
-                setState(() {
-                  owner = value;
-                });
-              }),
+              onChanged: (value) => setState(() => owner = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -56,11 +48,7 @@ class _ButtonActionGithubIssueCommentState
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        });
+    showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
   @override
@@ -68,9 +56,7 @@ class _ButtonActionGithubIssueCommentState
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "github") {
         return TextButton(
-            onPressed: () {
-              onClickButtonActionGithubIssueComment(context);
-            },
+            onPressed: () => onClickButtonActionGithubIssueComment(context),
             style: TextButton.styleFrom(
                 backgroundColor: Colors.grey[200],
                 primary: Colors.black,
@@ -78,14 +64,13 @@ class _ButtonActionGithubIssueCommentState
                     borderRadius: BorderRadius.circular(12))),
             child: Row(children: [
               Container(
-                height: 30,
-                width: 30,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/Octocat.png'),
-                        fit: BoxFit.cover),
-                    shape: BoxShape.circle),
-              ),
+                  height: 30,
+                  width: 30,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/Octocat.png'),
+                          fit: BoxFit.cover),
+                      shape: BoxShape.circle)),
               const SizedBox(width: 20),
               const Text('Github - Issue comment')
             ]));

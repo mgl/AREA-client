@@ -27,11 +27,7 @@ class _DiscordButtonState extends State<DiscordButton> {
                   border: OutlineInputBorder(), labelText: 'Webhook URL'),
               maxLines: 1,
               maxLength: 300,
-              onChanged: (value) {
-                setState(() {
-                  answer = value;
-                });
-              }),
+              onChanged: (value) => setState(() => answer = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -53,17 +49,13 @@ class _DiscordButtonState extends State<DiscordButton> {
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue = showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        }) as Future<String>;
+    Future<String> futureValue =
+        showDialog(context: context, builder: (BuildContext context) => dialog)
+            as Future<String>;
     Stream<String> stream = futureValue.asStream();
     stream.listen((String data) {
       String answerValue = data;
-      setState(() {
-        answer = answerValue;
-      });
+      setState(() => answer = answerValue);
     });
   }
 
@@ -78,13 +70,11 @@ class _DiscordButtonState extends State<DiscordButton> {
       }
     }
     return TextButton(
-        onPressed: () {
-          setState(() {
-            if (!_connectedToDiscord) {
-              onClickDiscordLoginButton(context);
-            }
-          });
-        },
+        onPressed: () => setState(() {
+              if (!_connectedToDiscord) {
+                onClickDiscordLoginButton(context);
+              }
+            }),
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -102,10 +92,8 @@ class _DiscordButtonState extends State<DiscordButton> {
           const SizedBox(width: 20),
           (!_connectedToDiscord)
               ? const Text('Connect to Discord')
-              : const Text(
-                  'Connected to Discord',
-                  style: TextStyle(color: Colors.green),
-                ),
+              : const Text('Connected to Discord',
+                  style: TextStyle(color: Colors.green))
         ]));
   }
 }

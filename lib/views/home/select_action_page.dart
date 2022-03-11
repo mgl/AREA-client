@@ -29,7 +29,6 @@ class _SelectActionPageState extends State<SelectActionPage> {
     return Scaffold(
         appBar: AppBar(title: const Text('Action selection')),
         body: Container(
-            // padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.deepPurple),
                 borderRadius: BorderRadius.circular(20)),

@@ -11,7 +11,6 @@ class CodebaseButton extends StatefulWidget {
 class _CodebaseButtonState extends State<CodebaseButton> {
   bool _connectedToCodebase = false;
   String answer = "";
-
   void onClickCodebaseLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Codebase Connection',
@@ -26,11 +25,7 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                   border: OutlineInputBorder(), labelText: 'Username'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  answer = value;
-                });
-              }),
+              onChanged: (value) => setState(() => answer = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -49,17 +44,13 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue = showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        }) as Future<String>;
+    Future<String> futureValue =
+        showDialog(context: context, builder: (BuildContext context) => dialog)
+            as Future<String>;
     Stream<String> stream = futureValue.asStream();
     stream.listen((String data) {
       String answerValue = data;
-      setState(() {
-        answer = answerValue;
-      });
+      setState(() => answer = answerValue);
     });
   }
 
@@ -74,16 +65,14 @@ class _CodebaseButtonState extends State<CodebaseButton> {
       }
     }
     return TextButton(
-        onPressed: () {
-          setState(() {
-            if (!_connectedToCodebase) {
-              onClickCodebaseLoginButton(context);
-            } else {
-              SubscribeController.unsubscribeCodebase();
-              _connectedToCodebase = false;
-            }
-          });
-        },
+        onPressed: () => setState(() {
+              if (!_connectedToCodebase) {
+                onClickCodebaseLoginButton(context);
+              } else {
+                SubscribeController.unsubscribeCodebase();
+                _connectedToCodebase = false;
+              }
+            }),
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -101,10 +90,8 @@ class _CodebaseButtonState extends State<CodebaseButton> {
           const SizedBox(width: 20),
           (!_connectedToCodebase)
               ? const Text('Connect to Codebase')
-              : const Text(
-                  'Connected to Codebase',
-                  style: TextStyle(color: Colors.green),
-                ),
+              : const Text('Connected to Codebase',
+                  style: TextStyle(color: Colors.green))
         ]));
   }
 }

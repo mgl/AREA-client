@@ -11,8 +11,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:client/models/globals.dart';
 
-
-
 class AreaApp extends StatelessWidget {
   const AreaApp({Key? key}) : super(key: key);
   static const String _loginRoute = routes.loginRoute;
@@ -64,7 +62,6 @@ class AreaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // const providerConfigs = [EmailProviderConfiguration()];
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -81,21 +78,14 @@ class AreaApp extends StatelessWidget {
             ? _loginRoute
             : _homeRoute,
         routes: {
-          _loginRoute: (context) {
-            return SignInScreen(actions: [
-              AuthStateChangeAction<SignedIn>((context, _) {
-                Navigator.of(context).pushReplacementNamed(_homeRoute);
-              })
-            ], providerConfigs: const [
-              EmailProviderConfiguration(),
-              GoogleProviderConfiguration(
-                  clientId:
-                      '...')
-            ]);
-          },
-          _homeRoute: (context) {
-            return const HomePage();
-          }
+          _loginRoute: (context) => SignInScreen(actions: [
+                AuthStateChangeAction<SignedIn>((context, _) =>
+                    Navigator.of(context).pushReplacementNamed(_homeRoute))
+              ], providerConfigs: const [
+                EmailProviderConfiguration(),
+                GoogleProviderConfiguration(clientId: '...')
+              ]),
+          _homeRoute: (context) => const HomePage()
         });
   }
 }

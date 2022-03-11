@@ -9,17 +9,17 @@ class FadeInImagePlaceholder extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit? fit;
-  const FadeInImagePlaceholder({
-    Key? key,
-    required this.image,
-    required this.placeholder,
-    this.child,
-    this.duration = const Duration(milliseconds: 500),
-    this.excludeFromSemantics = false,
-    this.width,
-    this.height,
-    this.fit,
-  }) : super(key: key);
+  const FadeInImagePlaceholder(
+      {Key? key,
+      required this.image,
+      required this.placeholder,
+      this.child,
+      this.duration = const Duration(milliseconds: 500),
+      this.excludeFromSemantics = false,
+      this.width,
+      this.height,
+      this.fit})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

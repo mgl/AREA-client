@@ -23,11 +23,7 @@ class _ButtonActionGitlabCommentState extends State<ButtonActionGitlabComment> {
                   border: OutlineInputBorder(), labelText: 'RepoID'),
               maxLines: 1,
               maxLength: 25,
-              onChanged: (value) {
-                setState(() {
-                  repoId = value;
-                });
-              }),
+              onChanged: (value) => setState(() => repoId = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -41,11 +37,7 @@ class _ButtonActionGitlabCommentState extends State<ButtonActionGitlabComment> {
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        });
+    showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
   @override
@@ -53,9 +45,7 @@ class _ButtonActionGitlabCommentState extends State<ButtonActionGitlabComment> {
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "gitlab") {
         return TextButton(
-            onPressed: () {
-              onClickButtonActionGitlabComment(context);
-            },
+            onPressed: () => onClickButtonActionGitlabComment(context),
             style: TextButton.styleFrom(
                 backgroundColor: Colors.grey[200],
                 primary: Colors.black,
@@ -63,14 +53,13 @@ class _ButtonActionGitlabCommentState extends State<ButtonActionGitlabComment> {
                     borderRadius: BorderRadius.circular(12))),
             child: Row(children: [
               Container(
-                height: 30,
-                width: 30,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/gitlab.png'),
-                        fit: BoxFit.cover),
-                    shape: BoxShape.circle),
-              ),
+                  height: 30,
+                  width: 30,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/gitlab.png'),
+                          fit: BoxFit.cover),
+                      shape: BoxShape.circle)),
               const SizedBox(width: 20),
               const Text('Gitlab - Comment')
             ]));

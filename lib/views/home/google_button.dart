@@ -25,11 +25,7 @@ class _GoogleButtonState extends State<GoogleButton> {
                   border: OutlineInputBorder(), labelText: 'Token'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) {
-                setState(() {
-                  answer = value;
-                });
-              }),
+              onChanged: (value) => setState(() => answer = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -51,17 +47,13 @@ class _GoogleButtonState extends State<GoogleButton> {
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue = showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return dialog;
-        }) as Future<String>;
+    Future<String> futureValue =
+        showDialog(context: context, builder: (BuildContext context) => dialog)
+            as Future<String>;
     Stream<String> stream = futureValue.asStream();
     stream.listen((String data) {
       String answerValue = data;
-      setState(() {
-        answer = answerValue;
-      });
+      setState(() => answer = answerValue);
     });
   }
 
@@ -76,13 +68,11 @@ class _GoogleButtonState extends State<GoogleButton> {
       }
     }
     return TextButton(
-        onPressed: () {
-          setState(() {
-            if (!_connectedToGoogle) {
-              onClickGoogleLoginButton(context);
-            }
-          });
-        },
+        onPressed: () => setState(() {
+              if (!_connectedToGoogle) {
+                onClickGoogleLoginButton(context);
+              }
+            }),
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -100,10 +90,8 @@ class _GoogleButtonState extends State<GoogleButton> {
           const SizedBox(width: 20),
           (!_connectedToGoogle)
               ? const Text('Connect to Google')
-              : const Text(
-                  'Connected to Google',
-                  style: TextStyle(color: Colors.green),
-                ),
+              : const Text('Connected to Google',
+                  style: TextStyle(color: Colors.green))
         ]));
   }
 }

@@ -19,15 +19,15 @@ set deviceLocale(Locale? locale) {
 }
 
 class ClientOptions {
-  const ClientOptions({
-    this.themeMode,
-    double? textScaleFactor,
-    this.customTextDirection,
-    Locale? locale,
-    required this.timeDilation,
-    this.platform,
-    this.isTestMode,
-  })  : _textScaleFactor = textScaleFactor,
+  const ClientOptions(
+      {this.themeMode,
+      double? textScaleFactor,
+      this.customTextDirection,
+      Locale? locale,
+      required this.timeDilation,
+      this.platform,
+      this.isTestMode})
+      : _textScaleFactor = textScaleFactor,
         _locale = locale;
 
   final ThemeMode? themeMode;
@@ -81,24 +81,22 @@ class ClientOptions {
     return overlayStyle;
   }
 
-  ClientOptions copyWith({
-    ThemeMode? themeMode,
-    double? textScaleFactor,
-    CustomTextDirection? customTextDirection,
-    Locale? locale,
-    double? timeDilation,
-    TargetPlatform? platform,
-    bool? isTestMode,
-  }) {
-    return ClientOptions(
-        themeMode: themeMode ?? this.themeMode,
-        textScaleFactor: textScaleFactor ?? _textScaleFactor,
-        customTextDirection: customTextDirection ?? this.customTextDirection,
-        locale: locale ?? this.locale,
-        timeDilation: timeDilation ?? this.timeDilation,
-        platform: platform ?? this.platform,
-        isTestMode: isTestMode ?? this.isTestMode);
-  }
+  ClientOptions copyWith(
+          {ThemeMode? themeMode,
+          double? textScaleFactor,
+          CustomTextDirection? customTextDirection,
+          Locale? locale,
+          double? timeDilation,
+          TargetPlatform? platform,
+          bool? isTestMode}) =>
+      ClientOptions(
+          themeMode: themeMode ?? this.themeMode,
+          textScaleFactor: textScaleFactor ?? _textScaleFactor,
+          customTextDirection: customTextDirection ?? this.customTextDirection,
+          locale: locale ?? this.locale,
+          timeDilation: timeDilation ?? this.timeDilation,
+          platform: platform ?? this.platform,
+          isTestMode: isTestMode ?? this.isTestMode);
 
   @override
   bool operator ==(Object other) =>
@@ -115,17 +113,15 @@ class ClientOptions {
   int get hashCode => hashValues(themeMode, _textScaleFactor,
       customTextDirection, locale, timeDilation, platform, isTestMode);
 
-  static ClientOptions? of(BuildContext context) {
-    final scope =
-        context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>();
-    return scope?.modelBindingState.currentModel;
-  }
+  static ClientOptions? of(BuildContext context) =>
+      (context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>())
+          ?.modelBindingState
+          .currentModel;
 
-  static void update(BuildContext context, ClientOptions newModel) {
-    final scope =
-        context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>();
-    scope?.modelBindingState.updateModel(newModel);
-  }
+  static void update(BuildContext context, ClientOptions newModel) =>
+      (context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>())
+          ?.modelBindingState
+          .updateModel(newModel);
 }
 
 class ApplyTextOptions extends StatelessWidget {
@@ -140,26 +136,18 @@ class ApplyTextOptions extends StatelessWidget {
     final textScaleFactor = options?.textScaleFactor(context);
 
     Widget widget = MediaQuery(
-      data: MediaQuery.of(context).copyWith(
-        textScaleFactor: textScaleFactor,
-      ),
-      child: child,
-    );
+        data: MediaQuery.of(context).copyWith(textScaleFactor: textScaleFactor),
+        child: child);
     return textDirection == null
         ? widget
-        : Directionality(
-            textDirection: textDirection,
-            child: widget,
-          );
+        : Directionality(textDirection: textDirection, child: widget);
   }
 }
 
 class _ModelBindingScope extends InheritedWidget {
-  const _ModelBindingScope({
-    Key? key,
-    required this.modelBindingState,
-    required Widget child,
-  }) : super(key: key, child: child);
+  const _ModelBindingScope(
+      {Key? key, required this.modelBindingState, required Widget child})
+      : super(key: key, child: child);
 
   final _ModelBindingState modelBindingState;
 
@@ -168,11 +156,11 @@ class _ModelBindingScope extends InheritedWidget {
 }
 
 class ModelBinding extends StatefulWidget {
-  const ModelBinding({
-    Key? key,
-    this.initialModel = const ClientOptions(timeDilation: 0.0),
-    required this.child,
-  })  : assert(initialModel != null),
+  const ModelBinding(
+      {Key? key,
+      this.initialModel = const ClientOptions(timeDilation: 0.0),
+      required this.child})
+      : assert(initialModel != null),
         super(key: key);
 
   final ClientOptions? initialModel;
@@ -223,10 +211,6 @@ class _ModelBindingState extends State<ModelBinding> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return _ModelBindingScope(
-      modelBindingState: this,
-      child: widget.child,
-    );
-  }
+  Widget build(BuildContext context) =>
+      _ModelBindingScope(modelBindingState: this, child: widget.child);
 }

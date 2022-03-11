@@ -1,3 +1,4 @@
+import 'package:client/views/reaction/add_reaction_page.dart';
 import 'package:flutter/material.dart';
 import 'package:client/models/globals.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
@@ -52,6 +53,90 @@ class _ActionCodebaseMergeRequestReactionPageState
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    getReaction();
+    return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        const AddReactionPage())),
+            backgroundColor: Colors.deepPurple,
+            child: const Icon(Icons.add, color: Colors.black)),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        appBar: AppBar(title: const Text('Reaction List')),
+        body: Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.deepPurple),
+                borderRadius: BorderRadius.circular(20)),
+            child: Scrollbar(
+                child: ListView(children: [
+              for (int i = 0; i < reactionDiscordMessage.length; i++)
+                ListTile(
+                    leading: const CircleAvatar(
+                        backgroundColor: Colors.black,
+                        backgroundImage: AssetImage('assets/epilogo.png')),
+                    title: const Text('Message'),
+                    subtitle: const Text('Discord'),
+                    trailing: Row(children: [
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.delete))
+                    ])),
+              for (int i = 0; i < reactionGoogleCalendarEvent.length; i++)
+                ListTile(
+                    leading: const CircleAvatar(
+                        backgroundColor: Colors.black,
+                        backgroundImage: AssetImage('assets/epilogo.png')),
+                    title: const Text('Calendar Event'),
+                    subtitle: const Text('Google'),
+                    trailing: Row(children: [
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.delete))
+                    ])),
+              for (int i = 0; i < reactionTwitterFollowUser.length; i++)
+                ListTile(
+                    leading: const CircleAvatar(
+                        backgroundColor: Colors.black,
+                        backgroundImage: AssetImage('assets/epilogo.png')),
+                    title: const Text('Follow User'),
+                    subtitle: const Text('Twitter'),
+                    trailing: Row(children: [
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.delete))
+                    ])),
+              for (int i = 0; i < reactionTwitterLike.length; i++)
+                ListTile(
+                    leading: const CircleAvatar(
+                        backgroundColor: Colors.black,
+                        backgroundImage: AssetImage('assets/epilogo.png')),
+                    title: const Text('Like'),
+                    subtitle: const Text('Twitter'),
+                    trailing: Row(children: [
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.delete))
+                    ])),
+              for (int i = 0; i < reactionTwitterPostTweet.length; i++)
+                ListTile(
+                    leading: const CircleAvatar(
+                        backgroundColor: Colors.black,
+                        backgroundImage: AssetImage('assets/epilogo.png')),
+                    title: const Text('Post Tweet'),
+                    subtitle: const Text('Tweeter'),
+                    trailing: Row(children: [
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.delete))
+                    ])),
+              for (int i = 0; i < reactionTwitterRetweet.length; i++)
+                ListTile(
+                    leading: const CircleAvatar(
+                        backgroundColor: Colors.black,
+                        backgroundImage: AssetImage('assets/epilogo.png')),
+                    title: const Text('Retweet'),
+                    subtitle: const Text('Twetter'),
+                    trailing: Row(children: [
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.delete))
+                    ]))
+            ]))));
   }
 }
