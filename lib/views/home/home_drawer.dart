@@ -10,7 +10,6 @@ import 'package:client/views/home/logout_button.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer({Key? key}) : super(key: key);
-
   @override
   State<HomeDrawer> createState() => _HomeDrawerState();
 }
@@ -18,21 +17,11 @@ class HomeDrawer extends StatefulWidget {
 class _HomeDrawerState extends State<HomeDrawer> {
   @override
   Widget build(BuildContext context) {
-    String userName = '';
-    ImageProvider userPicture = const AssetImage('assets/epilogo.png');
-    String userMail = FirebaseAuth.instance.currentUser!.email as String;
-    if (FirebaseAuth.instance.currentUser!.displayName != null) {
-      userName = FirebaseAuth.instance.currentUser!.displayName as String;
-      final src = FirebaseAuth.instance.currentUser!.photoURL as String;
-      userPicture = NetworkImage(src);
-    } else {
-      userName = userMail.split('@').first;
-    }
     UserAccountsDrawerHeader drawerHeader = UserAccountsDrawerHeader(
-        accountName: Text(userName),
-        accountEmail: Text(userMail),
+        accountName: Text((FirebaseAuth.instance.currentUser!.displayName != null) ? FirebaseAuth.instance.currentUser!.displayName as String : (FirebaseAuth.instance.currentUser!.email as String).split('@').first),
+        accountEmail: Text(FirebaseAuth.instance.currentUser!.email as String),
         currentAccountPicture: CircleAvatar(
-            backgroundImage: userPicture,
+            backgroundImage: (FirebaseAuth.instance.currentUser!.displayName != null) ? NetworkImage(FirebaseAuth.instance.currentUser?.photoURL as String) : const AssetImage('assets/epilogo.png') as ImageProvider,
             backgroundColor: const Color(0xFF33333D)));
     final drawerItems = ListView(children: [
       drawerHeader,
