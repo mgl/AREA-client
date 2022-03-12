@@ -35,6 +35,9 @@ class _HomePageState extends State<HomePage> {
       String token = await FirebaseAuth.instance.currentUser!.getIdToken();
       SetupController.setupArea(token);
     }
+    setState(() {
+      
+    });
   }
 
   void onClickOnAddButton(BuildContext context) {

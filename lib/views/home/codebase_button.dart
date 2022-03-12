@@ -35,7 +35,10 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   setState(() {
-                    if (_connectedToCodebase == false) {
+                    if (_connectedToCodebase == true) {
+                      SubscribeController.unsubscribeCodebase();
+                      _connectedToCodebase = false;
+                    } else {
                       SubscribeController.subscribeCodebase(answer);
                       _connectedToCodebase = true;
                     }
@@ -56,9 +59,9 @@ class _CodebaseButtonState extends State<CodebaseButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (globalContainer.service.isEmpty) {
-      return Container();
-    }
+    // if (globalContainer.service.isEmpty) {
+    //   return Container();
+    // }
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "codebase") {
         _connectedToCodebase = true;
@@ -68,9 +71,6 @@ class _CodebaseButtonState extends State<CodebaseButton> {
         onPressed: () => setState(() {
               if (!_connectedToCodebase) {
                 onClickCodebaseLoginButton(context);
-              } else {
-                SubscribeController.unsubscribeCodebase();
-                _connectedToCodebase = false;
               }
             }),
         style: TextButton.styleFrom(

@@ -64,9 +64,9 @@ class _GithubButtonState extends State<GithubButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (globalContainer.service.isEmpty) {
-      return Container();
-    }
+    // if (globalContainer.service.isEmpty) {
+    //   return Container();
+    // }
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "github") {
         _connectedToGithub = true;

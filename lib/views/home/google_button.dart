@@ -11,6 +11,7 @@ class GoogleButton extends StatefulWidget {
 class _GoogleButtonState extends State<GoogleButton> {
   bool _connectedToGoogle = false;
   String answer = "";
+  
   void onClickGoogleLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Google Connection',
@@ -59,9 +60,6 @@ class _GoogleButtonState extends State<GoogleButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (globalContainer.service.isEmpty) {
-      return Container();
-    }
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "google") {
         _connectedToGoogle = true;

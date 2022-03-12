@@ -14,7 +14,7 @@ class _DiscordButtonState extends State<DiscordButton> {
 
   void onClickDiscordLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
-        title: const Text('Twitter Connection',
+        title: const Text('Discord Connection',
             style: TextStyle(color: Colors.black)),
         content: const Text(
             'Please enter the URL of the webhook of your server.',
@@ -61,9 +61,6 @@ class _DiscordButtonState extends State<DiscordButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (globalContainer.service.isEmpty) {
-      return Container();
-    }
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "discord") {
         _connectedToDiscord = true;

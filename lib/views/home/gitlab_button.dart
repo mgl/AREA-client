@@ -60,9 +60,9 @@ class _GitlabButtonState extends State<GitlabButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (globalContainer.service.isEmpty) {
-      return Container();
-    }
+    // if (globalContainer.service.isEmpty) {
+    //   return Container();
+    // }
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "gitlab") {
         _connectedToGitlab = true;

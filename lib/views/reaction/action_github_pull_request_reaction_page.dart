@@ -53,15 +53,6 @@ class _ActionGithubPullRequestReactionPageState
   Widget build(BuildContext context) {
     getReaction();
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const AddReactionPage())),
-            backgroundColor: Colors.deepPurple,
-            child: const Icon(Icons.add, color: Colors.black)),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         appBar: AppBar(title: const Text('Reaction List')),
         body: Container(
             decoration: BoxDecoration(

@@ -13,7 +13,7 @@ class SubscribeModel {
   }
 
   void unsubscribeGithub() async {
-    final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
+    final url = Uri.parse('$urlPrefix/services/github/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
     final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
@@ -30,7 +30,7 @@ class SubscribeModel {
   }
 
   void unsubscribeCodebase() async {
-    final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
+    final url = Uri.parse('$urlPrefix/services/codebase/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
     final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
@@ -47,7 +47,7 @@ class SubscribeModel {
   }
 
   void unsubscribeGitlab() async {
-    final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
+    final url = Uri.parse('$urlPrefix/services/gitlab/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
     final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
@@ -64,7 +64,7 @@ class SubscribeModel {
   }
 
   void unsubscribeDiscord() async {
-    final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
+    final url = Uri.parse('$urlPrefix/services/discord/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
     final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
@@ -80,7 +80,7 @@ class SubscribeModel {
   }
 
   void unsubscribeGoogle() async {
-    final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
+    final url = Uri.parse('$urlPrefix/services/google/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
     final SnackBar snackBar = SnackBar(content: Text(response.statusCode.toString()));
