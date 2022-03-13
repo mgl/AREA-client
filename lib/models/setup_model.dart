@@ -1,3 +1,4 @@
+import 'package:client/models/action_container.dart';
 import 'package:http/http.dart';
 import 'package:client/models/globals.dart';
 import 'package:client/models/service.dart';
@@ -26,12 +27,13 @@ import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 import 'package:flutter/material.dart';
 
 class SetupModel {
-  void getServices() async {
+  void getServices(String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/service_list');
     final header = {"Authorization": "Bearer " + globalToken};
     final response = await get(url, headers: header);
     final SnackBar snackBar = SnackBar(
-        content: Text("getServices: " + response.statusCode.toString() + response.body));
+        content: Text(
+            "getServices: " + response.statusCode.toString() + response.body));
     snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
@@ -43,12 +45,13 @@ class SetupModel {
     }
   }
 
-  void getActions() async {
+  void getActions(String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/action_list');
     final header = {"Authorization": "Bearer " + globalToken};
     final response = await get(url, headers: header);
     final SnackBar snackBar = SnackBar(
-        content: Text("getActions: " + response.statusCode.toString() + response.body));
+        content: Text(
+            "getActions: " + response.statusCode.toString() + response.body));
     snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
@@ -60,7 +63,7 @@ class SetupModel {
               ActionCodebaseMergeRequest action = ActionCodebaseMergeRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseMergeRequest(action.id, action);
+              getReactionCodeBaseMergeRequest(action.id, action, globalToken);
               globalContainer.actionCodebaseMergeRequest.add(action);
             }
             break;
@@ -69,7 +72,7 @@ class SetupModel {
               ActionCodebasePush action = ActionCodebasePush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodebasePush(action.id, action);
+              getReactionCodebasePush(action.id, action, globalToken);
               globalContainer.actionCodebasePush.add(action);
             }
             break;
@@ -79,7 +82,7 @@ class SetupModel {
                   ActionCodebaseTicketCreation();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseTicketCreation(action.id, action);
+              getReactionCodeBaseTicketCreation(action.id, action, globalToken);
               globalContainer.actionCodebaseTicketCreation.add(action);
             }
             break;
@@ -88,7 +91,7 @@ class SetupModel {
               ActionCodebaseTicketUpdate action = ActionCodebaseTicketUpdate();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseTicketUpdate(action.id, action);
+              getReactionCodeBaseTicketUpdate(action.id, action, globalToken);
               globalContainer.actionCodebaseTicketUpdate.add(action);
             }
             break;
@@ -97,7 +100,7 @@ class SetupModel {
               ActionGithubIssueComment action = ActionGithubIssueComment();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssueComment(action.id, action);
+              getReactionGithubIssueComment(action.id, action, globalToken);
               globalContainer.actionGithubIssueComment.add(action);
             }
             break;
@@ -106,7 +109,7 @@ class SetupModel {
               ActionGithubIssue action = ActionGithubIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssue(action.id, action);
+              getReactionGithubIssue(action.id, action, globalToken);
               globalContainer.actionGithubIssue.add(action);
             }
             break;
@@ -115,7 +118,7 @@ class SetupModel {
               ActionGithubLabel action = ActionGithubLabel();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubLabel(action.id, action);
+              getReactionGithubLabel(action.id, action, globalToken);
               globalContainer.actionGithubLabel.add(action);
             }
             break;
@@ -124,7 +127,7 @@ class SetupModel {
               ActionGithubMilestone action = ActionGithubMilestone();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubMilestone(action.id, action);
+              getReactionGithubMilestone(action.id, action, globalToken);
               globalContainer.actionGithubMilestone.add(action);
             }
             break;
@@ -133,7 +136,7 @@ class SetupModel {
               ActionGithubPullRequest action = ActionGithubPullRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubPullRequest(action.id, action);
+              getReactionGithubPullRequest(action.id, action, globalToken);
               globalContainer.actionGithubPullRequest.add(action);
             }
             break;
@@ -142,7 +145,7 @@ class SetupModel {
               ActionGithubPush action = ActionGithubPush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubPush(action.id, action);
+              getReactionGithubPush(action.id, action, globalToken);
               globalContainer.actionGithubPush.add(action);
             }
             break;
@@ -151,7 +154,7 @@ class SetupModel {
               ActionGithubIssue action = ActionGithubIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssue(action.id, action);
+              getReactionGithubIssue(action.id, action, globalToken);
               globalContainer.actionGithubIssue.add(action);
             }
             break;
@@ -160,7 +163,7 @@ class SetupModel {
               ActionGitlabComment action = ActionGitlabComment();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabComment(action.id, action);
+              getReactionGitlabComment(action.id, action, globalToken);
               globalContainer.actionGitlabComment.add(action);
             }
             break;
@@ -169,7 +172,7 @@ class SetupModel {
               ActionGitlabIssue action = ActionGitlabIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabIssue(action.id, action);
+              getReactionGitlabIssue(action.id, action, globalToken);
               globalContainer.actionGitlabIssue.add(action);
             }
             break;
@@ -178,7 +181,7 @@ class SetupModel {
               ActionGitlabMergeRequest action = ActionGitlabMergeRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabMergeRequest(action.id, action);
+              getReactionGitlabMergeRequest(action.id, action, globalToken);
               globalContainer.actionGitlabMergeRequest.add(action);
             }
             break;
@@ -187,7 +190,7 @@ class SetupModel {
               ActionGitlabPush action = ActionGitlabPush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabPush(action.id, action);
+              getReactionGitlabPush(action.id, action, globalToken);
               globalContainer.actionGitlabPush.add(action);
             }
             break;
@@ -196,7 +199,7 @@ class SetupModel {
               ActionGitlabWiki action = ActionGitlabWiki();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabWiki(action.id, action);
+              getReactionGitlabWiki(action.id, action, globalToken);
               globalContainer.actionGitlabWiki.add(action);
             }
             break;
@@ -210,7 +213,7 @@ class SetupModel {
   }
 
   void getReactionCodeBaseMergeRequest(
-      String id, ActionCodebaseMergeRequest action) async {
+      String id, ActionCodebaseMergeRequest action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -279,7 +282,7 @@ class SetupModel {
     }
   }
 
-  void getReactionCodebasePush(String id, ActionCodebasePush action) async {
+  void getReactionCodebasePush(String id, ActionCodebasePush action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -348,8 +351,8 @@ class SetupModel {
     }
   }
 
-  void getReactionCodeBaseTicketCreation(
-      String id, ActionCodebaseTicketCreation action) async {
+  void getReactionCodeBaseTicketCreation(String id,
+      ActionCodebaseTicketCreation action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -419,7 +422,7 @@ class SetupModel {
   }
 
   void getReactionCodeBaseTicketUpdate(
-      String id, ActionCodebaseTicketUpdate action) async {
+      String id, ActionCodebaseTicketUpdate action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -489,7 +492,7 @@ class SetupModel {
   }
 
   void getReactionGithubIssueComment(
-      String id, ActionGithubIssueComment action) async {
+      String id, ActionGithubIssueComment action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -558,7 +561,7 @@ class SetupModel {
     }
   }
 
-  void getReactionGithubIssue(String id, ActionGithubIssue action) async {
+  void getReactionGithubIssue(String id, ActionGithubIssue action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -627,7 +630,7 @@ class SetupModel {
     }
   }
 
-  void getReactionGithubLabel(String id, ActionGithubLabel action) async {
+  void getReactionGithubLabel(String id, ActionGithubLabel action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -697,7 +700,7 @@ class SetupModel {
   }
 
   void getReactionGithubMilestone(
-      String id, ActionGithubMilestone action) async {
+      String id, ActionGithubMilestone action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -767,7 +770,7 @@ class SetupModel {
   }
 
   void getReactionGithubPullRequest(
-      String id, ActionGithubPullRequest action) async {
+      String id, ActionGithubPullRequest action, String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -836,7 +839,8 @@ class SetupModel {
     }
   }
 
-  void getReactionGithubPush(String id, ActionGithubPush action) async {
+  void getReactionGithubPush(String id, ActionGithubPush action,
+      String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -905,7 +909,8 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabComment(String id, ActionGitlabComment action) async {
+  void getReactionGitlabComment(String id, ActionGitlabComment action,
+      String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -974,7 +979,8 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabIssue(String id, ActionGitlabIssue action) async {
+  void getReactionGitlabIssue(String id, ActionGitlabIssue action,
+      String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -1043,8 +1049,8 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabMergeRequest(
-      String id, ActionGitlabMergeRequest action) async {
+  void getReactionGitlabMergeRequest(String id, ActionGitlabMergeRequest action,
+      String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -1113,7 +1119,8 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabPush(String id, ActionGitlabPush action) async {
+  void getReactionGitlabPush(String id, ActionGitlabPush action,
+      String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);
@@ -1182,7 +1189,8 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabWiki(String id, ActionGitlabWiki action) async {
+  void getReactionGitlabWiki(String id, ActionGitlabWiki action,
+      String globalToken) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
     final header = {"Authorization": "Bearer " + globalToken, "id": id};
     final response = await get(url, headers: header);

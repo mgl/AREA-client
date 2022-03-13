@@ -6,6 +6,7 @@ import 'package:client/views/home/select_action_page.dart';
 import 'package:client/views/home/home_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
+import 'package:client/models/action_container.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +19,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Timer? timer;
+  String globalToken = "";
+  ActionContainer globalContainer = ActionContainer();
+  bool setuped = false;
+
+
+
+  bool connectedToGitlab = false;
+  bool connectedToGithub = false;
+  bool connectedToCodebase = false;
+  bool connectedToDiscord = false;
+  bool connectedToGoogle = false;
+  bool connectedToTwitter = false;
+
 
   @override
   void initState() {

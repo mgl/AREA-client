@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:client/models/globals.dart';
 import 'package:client/controller/add_action_controller.dart';
+import 'package:client/models/action_container.dart';
 
 class ButtonActionCodebasePush extends StatefulWidget {
-  const ButtonActionCodebasePush({Key? key}) : super(key: key);
+  ButtonActionCodebasePush({Key? key, required this.globalContainer}) : super(key: key);
+  ActionContainer globalContainer;
   @override
   State<ButtonActionCodebasePush> createState() =>
       _ButtonActionCodebasePushState();
@@ -33,8 +35,8 @@ class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "codebase") {
+    for (int i = 0; i < widget.globalContainer.service.length; i++) {
+      if (widget.globalContainer.service[i].name == "codebase") {
         return TextButton(
             onPressed: () => onClickButtonActionCodebasePush(context),
             style: TextButton.styleFrom(

@@ -1,3 +1,4 @@
+import 'package:client/models/action_container.dart';
 import 'package:client/models/actions/action_github_issue.dart';
 import 'package:client/models/actions/action_github_issue_comment.dart';
 import 'package:client/models/actions/action_gitlab_comment.dart';
@@ -20,7 +21,7 @@ import 'package:client/models/actions/action_codebase_push.dart';
 import 'package:flutter/material.dart';
 
 class AddActionModel {
-  void githubCreateIssuesActionCreate(String repoID, String owner) async {
+  void githubCreateIssuesActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/github/action/issues');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -48,7 +49,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreateIssueCommentActionCreate(String repoID, String owner) async {
+  void githubCreateIssueCommentActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/github/action/issue_comment');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -76,7 +77,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreateLabelActionCreate(String repoID, String owner) async {
+  void githubCreateLabelActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/github/action/label');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -104,7 +105,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreateMilestoneActionCreate(String repoID, String owner) async {
+  void githubCreateMilestoneActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/github/action/milestone');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -132,7 +133,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreatePullRequestActionCreate(String repoID, String owner) async {
+  void githubCreatePullRequestActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/github/action/pull_request');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -160,7 +161,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreatePushActionCreate(String repoID, String owner) async {
+  void githubCreatePushActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/github/action/push');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -188,7 +189,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabWikiActionCreate(String repoID) async {
+  void gitlabWikiActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/wiki_page_events');
     final header = {"Authorization": "Bearer " + globalToken};
 
@@ -215,7 +216,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabMergeRequestActionCreate(String repoID) async {
+  void gitlabMergeRequestActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
     final url =
         Uri.parse('$urlPrefix/services/gitlab/action/merge_requests_events');
     final header = {"Authorization": "Bearer " + globalToken};
@@ -243,7 +244,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabIssuesActionCreate(String repoID) async {
+  void gitlabIssuesActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -269,7 +270,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabCommentActionCreate(String repoID) async {
+  void gitlabCommentActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -295,7 +296,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabPushActionCreate(String repoID) async {
+  void gitlabPushActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
@@ -321,7 +322,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void codebaseMergeRequestActionCreate() async {
+  void codebaseMergeRequestActionCreate(String globalToken, ActionContainer globalContainer) async {
     final url =
         Uri.parse('$urlPrefix/services/codebase/action/codebase_merge_request');
     final header = {"Authorization": "Bearer " + globalToken};
@@ -343,7 +344,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void codebasePushActionCreate() async {
+  void codebasePushActionCreate(String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/codebase/action/codebase_push');
     final header = {"Authorization": "Bearer " + globalToken};
 
@@ -364,7 +365,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void codebaseTicketCreationActionCreate() async {
+  void codebaseTicketCreationActionCreate(String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse(
         '$urlPrefix/services/codebase/action/codebase_ticket_creation');
     final header = {"Authorization": "Bearer " + globalToken};
@@ -385,7 +386,7 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void codebaseTicketUpdateActionCreate() async {
+  void codebaseTicketUpdateActionCreate(String globalToken, ActionContainer globalContainer) async {
     final url =
         Uri.parse('$urlPrefix/services/codebase/action/codebase_ticket_update');
     final header = {"Authorization": "Bearer " + globalToken};

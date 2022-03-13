@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/models/action_container.dart';
 
 class ButtonActionGitlabPush extends StatefulWidget {
-  const ButtonActionGitlabPush({Key? key}) : super(key: key);
+  ButtonActionGitlabPush({Key? key, required this.globalContainer})
+      : super(key: key);
+  ActionContainer globalContainer;
+
   @override
   State<ButtonActionGitlabPush> createState() => _ButtonActionGitlabPushState();
 }
@@ -41,8 +44,8 @@ class _ButtonActionGitlabPushState extends State<ButtonActionGitlabPush> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "gitlab") {
+    for (int i = 0; i < widget.globalContainer.service.length; i++) {
+      if (widget.globalContainer.service[i].name == "gitlab") {
         return TextButton(
             onPressed: () => onClickButtonActionGitlabPush(context),
             style: TextButton.styleFrom(

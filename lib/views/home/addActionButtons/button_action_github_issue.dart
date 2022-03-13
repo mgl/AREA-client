@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/models/action_container.dart';
+
 
 class ButtonActionGithubIssue extends StatefulWidget {
-  const ButtonActionGithubIssue({Key? key}) : super(key: key);
+  ButtonActionGithubIssue({Key? key, required this.globalContainer}) : super(key: key);
+  ActionContainer globalContainer;
+
   @override
   State<ButtonActionGithubIssue> createState() =>
       _ButtonActionGithubIssueState();
@@ -51,8 +54,8 @@ class _ButtonActionGithubIssueState extends State<ButtonActionGithubIssue> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
+    for (int i = 0; i < widget.globalContainer.service.length; i++) {
+      if (widget.globalContainer.service[i].name == "github") {
         return TextButton(
             onPressed: () => onClickButtonActionGithubIssue(context),
             style: TextButton.styleFrom(

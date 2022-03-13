@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/models/action_container.dart';
+
 
 class ButtonActionGitlabMergeRequest extends StatefulWidget {
-  const ButtonActionGitlabMergeRequest({Key? key}) : super(key: key);
+  ButtonActionGitlabMergeRequest({Key? key, required this.globalContainer}) : super(key: key);
+  ActionContainer globalContainer;
+
   @override
   State<ButtonActionGitlabMergeRequest> createState() =>
       _ButtonActionGitlabMergeRequestState();
@@ -44,8 +47,8 @@ class _ButtonActionGitlabMergeRequestState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "gitlab") {
+    for (int i = 0; i < widget.globalContainer.service.length; i++) {
+      if (widget.globalContainer.service[i].name == "gitlab") {
         return TextButton(
             onPressed: () => onClickButtonActionGitlabMergeRequest(context),
             style: TextButton.styleFrom(

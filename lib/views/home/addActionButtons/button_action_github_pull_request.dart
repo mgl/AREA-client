@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/models/action_container.dart';
+
 
 class ButtonActionGithubPullRequest extends StatefulWidget {
-  const ButtonActionGithubPullRequest({Key? key}) : super(key: key);
+  ButtonActionGithubPullRequest({Key? key, required this.globalContainer}) : super(key: key);
+  ActionContainer globalContainer;
+
   @override
   State<ButtonActionGithubPullRequest> createState() =>
       _ButtonActionGithubPullRequestState();
@@ -53,8 +56,8 @@ class _ButtonActionGithubPullRequestState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
+    for (int i = 0; i < widget.globalContainer.service.length; i++) {
+      if (widget.globalContainer.service[i].name == "github") {
         return TextButton(
             onPressed: () => onClickButtonActionGithubPullRequest(context),
             style: TextButton.styleFrom(

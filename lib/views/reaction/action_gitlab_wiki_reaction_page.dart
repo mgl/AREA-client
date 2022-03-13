@@ -1,5 +1,5 @@
+import 'package:client/models/action_container.dart';
 import 'package:flutter/material.dart';
-import 'package:client/models/globals.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
@@ -8,11 +8,11 @@ import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class ActionGitlabWikiReactionPage extends StatefulWidget {
-  const ActionGitlabWikiReactionPage({Key? key, required this.id})
+  ActionGitlabWikiReactionPage({Key? key, required this.id, required this.globalContainer})
       : super(key: key);
 
   final String id;
-
+  ActionContainer globalContainer;
   @override
   State<ActionGitlabWikiReactionPage> createState() =>
       _ActionGitlabWikiReactionPageState();
@@ -28,22 +28,22 @@ class _ActionGitlabWikiReactionPageState
   List<ReactionTwitterRetweet> reactionTwitterRetweet = [];
 
   void getReaction() {
-    for (int i = 0; i < globalContainer.actionGitlabWiki.length; i++) {
-      if (globalContainer.actionGitlabWiki[i].id == widget.id) {
+    for (int i = 0; i < widget.globalContainer.actionGitlabWiki.length; i++) {
+      if (widget.globalContainer.actionGitlabWiki[i].id == widget.id) {
         reactionDiscordMessage =
-            globalContainer.actionGitlabWiki[i].reactionDiscordMessage;
+            widget.globalContainer.actionGitlabWiki[i].reactionDiscordMessage;
         reactionGoogleCalendarEvent =
-            globalContainer.actionGitlabWiki[i].reactionGoogleCalendarEvent;
+            widget.globalContainer.actionGitlabWiki[i].reactionGoogleCalendarEvent;
         reactionTwitterFollowUser =
-            globalContainer.actionGitlabWiki[i].reactionTwitterFollowUser;
+            widget.globalContainer.actionGitlabWiki[i].reactionTwitterFollowUser;
         reactionTwitterFollowUser =
-            globalContainer.actionGitlabWiki[i].reactionTwitterFollowUser;
+            widget.globalContainer.actionGitlabWiki[i].reactionTwitterFollowUser;
         reactionTwitterLike =
-            globalContainer.actionGitlabWiki[i].reactionTwitterLike;
+            widget.globalContainer.actionGitlabWiki[i].reactionTwitterLike;
         reactionTwitterPostTweet =
-            globalContainer.actionGitlabWiki[i].reactionTwitterPostTweet;
+            widget.globalContainer.actionGitlabWiki[i].reactionTwitterPostTweet;
         reactionTwitterRetweet =
-            globalContainer.actionGitlabWiki[i].reactionTwitterRetweet;
+            widget.globalContainer.actionGitlabWiki[i].reactionTwitterRetweet;
       }
     }
   }

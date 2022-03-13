@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/models/action_container.dart';
+
+
 
 class ButtonActionCodebaseTicketUpdate extends StatefulWidget {
-  const ButtonActionCodebaseTicketUpdate({Key? key}) : super(key: key);
+  ButtonActionCodebaseTicketUpdate({Key? key, required this.globalContainer}) : super(key: key);
+  ActionContainer globalContainer;
   @override
   State<ButtonActionCodebaseTicketUpdate> createState() =>
       _ButtonActionCodebaseTicketUpdateState();
@@ -35,8 +38,8 @@ class _ButtonActionCodebaseTicketUpdateState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "codebase") {
+    for (int i = 0; i < widget.globalContainer.service.length; i++) {
+      if (widget.globalContainer.service[i].name == "codebase") {
         return TextButton(
             onPressed: () => onClickButtonActionCodebaseTicketUpdate(context),
             style: TextButton.styleFrom(

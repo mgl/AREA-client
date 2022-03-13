@@ -1,10 +1,12 @@
+import 'package:client/models/action_container.dart';
 import 'package:client/models/globals.dart';
 import 'package:client/models/service.dart';
 import 'package:http/http.dart';
 import 'package:flutter/material.dart';
 
 class SubscribeModel {
-  void subscribeGithub(String value) async {
+  void subscribeGithub(String value, String globalToken,
+      ActionContainer globalContainer, bool connectedToGithub) async {
     final url = Uri.parse('$urlPrefix/services/github/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
@@ -18,7 +20,8 @@ class SubscribeModel {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void unsubscribeGithub() async {
+  void unsubscribeGithub(String globalToken, ActionContainer globalContainer,
+      bool connectedToGihtub) async {
     final url = Uri.parse('$urlPrefix/services/github/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
@@ -26,11 +29,12 @@ class SubscribeModel {
         content: Text("unsubscribeGithub: " +
             response.statusCode.toString() +
             'bool = ' +
-            connectedToCodebase.toString()));
+            connectedToGihtub.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void subscribeCodebase(String value) async {
+  void subscribeCodebase(String value, String globalToken,
+      ActionContainer globalContainer, bool connectedToCodebase) async {
     final url = Uri.parse('$urlPrefix/services/codebase/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
@@ -44,7 +48,8 @@ class SubscribeModel {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void unsubscribeCodebase() async {
+  void unsubscribeCodebase(String globalToken, ActionContainer globalContainer,
+      bool connectedToCodebase) async {
     final url = Uri.parse('$urlPrefix/services/codebase/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
@@ -56,7 +61,7 @@ class SubscribeModel {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void subscribeGitlab(String value) async {
+  void subscribeGitlab(String value, String globalToken, ActionContainer globalContainer, bool connectedToGitlab) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
@@ -70,7 +75,7 @@ class SubscribeModel {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void unsubscribeGitlab() async {
+  void unsubscribeGitlab(String globalToken, ActionContainer globalContainer, bool connectedToGitlab) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
@@ -82,7 +87,7 @@ class SubscribeModel {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void subscribeDiscord(String value) async {
+  void subscribeDiscord(String value, String globalToken, ActionContainer globalContainer, bool connectedToDiscord) async {
     final url = Uri.parse('$urlPrefix/services/discord/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
@@ -96,7 +101,7 @@ class SubscribeModel {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void unsubscribeDiscord() async {
+  void unsubscribeDiscord(String globalToken, bool connectedToDiscord) async {
     final url = Uri.parse('$urlPrefix/services/discord/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
@@ -108,27 +113,34 @@ class SubscribeModel {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  Future subscribeGoogle() async {
+  Future subscribeGoogle(
+      String globalToken, ActionContainer globalContainer) async {
     final url = Uri.parse('$urlPrefix/services/google/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await post(url, headers: header);
     globalContainer.service.add(Service(name: "google", token: ""));
-     final SnackBar snackBar = SnackBar(
-     content: Text("subscribeGoogle: " + response.statusCode.toString()));
-     snackbarKey.currentState?.showSnackBar(snackBar);
+    final SnackBar snackBar = SnackBar(
+        content: Text("subscribeGoogle: " + response.statusCode.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  Future unsubscribeGoogle() async {
+  Future unsubscribeGoogle(String globalToken) async {
     final url = Uri.parse('$urlPrefix/services/google/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-     final SnackBar snackBar = SnackBar(
-     content: Text("unsubscribeGoogle: " + response.statusCode.toString()));
-     snackbarKey.currentState?.showSnackBar(snackBar);
+    final SnackBar snackBar = SnackBar(
+        content: Text("unsubscribeGoogle: " + response.statusCode.toString()));
+    snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void subscribeTwitter(String appToken, String appSecret, String userToken,
-      String userSecret) async {
+  void subscribeTwitter(
+      String appToken,
+      String appSecret,
+      String userToken,
+      String userSecret,
+      String globalToken,
+      ActionContainer globalContainer,
+      bool connectedToTwitter) async {
     final url = Uri.parse('$urlPrefix/services/twitter/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {
@@ -147,7 +159,7 @@ class SubscribeModel {
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void unsubscribeTwitter() async {
+  void unsubscribeTwitter(String globalToken, bool connectedToTwitter) async {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
