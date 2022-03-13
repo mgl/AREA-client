@@ -1,12 +1,13 @@
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/globals.dart';
-import 'package:client/models/action_container.dart';
 
 class ButtonActionCodebaseTicketCreation extends StatefulWidget {
-  ButtonActionCodebaseTicketCreation({Key? key, required this.globalContainer})
+  const ButtonActionCodebaseTicketCreation(
+      {Key? key, required this.god, required this.globalToken})
       : super(key: key);
-  ActionContainer globalContainer;
+  final God god;
+  final String globalToken;
   @override
   State<ButtonActionCodebaseTicketCreation> createState() =>
       _ButtonActionCodebaseTicketCreationState();
@@ -28,7 +29,8 @@ class _ButtonActionCodebaseTicketCreationState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.codebaseTicketCreation();
+                  AddActionController.codebaseTicketCreation(
+                      widget.globalToken, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -38,8 +40,8 @@ class _ButtonActionCodebaseTicketCreationState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < widget.globalContainer.service.length; i++) {
-      if (widget.globalContainer.service[i].name == "codebase") {
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "codebase") {
         return TextButton(
             onPressed: () => onClickButtonActionCodebaseTicketCreation(context),
             style: TextButton.styleFrom(

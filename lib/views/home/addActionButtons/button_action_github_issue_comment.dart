@@ -1,12 +1,13 @@
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/globals.dart';
-import 'package:client/models/action_container.dart';
 
 class ButtonActionGithubIssueComment extends StatefulWidget {
-  ButtonActionGithubIssueComment({Key? key, required this.globalContainer})
+  const ButtonActionGithubIssueComment(
+      {Key? key, required this.god, required this.globalToken})
       : super(key: key);
-  ActionContainer globalContainer;
+  final God god;
+  final String globalToken;
 
   @override
   State<ButtonActionGithubIssueComment> createState() =>
@@ -47,7 +48,8 @@ class _ButtonActionGithubIssueCommentState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.githubIssueComment(repo, owner);
+                  AddActionController.githubIssueComment(
+                      repo, owner, widget.globalToken, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -57,8 +59,8 @@ class _ButtonActionGithubIssueCommentState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < widget.globalContainer.service.length; i++) {
-      if (widget.globalContainer.service[i].name == "github") {
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "github") {
         return TextButton(
             onPressed: () => onClickButtonActionGithubIssueComment(context),
             style: TextButton.styleFrom(

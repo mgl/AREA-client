@@ -1,5 +1,5 @@
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:client/models/globals.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
@@ -8,11 +8,12 @@ import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class ActionGitlabIssueReactionPage extends StatefulWidget {
-  const ActionGitlabIssueReactionPage({Key? key, required this.id})
+  const ActionGitlabIssueReactionPage(
+      {Key? key, required this.id, required this.god})
       : super(key: key);
 
   final String id;
-
+  final God god;
   @override
   State<ActionGitlabIssueReactionPage> createState() =>
       _ActionGitlabIssueReactionPageState();
@@ -28,22 +29,24 @@ class _ActionGitlabIssueReactionPageState
   List<ReactionTwitterRetweet> reactionTwitterRetweet = [];
 
   void getReaction() {
-    for (int i = 0; i < globalContainer.actionGitlabIssue.length; i++) {
-      if (globalContainer.actionGitlabIssue[i].id == widget.id) {
-        reactionDiscordMessage =
-            globalContainer.actionGitlabIssue[i].reactionDiscordMessage;
-        reactionGoogleCalendarEvent =
-            globalContainer.actionGitlabIssue[i].reactionGoogleCalendarEvent;
-        reactionTwitterFollowUser =
-            globalContainer.actionGitlabIssue[i].reactionTwitterFollowUser;
-        reactionTwitterFollowUser =
-            globalContainer.actionGitlabIssue[i].reactionTwitterFollowUser;
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGitlabIssue.length;
+        i++) {
+      if (widget.god.globalContainer.actionGitlabIssue[i].id == widget.id) {
+        reactionDiscordMessage = widget
+            .god.globalContainer.actionGitlabIssue[i].reactionDiscordMessage;
+        reactionGoogleCalendarEvent = widget.god.globalContainer
+            .actionGitlabIssue[i].reactionGoogleCalendarEvent;
+        reactionTwitterFollowUser = widget
+            .god.globalContainer.actionGitlabIssue[i].reactionTwitterFollowUser;
+        reactionTwitterFollowUser = widget
+            .god.globalContainer.actionGitlabIssue[i].reactionTwitterFollowUser;
         reactionTwitterLike =
-            globalContainer.actionGitlabIssue[i].reactionTwitterLike;
-        reactionTwitterPostTweet =
-            globalContainer.actionGitlabIssue[i].reactionTwitterPostTweet;
-        reactionTwitterRetweet =
-            globalContainer.actionGitlabIssue[i].reactionTwitterRetweet;
+            widget.god.globalContainer.actionGitlabIssue[i].reactionTwitterLike;
+        reactionTwitterPostTweet = widget
+            .god.globalContainer.actionGitlabIssue[i].reactionTwitterPostTweet;
+        reactionTwitterRetweet = widget
+            .god.globalContainer.actionGitlabIssue[i].reactionTwitterRetweet;
       }
     }
   }

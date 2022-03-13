@@ -1,4 +1,3 @@
-import 'package:client/models/action_container.dart';
 import 'package:client/models/actions/action_github_issue.dart';
 import 'package:client/models/actions/action_github_issue_comment.dart';
 import 'package:client/models/actions/action_gitlab_comment.dart';
@@ -6,6 +5,7 @@ import 'package:client/models/actions/action_gitlab_issue.dart';
 import 'package:client/models/actions/action_gitlab_merge_request.dart';
 import 'package:client/models/actions/action_gitlab_push.dart';
 import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
 import 'package:http/http.dart';
 import 'dart:core';
 import 'package:uuid/uuid.dart';
@@ -21,13 +21,14 @@ import 'package:client/models/actions/action_codebase_push.dart';
 import 'package:flutter/material.dart';
 
 class AddActionModel {
-  void githubCreateIssuesActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
+  void githubCreateIssuesActionCreate(String repoID, String owner,
+      String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/github/action/issues');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "github") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -42,20 +43,21 @@ class AddActionModel {
     action.owner = owner;
     action.repo = repoID;
     action.token = tmp;
-    globalContainer.actionGithubIssue.add(action);
+    god.globalContainer.actionGithubIssue.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreateIssueCommentActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
+  void githubCreateIssueCommentActionCreate(String repoID, String owner,
+      String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/github/action/issue_comment');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "github") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -70,20 +72,21 @@ class AddActionModel {
     action.owner = owner;
     action.repo = repoID;
     action.token = tmp;
-    globalContainer.actionGithubIssueComment.add(action);
+    god.globalContainer.actionGithubIssueComment.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreateLabelActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
+  void githubCreateLabelActionCreate(String repoID, String owner,
+      String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/github/action/label');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "github") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -98,20 +101,21 @@ class AddActionModel {
     action.owner = owner;
     action.repo = repoID;
     action.token = tmp;
-    globalContainer.actionGithubLabel.add(action);
+    god.globalContainer.actionGithubLabel.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreateMilestoneActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
+  void githubCreateMilestoneActionCreate(String repoID, String owner,
+      String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/github/action/milestone');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "github") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -126,20 +130,21 @@ class AddActionModel {
     action.owner = owner;
     action.repo = repoID;
     action.token = tmp;
-    globalContainer.actionGithubMilestone.add(action);
+    god.globalContainer.actionGithubMilestone.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreatePullRequestActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
+  void githubCreatePullRequestActionCreate(String repoID, String owner,
+      String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/github/action/pull_request');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "github") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -154,20 +159,21 @@ class AddActionModel {
     action.owner = owner;
     action.repo = repoID;
     action.token = tmp;
-    globalContainer.actionGithubPullRequest.add(action);
+    god.globalContainer.actionGithubPullRequest.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void githubCreatePushActionCreate(String repoID, String owner, String globalToken, ActionContainer globalContainer) async {
+  void githubCreatePushActionCreate(String repoID, String owner,
+      String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/github/action/push');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "github") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -182,21 +188,22 @@ class AddActionModel {
     action.owner = owner;
     action.repo = repoID;
     action.token = tmp;
-    globalContainer.actionGithubPush.add(action);
+    god.globalContainer.actionGithubPush.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabWikiActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
+  void gitlabWikiActionCreate(String repoID, String globalToken,
+      God god) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/wiki_page_events');
     final header = {"Authorization": "Bearer " + globalToken};
 
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "gitlab") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "gitlab") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -209,21 +216,22 @@ class AddActionModel {
     action.id = uuid;
     action.repoId = repoID;
     action.token = tmp;
-    globalContainer.actionGitlabWiki.add(action);
+    god.globalContainer.actionGitlabWiki.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabMergeRequestActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
+  void gitlabMergeRequestActionCreate(String repoID, String globalToken,
+      God god) async {
     final url =
         Uri.parse('$urlPrefix/services/gitlab/action/merge_requests_events');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "gitlab") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "gitlab") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -236,7 +244,7 @@ class AddActionModel {
     action.id = uuid;
     action.repoId = repoID;
     action.token = tmp;
-    globalContainer.actionGitlabMergeRequest.add(action);
+    god.globalContainer.actionGitlabMergeRequest.add(action);
 
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
@@ -244,13 +252,14 @@ class AddActionModel {
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabIssuesActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
+  void gitlabIssuesActionCreate(String repoID, String globalToken,
+      God god) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "gitlab") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "gitlab") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -263,20 +272,21 @@ class AddActionModel {
     action.id = uuid;
     action.repoId = repoID;
     action.token = tmp;
-    globalContainer.actionGitlabIssue.add(action);
+    god.globalContainer.actionGitlabIssue.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabCommentActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
+  void gitlabCommentActionCreate(String repoID, String globalToken,
+      God god) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "gitlab") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "gitlab") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -289,20 +299,21 @@ class AddActionModel {
     action.id = uuid;
     action.repoId = repoID;
     action.token = tmp;
-    globalContainer.actionGitlabComment.add(action);
+    god.globalContainer.actionGitlabComment.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void gitlabPushActionCreate(String repoID, String globalToken, ActionContainer globalContainer) async {
+  void gitlabPushActionCreate(String repoID, String globalToken,
+      God god) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "gitlab") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "gitlab") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -315,86 +326,90 @@ class AddActionModel {
     action.id = uuid;
     action.repoId = repoID;
     action.token = tmp;
-    globalContainer.actionGitlabPush.add(action);
+    god.globalContainer.actionGitlabPush.add(action);
     var response = await post(url, headers: header, body: body);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void codebaseMergeRequestActionCreate(String globalToken, ActionContainer globalContainer) async {
+  void codebaseMergeRequestActionCreate(
+      String globalToken, God god) async {
     final url =
         Uri.parse('$urlPrefix/services/codebase/action/codebase_merge_request');
     final header = {"Authorization": "Bearer " + globalToken};
 
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "codebase") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "codebase") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
     ActionCodebaseMergeRequest action = ActionCodebaseMergeRequest();
     action.id = uuid;
     action.token = tmp;
-    globalContainer.actionCodebaseMergeRequest.add(action);
+    god.globalContainer.actionCodebaseMergeRequest.add(action);
     var response = await post(url, headers: header);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void codebasePushActionCreate(String globalToken, ActionContainer globalContainer) async {
+  void codebasePushActionCreate(
+      String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/codebase/action/codebase_push');
     final header = {"Authorization": "Bearer " + globalToken};
 
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "codebase") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "codebase") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
     ActionCodebasePush action = ActionCodebasePush();
     action.id = uuid;
     action.token = tmp;
-    globalContainer.actionCodebasePush.add(action);
+    god.globalContainer.actionCodebasePush.add(action);
     var response = await post(url, headers: header);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void codebaseTicketCreationActionCreate(String globalToken, ActionContainer globalContainer) async {
+  void codebaseTicketCreationActionCreate(
+      String globalToken, God god) async {
     final url = Uri.parse(
         '$urlPrefix/services/codebase/action/codebase_ticket_creation');
     final header = {"Authorization": "Bearer " + globalToken};
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "codebase") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "codebase") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
     ActionCodebaseTicketCreation action = ActionCodebaseTicketCreation();
     action.id = uuid;
     action.token = tmp;
-    globalContainer.actionCodebaseTicketCreation.add(action);
+    god.globalContainer.actionCodebaseTicketCreation.add(action);
     var response = await post(url, headers: header);
     final SnackBar snackBar =
         SnackBar(content: Text(response.statusCode.toString()));
     await snackbarKey.currentState?.showSnackBar(snackBar).closed;
   }
 
-  void codebaseTicketUpdateActionCreate(String globalToken, ActionContainer globalContainer) async {
+  void codebaseTicketUpdateActionCreate(
+      String globalToken, God god) async {
     final url =
         Uri.parse('$urlPrefix/services/codebase/action/codebase_ticket_update');
     final header = {"Authorization": "Bearer " + globalToken};
 
     String tmp = "";
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "codebase") {
-        tmp = globalContainer.service[i].token;
+    for (int i = 0; i < god.globalContainer.service.length; i++) {
+      if (god.globalContainer.service[i].name == "codebase") {
+        tmp = god.globalContainer.service[i].token;
       }
     }
     var uuid = const Uuid().v4();
@@ -402,7 +417,7 @@ class AddActionModel {
     ActionCodebaseTicketUpdate action = ActionCodebaseTicketUpdate();
     action.id = uuid;
     action.token = tmp;
-    globalContainer.actionCodebaseTicketUpdate.add(action);
+    god.globalContainer.actionCodebaseTicketUpdate.add(action);
 
     var response = await post(url, headers: header);
     final SnackBar snackBar =

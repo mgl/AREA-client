@@ -1,3 +1,4 @@
+import 'package:client/views/home/home.dart';
 import 'package:client/views/reaction/action_codebase_merge_request_reaction_page.dart';
 import 'package:client/views/reaction/action_codebase_push_reaction_page.dart';
 import 'package:client/views/reaction/action_codebase_ticket_creation_reaction_page.dart';
@@ -12,14 +13,13 @@ import 'package:client/views/reaction/action_gitlab_comment_reaction_page.dart';
 import 'package:client/views/reaction/action_gitlab_issue_reaction_page.dart';
 import 'package:client/views/reaction/action_gitlab_merge_request_reaction_page.dart';
 import 'package:client/views/reaction/action_gitlab_push_reaction_page.dart';
+import 'package:client/views/reaction/action_gitlab_wiki_reaction_page.dart';
 import 'package:client/views/reaction/add_reaction_page.dart';
 import 'package:flutter/material.dart';
-import 'package:client/views/reaction/action_gitlab_wiki_reaction_page.dart';
-import 'package:client/models/action_container.dart';
 
 class ActionList extends StatefulWidget {
-  ActionList({Key? key, required this.globalContainer}) : super(key: key);
-  ActionContainer globalContainer;
+  const ActionList({Key? key, required this.god}) : super(key: key);
+  final God god;
 
   @override
   State<ActionList> createState() => _ActionListState();
@@ -41,7 +41,7 @@ class _ActionListState extends State<ActionList> {
   List<ListTile> getAllActions() {
     List<ListTile> actionList = [];
     for (int i = 0;
-        i < widget.globalContainer.actionCodebaseMergeRequest.length;
+        i < widget.god.globalContainer.actionCodebaseMergeRequest.length;
         i++) {
       list.add(ListTile(
           onTap: () => Navigator.push(
@@ -49,8 +49,9 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionCodebaseMergeRequestReactionPage(
-                          id: widget.globalContainer
-                              .actionCodebaseMergeRequest[i].id))),
+                          id: widget.god.globalContainer
+                              .actionCodebaseMergeRequest[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Merge request'),
           trailing: Row(children: [
@@ -60,20 +61,24 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer
+                            id: widget.god.globalContainer
                                 .actionCodebaseMergeRequest[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           subtitle: const Text('Codebase')));
     }
-    for (int i = 0; i < widget.globalContainer.actionCodebasePush.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionCodebasePush.length;
+        i++) {
       list.add(ListTile(
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionCodebasePushReactionPage(
-                          id: widget.globalContainer.actionCodebasePush[i].id))),
+                          id: widget
+                              .god.globalContainer.actionCodebasePush[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Push'),
           trailing: Row(children: [
@@ -83,13 +88,14 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionCodebasePush[i].id))),
-                icon: const Icon(Icons.add, color: Colors.deepPurple)),
+                            id: widget.god.globalContainer.actionCodebasePush[i]
+                                .id))),
+                icon: const Icon(Icons.add, color: Colors.deepPurple))
           ]),
           subtitle: const Text('Codebase')));
     }
     for (int i = 0;
-        i < widget.globalContainer.actionCodebaseTicketCreation.length;
+        i < widget.god.globalContainer.actionCodebaseTicketCreation.length;
         i++) {
       list.add(ListTile(
           onTap: () => Navigator.push(
@@ -97,8 +103,9 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionCodebaseTicketCreationReactionPage(
-                          id: widget.globalContainer
-                              .actionCodebaseTicketCreation[i].id))),
+                          id: widget.god.globalContainer
+                              .actionCodebaseTicketCreation[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -107,7 +114,7 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer
+                            id: widget.god.globalContainer
                                 .actionCodebaseTicketCreation[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
@@ -115,7 +122,7 @@ class _ActionListState extends State<ActionList> {
           subtitle: const Text('Codebase')));
     }
     for (int i = 0;
-        i < widget.globalContainer.actionCodebaseTicketUpdate.length;
+        i < widget.god.globalContainer.actionCodebaseTicketUpdate.length;
         i++) {
       list.add(ListTile(
           onTap: () => Navigator.push(
@@ -123,8 +130,9 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionCodebaseTicketUpdateReactionPage(
-                          id: widget.globalContainer
-                              .actionCodebaseTicketUpdate[i].id))),
+                          id: widget.god.globalContainer
+                              .actionCodebaseTicketUpdate[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Ticket update'),
           trailing: Row(children: [
@@ -134,20 +142,24 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer
+                            id: widget.god.globalContainer
                                 .actionCodebaseTicketUpdate[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           subtitle: const Text('Codebase')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGithubIssueComment.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGithubIssueComment.length;
+        i++) {
       list.add(ListTile(
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGithubIssueCommentReactionPage(
-                          id: widget.globalContainer.actionGithubIssueComment[i].id))),
+                          id: widget.god.globalContainer
+                              .actionGithubIssueComment[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Issue comment'),
           trailing: Row(children: [
@@ -157,20 +169,24 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer
+                            id: widget.god.globalContainer
                                 .actionGithubIssueComment[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGithubIssue.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGithubIssue.length;
+        i++) {
       list.add(ListTile(
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGithubIssueReactionPage(
-                          id: widget.globalContainer.actionGithubIssue[i].id))),
+                          id: widget
+                              .god.globalContainer.actionGithubIssue[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Issue'),
           trailing: Row(children: [
@@ -180,12 +196,15 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionGithubIssue[i].id))),
+                            id: widget
+                                .god.globalContainer.actionGithubIssue[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGithubLabel.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGithubLabel.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -194,7 +213,8 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionGithubLabel[i].id))),
+                            id: widget
+                                .god.globalContainer.actionGithubLabel[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           onTap: () => Navigator.push(
@@ -202,12 +222,16 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGithubLabelReactionPage(
-                          id: widget.globalContainer.actionGithubLabel[i].id))),
+                          id: widget
+                              .god.globalContainer.actionGithubLabel[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Label'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGithubMilestone.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGithubMilestone.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -216,7 +240,8 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionGithubMilestone[i].id))),
+                            id: widget.god.globalContainer
+                                .actionGithubMilestone[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           onTap: () => Navigator.push(
@@ -224,12 +249,16 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGithubMilestoneReactionPage(
-                          id: widget.globalContainer.actionGithubMilestone[i].id))),
+                          id: widget
+                              .god.globalContainer.actionGithubMilestone[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Milestone'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGithubPullRequest.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGithubPullRequest.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -238,7 +267,7 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer
+                            id: widget.god.globalContainer
                                 .actionGithubPullRequest[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
@@ -247,12 +276,16 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGithubPullRequestReactionPage(
-                          id: widget.globalContainer.actionGithubPullRequest[i].id))),
+                          id: widget.god.globalContainer
+                              .actionGithubPullRequest[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Pull request'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGithubPush.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGithubPush.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -261,7 +294,8 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionGithubPush[i].id))),
+                            id: widget
+                                .god.globalContainer.actionGithubPush[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           onTap: () => Navigator.push(
@@ -269,12 +303,15 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGithubPushReactionPage(
-                          id: widget.globalContainer.actionGithubPush[i].id))),
+                          id: widget.god.globalContainer.actionGithubPush[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Push'),
           subtitle: const Text('Github')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGitlabComment.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGitlabComment.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -283,7 +320,8 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionGitlabComment[i].id))),
+                            id: widget.god.globalContainer
+                                .actionGitlabComment[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           onTap: () => Navigator.push(
@@ -291,12 +329,16 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGitlabCommentReactionPage(
-                          id: widget.globalContainer.actionGitlabComment[i].id))),
+                          id: widget
+                              .god.globalContainer.actionGitlabComment[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Comment'),
           subtitle: const Text('Gitlab')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGitlabIssue.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGitlabIssue.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -305,7 +347,8 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionGitlabIssue[i].id))),
+                            id: widget
+                                .god.globalContainer.actionGitlabIssue[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           onTap: () => Navigator.push(
@@ -313,12 +356,16 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGitlabIssueReactionPage(
-                          id: widget.globalContainer.actionGitlabIssue[i].id))),
+                          id: widget
+                              .god.globalContainer.actionGitlabIssue[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Issue'),
           subtitle: const Text('Gitlab')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGitlabPush.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGitlabPush.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -327,7 +374,8 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionGitlabPush[i].id))),
+                            id: widget
+                                .god.globalContainer.actionGitlabPush[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           onTap: () => Navigator.push(
@@ -335,12 +383,15 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGitlabPushReactionPage(
-                          id: widget.globalContainer.actionGitlabPush[i].id))),
+                          id: widget.god.globalContainer.actionGitlabPush[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Push'),
           subtitle: const Text('Gitlab')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGitlabMergeRequest.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGitlabMergeRequest.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -349,7 +400,7 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer
+                            id: widget.god.globalContainer
                                 .actionGitlabMergeRequest[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
@@ -358,12 +409,16 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGitlabMergeRequestReactionPage(
-                          id: widget.globalContainer.actionGitlabMergeRequest[i].id))),
+                          id: widget.god.globalContainer
+                              .actionGitlabMergeRequest[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Merge request'),
           subtitle: const Text('Gitlab')));
     }
-    for (int i = 0; i < widget.globalContainer.actionGitlabWiki.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGitlabWiki.length;
+        i++) {
       list.add(ListTile(
           trailing: Row(children: [
             const Text('Add Reactions'),
@@ -372,7 +427,8 @@ class _ActionListState extends State<ActionList> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddReactionPage(
-                            id: widget.globalContainer.actionGitlabWiki[i].id))),
+                            id: widget
+                                .god.globalContainer.actionGitlabWiki[i].id))),
                 icon: const Icon(Icons.add, color: Colors.deepPurple)),
           ]),
           onTap: () => Navigator.push(
@@ -380,7 +436,8 @@ class _ActionListState extends State<ActionList> {
               MaterialPageRoute(
                   builder: (BuildContext context) =>
                       ActionGitlabWikiReactionPage(
-                          id: widget.globalContainer.actionGitlabWiki[i].id))),
+                          id: widget.god.globalContainer.actionGitlabWiki[i].id,
+                          god: widget.god))),
           leading: ExcludeSemantics(child: CircleAvatar(child: Text('$i'))),
           title: const Text('Wiki'),
           subtitle: const Text('Gitlab')));

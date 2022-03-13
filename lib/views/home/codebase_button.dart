@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
+
 
 class CodebaseButton extends StatefulWidget {
-  const CodebaseButton({Key? key}) : super(key: key);
+  const CodebaseButton(
+      {Key? key,
+      required this.god,
+      required this.globalToken})
+      : super(key: key);
+  final String globalToken;
+  final God god;
   @override
   State<CodebaseButton> createState() => _CodebaseButtonState();
 }
@@ -33,8 +40,11 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeCodebase(answer);
-                  setState(() => connectedToCodebase = true);
+                  await SubscribeController.subscribeCodebase(
+                      answer,
+                      widget.globalToken,
+                      widget.god);
+                  setState(() => widget.god.connectedToCodebase = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -51,14 +61,14 @@ class _CodebaseButtonState extends State<CodebaseButton> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "codebase") {
-        connectedToCodebase = true;
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "codebase") {
+        widget.god.connectedToCodebase = true;
       }
     }
     return TextButton(
         onPressed: () {
-          if (!connectedToCodebase) {
+          if (!widget.god.connectedToCodebase) {
             setState(() => onClickCodebaseLoginButton(context));
           }
         },
@@ -77,7 +87,7 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!connectedToCodebase)
+          (!widget.god.connectedToCodebase)
               ? const Text('Connect to Codebase',
                   style: TextStyle(color: Colors.black))
               : const Text('Connected to Codebase',

@@ -1,5 +1,3 @@
-import 'package:client/controller/subscribe_controller.dart';
-import 'package:client/models/globals.dart';
 import 'package:client/views/home/action_list.dart';
 import 'package:client/controller/setup_controller.dart';
 import 'package:client/views/home/select_action_page.dart';
@@ -17,24 +15,26 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  Timer? timer;
-  String globalToken = "";
-  ActionContainer globalContainer = ActionContainer();
+class God {
   bool setuped = false;
-
-
-
   bool connectedToGitlab = false;
   bool connectedToGithub = false;
   bool connectedToCodebase = false;
   bool connectedToDiscord = false;
   bool connectedToGoogle = false;
   bool connectedToTwitter = false;
+  GlobalContainer globalContainer = GlobalContainer();
+}
 
+class _HomePageState extends State<HomePage> {
+  Timer? timer;
+  String globalToken = "";
+
+  God god = God();
 
   @override
   void initState() {
+    god.setuped = false;
     super.initState();
     timer = Timer.periodic(const Duration(seconds: 3), (Timer t) => setup());
   }
@@ -46,9 +46,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void setup() async {
-    if (!setuped) {
+    if (!god.setuped) {
       String token = await FirebaseAuth.instance.currentUser!.getIdToken();
-      SetupController.setupArea(token);
+      SetupController.setupArea(token, god, globalToken);
     }
     setState(() {});
   }
@@ -68,12 +68,14 @@ class _HomePageState extends State<HomePage> {
   refreshHome() => setState(() {});
 
   FutureOr onGoBack(dynamic value) {
-    print("\nhello\n");
+    // print("\nhello\n");
     setState(() {});
   }
 
   void navigateToSelectAction() {
-    Route route = MaterialPageRoute(builder: (context) => SelectActionPage());
+    Route route = MaterialPageRoute(
+        builder: (context) => SelectActionPage(
+            god: god, globalToken: globalToken));
     Navigator.push(context, route).then(onGoBack);
   }
 
@@ -86,8 +88,13 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.deepPurple,
             child: const Icon(Icons.add, color: Colors.black)),
         appBar: AppBar(title: const Text('AREA PROJECT')),
-        body: const Center(
-            child: Padding(padding: EdgeInsets.all(50.0), child: ActionList())),
-        drawer: Drawer(child: HomeDrawer(oui: connectedToGoogle)));
+        body: Center(
+            child: Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: ActionList(god: god))),
+        drawer: Drawer(
+            child: HomeDrawer(
+                god: god,
+                globalToken: globalToken)));
   }
 }

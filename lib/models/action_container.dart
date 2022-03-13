@@ -16,7 +16,7 @@ import 'package:client/models/service.dart';
 import 'package:client/models/actions/action_github_push.dart';
 import 'dart:core';
 
-class ActionContainer {
+class GlobalContainer {
   List<Service> service = [];
   List<ActionCodebaseMergeRequest> actionCodebaseMergeRequest = [];
   List<ActionCodebasePush> actionCodebasePush = [];

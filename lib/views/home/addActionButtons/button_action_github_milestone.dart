@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/action_container.dart';
-
+import 'package:client/views/home/home.dart';
 
 class ButtonActionGithubMilestone extends StatefulWidget {
-  ButtonActionGithubMilestone({Key? key, required this.globalContainer}) : super(key: key);
-  ActionContainer globalContainer;
+  const ButtonActionGithubMilestone(
+      {Key? key, required this.god, required this.globalToken})
+      : super(key: key);
+  final God god;
+  final String globalToken;
 
   @override
   State<ButtonActionGithubMilestone> createState() =>
@@ -45,7 +47,8 @@ class _ButtonActionGithubMilestoneState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.githubMilestone(repo, owner);
+                  AddActionController.githubMilestone(
+                      repo, owner, widget.globalToken, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -55,8 +58,8 @@ class _ButtonActionGithubMilestoneState
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < widget.globalContainer.service.length; i++) {
-      if (widget.globalContainer.service[i].name == "github") {
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "github") {
         return TextButton(
             onPressed: () {
               onClickButtonActionGithubMilestone(context);

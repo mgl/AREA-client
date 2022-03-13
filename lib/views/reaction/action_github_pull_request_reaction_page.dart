@@ -1,5 +1,5 @@
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:client/models/globals.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
@@ -8,11 +8,12 @@ import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class ActionGithubPullRequestReactionPage extends StatefulWidget {
-  const ActionGithubPullRequestReactionPage({Key? key, required this.id})
+  const ActionGithubPullRequestReactionPage(
+      {Key? key, required this.id, required this.god})
       : super(key: key);
 
   final String id;
-
+  final God god;
   @override
   State<ActionGithubPullRequestReactionPage> createState() =>
       _ActionGithubPullRequestReactionPageState();
@@ -28,22 +29,25 @@ class _ActionGithubPullRequestReactionPageState
   List<ReactionTwitterRetweet> reactionTwitterRetweet = [];
 
   void getReaction() {
-    for (int i = 0; i < globalContainer.actionGithubPullRequest.length; i++) {
-      if (globalContainer.actionGithubPullRequest[i].id == widget.id) {
-        reactionDiscordMessage =
-            globalContainer.actionGithubPullRequest[i].reactionDiscordMessage;
-        reactionGoogleCalendarEvent = globalContainer
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGithubPullRequest.length;
+        i++) {
+      if (widget.god.globalContainer.actionGithubPullRequest[i].id ==
+          widget.id) {
+        reactionDiscordMessage = widget.god.globalContainer
+            .actionGithubPullRequest[i].reactionDiscordMessage;
+        reactionGoogleCalendarEvent = widget.god.globalContainer
             .actionGithubPullRequest[i].reactionGoogleCalendarEvent;
-        reactionTwitterFollowUser = globalContainer
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionGithubPullRequest[i].reactionTwitterFollowUser;
-        reactionTwitterFollowUser = globalContainer
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionGithubPullRequest[i].reactionTwitterFollowUser;
-        reactionTwitterLike =
-            globalContainer.actionGithubPullRequest[i].reactionTwitterLike;
-        reactionTwitterPostTweet =
-            globalContainer.actionGithubPullRequest[i].reactionTwitterPostTweet;
-        reactionTwitterRetweet =
-            globalContainer.actionGithubPullRequest[i].reactionTwitterRetweet;
+        reactionTwitterLike = widget
+            .god.globalContainer.actionGithubPullRequest[i].reactionTwitterLike;
+        reactionTwitterPostTweet = widget.god.globalContainer
+            .actionGithubPullRequest[i].reactionTwitterPostTweet;
+        reactionTwitterRetweet = widget.god.globalContainer
+            .actionGithubPullRequest[i].reactionTwitterRetweet;
       }
     }
   }

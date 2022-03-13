@@ -1,5 +1,5 @@
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:client/models/globals.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
@@ -8,10 +8,12 @@ import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class ActionGithubIssueCommentReactionPage extends StatefulWidget {
-  const ActionGithubIssueCommentReactionPage({Key? key, required this.id})
+  const ActionGithubIssueCommentReactionPage(
+      {Key? key, required this.id, required this.god})
       : super(key: key);
 
   final String id;
+  final God god;
 
   @override
   State<ActionGithubIssueCommentReactionPage> createState() =>
@@ -28,22 +30,24 @@ class _ActionGithubIssueCommentReactionPageState
   List<ReactionTwitterRetweet> reactionTwitterRetweet = [];
 
   void getReaction() {
-    for (int i = 0; i < globalContainer.actionGithubIssueComment.length; i++) {
-      if (globalContainer.actionGithubIssueComment[i].id == widget.id) {
-        reactionDiscordMessage =
-            globalContainer.actionGithubIssueComment[i].reactionDiscordMessage;
-        reactionGoogleCalendarEvent = globalContainer
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGithubIssueComment.length;
+        i++) {
+      if (widget.god.globalContainer.actionGithubIssueComment[i].id == widget.id) {
+        reactionDiscordMessage = widget
+            .god.globalContainer.actionGithubIssueComment[i].reactionDiscordMessage;
+        reactionGoogleCalendarEvent = widget.god.globalContainer
             .actionGithubIssueComment[i].reactionGoogleCalendarEvent;
-        reactionTwitterFollowUser = globalContainer
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionGithubIssueComment[i].reactionTwitterFollowUser;
-        reactionTwitterFollowUser = globalContainer
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionGithubIssueComment[i].reactionTwitterFollowUser;
-        reactionTwitterLike =
-            globalContainer.actionGithubIssueComment[i].reactionTwitterLike;
-        reactionTwitterPostTweet = globalContainer
+        reactionTwitterLike = widget
+            .god.globalContainer.actionGithubIssueComment[i].reactionTwitterLike;
+        reactionTwitterPostTweet = widget.god.globalContainer
             .actionGithubIssueComment[i].reactionTwitterPostTweet;
-        reactionTwitterRetweet =
-            globalContainer.actionGithubIssueComment[i].reactionTwitterRetweet;
+        reactionTwitterRetweet = widget
+            .god.globalContainer.actionGithubIssueComment[i].reactionTwitterRetweet;
       }
     }
   }

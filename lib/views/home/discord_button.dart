@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
+
 
 class DiscordButton extends StatefulWidget {
-  const DiscordButton({Key? key}) : super(key: key);
+  const DiscordButton(
+      {Key? key,
+      required this.god,
+      required this.globalToken})
+      : super(key: key);
+  final God god;
+  final String globalToken;
   @override
   State<DiscordButton> createState() => _DiscordButtonState();
 }
@@ -35,8 +42,11 @@ class _DiscordButtonState extends State<DiscordButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeDiscord(answer);
-                  setState(() => connectedToDiscord = true);
+                  await SubscribeController.subscribeDiscord(
+                      answer,
+                      widget.globalToken,
+                      widget.god);
+                  setState(() => widget.god.connectedToDiscord = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -53,14 +63,14 @@ class _DiscordButtonState extends State<DiscordButton> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "discord") {
-        connectedToDiscord = true;
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "discord") {
+        widget.god.connectedToDiscord = true;
       }
     }
     return TextButton(
         onPressed: () {
-          if (!connectedToDiscord) {
+          if (!widget.god.connectedToDiscord) {
             setState(() => onClickDiscordLoginButton(context));
           }
         },
@@ -79,7 +89,7 @@ class _DiscordButtonState extends State<DiscordButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!connectedToDiscord)
+          (!widget.god.connectedToDiscord)
               ? const Text('Connect to Discord',
                   style: TextStyle(color: Colors.black))
               : const Text('Connected to Discord',

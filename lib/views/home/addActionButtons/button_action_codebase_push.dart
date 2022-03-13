@@ -1,11 +1,13 @@
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:client/models/globals.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/action_container.dart';
 
 class ButtonActionCodebasePush extends StatefulWidget {
-  ButtonActionCodebasePush({Key? key, required this.globalContainer}) : super(key: key);
-  ActionContainer globalContainer;
+  const ButtonActionCodebasePush(
+      {Key? key, required this.god, required this.globalToken})
+      : super(key: key);
+  final God god;
+  final String globalToken;
   @override
   State<ButtonActionCodebasePush> createState() =>
       _ButtonActionCodebasePushState();
@@ -25,7 +27,8 @@ class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.codebasePush();
+                  AddActionController.codebasePush(
+                      widget.globalToken, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -35,8 +38,8 @@ class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < widget.globalContainer.service.length; i++) {
-      if (widget.globalContainer.service[i].name == "codebase") {
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "codebase") {
         return TextButton(
             onPressed: () => onClickButtonActionCodebasePush(context),
             style: TextButton.styleFrom(

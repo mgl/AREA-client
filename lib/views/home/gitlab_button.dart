@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
+
 
 class GitlabButton extends StatefulWidget {
-  const GitlabButton({Key? key}) : super(key: key);
+  const GitlabButton(
+      {Key? key,
+      required this.globalToken,
+      required this.god})
+      : super(key: key);
+  final God god;
+  final String globalToken;
+
   @override
   State<GitlabButton> createState() => _GitlabButtonState();
 }
@@ -34,8 +42,11 @@ class _GitlabButtonState extends State<GitlabButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeGitlab(answer);
-                  setState(() => connectedToGitlab = true);
+                  await SubscribeController.subscribeGitlab(
+                      answer,
+                      widget.globalToken,
+                      widget.god);
+                  setState(() => widget.god.connectedToGitlab = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -52,14 +63,14 @@ class _GitlabButtonState extends State<GitlabButton> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "gitlab") {
-        connectedToGitlab = true;
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "gitlab") {
+        widget.god.connectedToGitlab = true;
       }
     }
     return TextButton(
         onPressed: () {
-          if (!connectedToGitlab) {
+          if (!widget.god.connectedToGitlab) {
             setState(() => onClickGitlabLoginButton(context));
           }
         },
@@ -78,7 +89,7 @@ class _GitlabButtonState extends State<GitlabButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!connectedToGitlab)
+          (!widget.god.connectedToGitlab)
               ? const Text('Connect to Gitlab',
                   style: TextStyle(color: Colors.black))
               : const Text('Connected to Gitlab',

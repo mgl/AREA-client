@@ -1,4 +1,4 @@
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:client/views/home/discord_button.dart';
@@ -10,8 +10,10 @@ import 'package:client/views/home/twitter_button.dart';
 import 'package:client/views/home/logout_button.dart';
 
 class HomeDrawer extends StatefulWidget {
-  HomeDrawer({Key? key, required this.oui}) : super(key: key);
-  bool oui;
+  const HomeDrawer({Key? key, required this.god, required this.globalToken})
+      : super(key: key);
+  final God god;
+  final String globalToken;
   @override
   State<HomeDrawer> createState() => _HomeDrawerState();
 }
@@ -36,17 +38,30 @@ class _HomeDrawerState extends State<HomeDrawer> {
             backgroundColor: const Color(0xFF33333D)));
     final drawerItems = ListView(children: [
       drawerHeader,
-      GoogleButton(),
+      GoogleButton(
+          globalToken: widget.globalToken,
+          god: widget.god),
       const SizedBox(height: 10),
-      const GithubButton(),
+      GithubButton(
+          globalToken: widget.globalToken,
+          god: widget.god),
       const SizedBox(height: 10),
-      const GitlabButton(),
+      GitlabButton(
+          globalToken: widget.globalToken,
+          god: widget.god),
       const SizedBox(height: 10),
-      const TwitterButton(),
+      TwitterButton(
+          god: widget.god,
+          globalToken: widget.globalToken
+          ),
       const SizedBox(height: 10),
-      const DiscordButton(),
+      DiscordButton(
+          globalToken: widget.globalToken,
+          god: widget.god),
       const SizedBox(height: 10),
-      const CodebaseButton(),
+      CodebaseButton(
+          globalToken: widget.globalToken,
+          god: widget.god),
       const SizedBox(height: 10),
       const LogOutButton()
     ]);

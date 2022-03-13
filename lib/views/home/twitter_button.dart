@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
+
 
 class TwitterButton extends StatefulWidget {
-  const TwitterButton({Key? key}) : super(key: key);
+  const TwitterButton(
+      {Key? key,
+      required this.globalToken,
+      required this.god})
+      : super(key: key);
+  final God god;
+  final String globalToken;
   @override
   State<TwitterButton> createState() => _TwitterButtonState();
 }
@@ -62,8 +69,13 @@ class _TwitterButtonState extends State<TwitterButton> {
                 child: const Text("Done"),
                 onPressed: () async {
                   await SubscribeController.subscribeTwitter(
-                      appToken, userToken, userToken, userSecret);
-                  setState(() => connectedToTwitter = true);
+                      appToken,
+                      userToken,
+                      userToken,
+                      userSecret,
+                      widget.globalToken,
+                      widget.god);
+                  setState(() => widget.god.connectedToTwitter = true);
                   Navigator.of(context).pop(context);
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -73,14 +85,14 @@ class _TwitterButtonState extends State<TwitterButton> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "twitter") {
-        connectedToTwitter = true;
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "twitter") {
+        widget.god.connectedToTwitter = true;
       }
     }
     return TextButton(
         onPressed: () {
-          if (!connectedToTwitter) {
+          if (!widget.god.connectedToTwitter) {
             setState(() => onClickTwitterLoginButton(context));
           }
         },
@@ -99,7 +111,7 @@ class _TwitterButtonState extends State<TwitterButton> {
                       fit: BoxFit.cover),
                   shape: BoxShape.circle)),
           const SizedBox(width: 20),
-          (!connectedToTwitter)
+          (!widget.god.connectedToTwitter)
               ? const Text('Connect to Twitter',
                   style: TextStyle(color: Colors.black))
               : const Text('Connected to Twitter',

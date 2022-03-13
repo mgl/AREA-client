@@ -1,4 +1,4 @@
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';
@@ -8,10 +8,12 @@ import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class ActionCodebaseTicketCreationReactionPage extends StatefulWidget {
-  const ActionCodebaseTicketCreationReactionPage({Key? key, required this.id})
+  const ActionCodebaseTicketCreationReactionPage(
+      {Key? key, required this.id, required this.god})
       : super(key: key);
 
   final String id;
+  final God god;
 
   @override
   State<ActionCodebaseTicketCreationReactionPage> createState() =>
@@ -29,22 +31,23 @@ class _ActionCodebaseTicketCreationReactionPageState
 
   void getReaction() {
     for (int i = 0;
-        i < globalContainer.actionCodebaseTicketCreation.length;
+        i < widget.god.globalContainer.actionCodebaseTicketCreation.length;
         i++) {
-      if (globalContainer.actionCodebaseTicketCreation[i].id == widget.id) {
-        reactionDiscordMessage = globalContainer
+      if (widget.god.globalContainer.actionCodebaseTicketCreation[i].id ==
+          widget.id) {
+        reactionDiscordMessage = widget.god.globalContainer
             .actionCodebaseTicketCreation[i].reactionDiscordMessage;
-        reactionGoogleCalendarEvent = globalContainer
+        reactionGoogleCalendarEvent = widget.god.globalContainer
             .actionCodebaseTicketCreation[i].reactionGoogleCalendarEvent;
-        reactionTwitterFollowUser = globalContainer
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionCodebaseTicketCreation[i].reactionTwitterFollowUser;
-        reactionTwitterFollowUser = globalContainer
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionCodebaseTicketCreation[i].reactionTwitterFollowUser;
-        reactionTwitterLike =
-            globalContainer.actionCodebaseTicketCreation[i].reactionTwitterLike;
-        reactionTwitterPostTweet = globalContainer
+        reactionTwitterLike = widget.god.globalContainer
+            .actionCodebaseTicketCreation[i].reactionTwitterLike;
+        reactionTwitterPostTweet = widget.god.globalContainer
             .actionCodebaseTicketCreation[i].reactionTwitterPostTweet;
-        reactionTwitterRetweet = globalContainer
+        reactionTwitterRetweet = widget.god.globalContainer
             .actionCodebaseTicketCreation[i].reactionTwitterRetweet;
       }
     }

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
+
 
 class GoogleButton extends StatefulWidget {
-  GoogleButton({Key? key}) : super(key: key);
+  const GoogleButton(
+      {Key? key,
+      required this.globalToken,
+      required this.god})
+      : super(key: key);
+  final God god;
+  final String globalToken;
   @override
   State<GoogleButton> createState() => _GoogleButtonState();
 }
@@ -17,7 +24,7 @@ class _GoogleButtonState extends State<GoogleButton> {
         content: const Text('Please enter your access token.',
             style: TextStyle(color: Colors.black)),
         actions: [
-          if (!connectedToGoogle)
+          if (!widget.god.connectedToGoogle)
             TextField(
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
@@ -34,8 +41,9 @@ class _GoogleButtonState extends State<GoogleButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeGoogle(answer);
-                  setState(() => connectedToGoogle = true);
+                  await SubscribeController.subscribeGoogle(
+                      answer, widget.globalToken, widget.god);
+                  setState(() => widget.god.connectedToGoogle = true);
                   Navigator.of(context).pop(context);
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -45,14 +53,14 @@ class _GoogleButtonState extends State<GoogleButton> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "google") {
-        connectedToGoogle = true;
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "google") {
+        widget.god.connectedToGoogle = true;
       }
     }
     return TextButton(
         onPressed: () {
-          if (!connectedToGoogle) {
+          if (!widget.god.connectedToGoogle) {
             setState(() => onClickGoogleLoginButton(context));
           }
         },
@@ -71,7 +79,7 @@ class _GoogleButtonState extends State<GoogleButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!connectedToGoogle)
+          (!widget.god.connectedToGoogle)
               ? const Text('Connect to Google',
                   style: TextStyle(color: Colors.black))
               : const Text('Connected to Google',

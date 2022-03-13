@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
-import 'package:client/models/globals.dart';
-import 'package:client/models/action_container.dart';
-
+import 'package:client/views/home/home.dart';
 
 class ButtonActionGitlabWiki extends StatefulWidget {
-  ButtonActionGitlabWiki({Key? key, required this.globalContainer}) : super(key: key);
-  ActionContainer globalContainer;
+  const ButtonActionGitlabWiki(
+      {Key? key, required this.god, required this.globalToken})
+      : super(key: key);
+  final God god;
+  final String globalToken;
 
   @override
   State<ButtonActionGitlabWiki> createState() => _ButtonActionGitlabWikiState();
@@ -35,7 +36,8 @@ class _ButtonActionGitlabWikiState extends State<ButtonActionGitlabWiki> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () {
-                  AddActionController.gitlabWiki(repoId);
+                  AddActionController.gitlabWiki(
+                      repoId, widget.god, widget.globalToken);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -45,8 +47,8 @@ class _ButtonActionGitlabWikiState extends State<ButtonActionGitlabWiki> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < widget.globalContainer.service.length; i++) {
-      if (widget.globalContainer.service[i].name == "gitlab") {
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "gitlab") {
         return TextButton(
             onPressed: () => onClickButtonActionGitlabWiki(context),
             style: TextButton.styleFrom(

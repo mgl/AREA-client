@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
 
 class GithubButton extends StatefulWidget {
-  const GithubButton({Key? key}) : super(key: key);
+  const GithubButton(
+      {Key? key,
+      required this.globalToken,
+      required this.god})
+      : super(key: key);
+
+  final God god;
+  final String globalToken;
 
   @override
   State<GithubButton> createState() => _GithubButtonState();
@@ -35,8 +42,11 @@ class _GithubButtonState extends State<GithubButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeGithub(answer);
-                  setState(() => connectedToGithub = true);
+                  await SubscribeController.subscribeGithub(
+                      answer,
+                      widget.globalToken,
+                      widget.god);
+                  setState(() => widget.god.connectedToGithub = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -53,14 +63,14 @@ class _GithubButtonState extends State<GithubButton> {
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < globalContainer.service.length; i++) {
-      if (globalContainer.service[i].name == "github") {
-        connectedToGithub = true;
+    for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
+      if (widget.god.globalContainer.service[i].name == "github") {
+        widget.god.connectedToGithub = true;
       }
     }
     return TextButton(
         onPressed: () {
-          if (!connectedToGithub) {
+          if (!widget.god.connectedToGithub) {
             setState(() => onClickGitHubLoginButton(context));
           }
         },
@@ -79,7 +89,7 @@ class _GithubButtonState extends State<GithubButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!connectedToGithub)
+          (!widget.god.connectedToGithub)
               ? const Text('Connect to Github',
                   style: TextStyle(color: Colors.black))
               : const Text('Connected to Github',

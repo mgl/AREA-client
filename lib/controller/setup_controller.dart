@@ -1,11 +1,11 @@
 import 'package:client/models/setup_model.dart';
-import 'package:client/models/globals.dart';
+import 'package:client/views/home/home.dart';
 
 class SetupController {
-  static void setupArea(String tokenJWT) {
-    setuped = true;
+  static void setupArea(String tokenJWT, God god, String globalToken,) {
+    god.setuped = true;
     globalToken = tokenJWT;
-    SetupModel().getServices();
-    SetupModel().getActions();
+    SetupModel().getServices(globalToken, god);
+    SetupModel().getActions(globalToken, god);
   }
 }
