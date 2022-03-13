@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:client/models/globals.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
-import 'package:client/views/reaction/add_reaction_page.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';

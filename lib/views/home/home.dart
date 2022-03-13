@@ -1,3 +1,4 @@
+import 'package:client/controller/subscribe_controller.dart';
 import 'package:client/models/globals.dart';
 import 'package:client/views/home/action_list.dart';
 import 'package:client/controller/setup_controller.dart';
@@ -35,9 +36,7 @@ class _HomePageState extends State<HomePage> {
       String token = await FirebaseAuth.instance.currentUser!.getIdToken();
       SetupController.setupArea(token);
     }
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   void onClickOnAddButton(BuildContext context) {
@@ -52,21 +51,29 @@ class _HomePageState extends State<HomePage> {
     stream.listen((String data) {});
   }
 
+  refreshHome() => setState(() {});
+
+  FutureOr onGoBack(dynamic value) {
+    print("\nhello\n");
+    setState(() {});
+  }
+
+  void navigateToSelectAction() {
+    Route route = MaterialPageRoute(builder: (context) => SelectActionPage());
+    Navigator.push(context, route).then(onGoBack);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
-            onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const SelectActionPage())),
+            onPressed: navigateToSelectAction,
             backgroundColor: Colors.deepPurple,
             child: const Icon(Icons.add, color: Colors.black)),
         appBar: AppBar(title: const Text('AREA PROJECT')),
         body: const Center(
             child: Padding(padding: EdgeInsets.all(50.0), child: ActionList())),
-        drawer: const Drawer(child: HomeDrawer()));
+        drawer: Drawer(child: HomeDrawer(oui: connectedToGoogle)));
   }
 }

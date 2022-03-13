@@ -15,5 +15,5 @@ void main() async {
           storageBucket: "area-37a17.appspot.com",
           messagingSenderId: "613243542195",
           appId: "1:613243542195:web:db0322be575c945c0c2ec6"));
-  runApp(const AreaApp());
+  runApp( AreaApp());
 }

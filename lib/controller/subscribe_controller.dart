@@ -1,35 +1,44 @@
 import 'package:client/models/subscribe_model.dart';
 
 class SubscribeController {
-  static void subscribeGithub(String value) =>
-      SubscribeModel().subscribeGithub(value);
+  static Future subscribeGithub(String value) async {
+    return SubscribeModel().subscribeGithub(value);
+  }
 
-  static void unsubscribeGithub() => SubscribeModel().unsubscribeGithub();
+  // static void unsubscribeGithub() => SubscribeModel().unsubscribeGithub();
 
-  static void subscribeCodebase(String value) =>
-      SubscribeModel().subscribeCodebase(value);
+  static Future subscribeCodebase(String value) async {
+    return SubscribeModel().subscribeCodebase(value);
+  }
 
-  static void unsubscribeCodebase() => SubscribeModel().unsubscribeCodebase();
+  // static void unsubscribeCodebase() => SubscribeModel().unsubscribeCodebase();
 
-  static void subscribeGitlab(String value) =>
-      SubscribeModel().subscribeGitlab(value);
+  static Future subscribeGitlab(String value) async {
+    return SubscribeModel().subscribeGitlab(value);
+  }
 
-  static void unsubscribeGitlab() => SubscribeModel().unsubscribeGitlab();
+  // static void unsubscribeGitlab() => SubscribeModel().unsubscribeGitlab();
 
-  static void subscribeDiscord(String value) =>
-      SubscribeModel().subscribeDiscord(value);
+  static Future subscribeDiscord(String value) async {
+    return SubscribeModel().subscribeDiscord(value);
+  }
 
-  static void unsubscribeDiscord() => SubscribeModel().unsubscribeDiscord();
+  // static void unsubscribeDiscord() => SubscribeModel().unsubscribeDiscord();
 
-  static void subscribeGoogle(String value) =>
-      SubscribeModel().subscribeGoogle();
+  static Future subscribeGoogle(String value) async {
+    return SubscribeModel().subscribeGoogle();
+  }
 
-  static void unsubscribeGoogle() => SubscribeModel().unsubscribeDiscord();
+  // static Future unsubscribeGoogle() async {
+  //  return await SubscribeModel().unsubscribeGoogle();
 
-  static void subscribeTwitter(String appToken, String appSecret,
-          String userToken, String userSecret) =>
-      SubscribeModel()
-          .subscribeTwitter(appToken, appSecret, userToken, userSecret);
+  // }
 
-  static void unsubscribeTwitter() => SubscribeModel().unsubscribeDiscord();
+  static Future subscribeTwitter(String appToken, String appSecret,
+      String userToken, String userSecret) async {
+    return SubscribeModel()
+        .subscribeTwitter(appToken, appSecret, userToken, userSecret);
+  }
+
+  // static void unsubscribeTwitter() => SubscribeModel().unsubscribeTwitter();
 }

@@ -6,7 +6,6 @@ import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
-import 'package:client/views/reaction/add_reaction_page.dart';
 
 class ActionGitlabPushReactionPage extends StatefulWidget {
   const ActionGitlabPushReactionPage({Key? key, required this.id})

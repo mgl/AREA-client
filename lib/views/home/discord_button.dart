@@ -9,7 +9,6 @@ class DiscordButton extends StatefulWidget {
 }
 
 class _DiscordButtonState extends State<DiscordButton> {
-  bool _connectedToDiscord = false;
   String answer = "";
 
   void onClickDiscordLoginButton(BuildContext context) {
@@ -35,16 +34,9 @@ class _DiscordButtonState extends State<DiscordButton> {
                     backgroundColor:
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
-                onPressed: () {
-                  setState(() {
-                    if (_connectedToDiscord == true) {
-                      SubscribeController.unsubscribeDiscord();
-                      _connectedToDiscord = false;
-                    } else {
-                      SubscribeController.subscribeDiscord(answer);
-                      _connectedToDiscord = true;
-                    }
-                  });
+                onPressed: () async {
+                  await SubscribeController.subscribeDiscord(answer);
+                  setState(() => connectedToDiscord = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -63,15 +55,15 @@ class _DiscordButtonState extends State<DiscordButton> {
   Widget build(BuildContext context) {
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "discord") {
-        _connectedToDiscord = true;
+        connectedToDiscord = true;
       }
     }
     return TextButton(
-        onPressed: () => setState(() {
-              if (!_connectedToDiscord) {
-                onClickDiscordLoginButton(context);
-              }
-            }),
+        onPressed: () {
+          if (!connectedToDiscord) {
+            setState(() => onClickDiscordLoginButton(context));
+          }
+        },
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -87,8 +79,9 @@ class _DiscordButtonState extends State<DiscordButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!_connectedToDiscord)
-              ? const Text('Connect to Discord')
+          (!connectedToDiscord)
+              ? const Text('Connect to Discord',
+                  style: TextStyle(color: Colors.black))
               : const Text('Connected to Discord',
                   style: TextStyle(color: Colors.green))
         ]));

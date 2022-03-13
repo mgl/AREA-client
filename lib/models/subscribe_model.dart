@@ -1,4 +1,5 @@
 import 'package:client/models/globals.dart';
+import 'package:client/models/service.dart';
 import 'package:http/http.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +9,12 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar =
-        SnackBar(content: Text("subscribeGithub: " + response.statusCode.toString()));
+    globalContainer.service.add(Service(name: "github", token: value));
+    final SnackBar snackBar = SnackBar(
+        content: Text("subscribeGithub: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToGithub.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -17,8 +22,11 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/github/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar =
-        SnackBar(content: Text("unsubscribeGithub: " + response.statusCode.toString()));
+    final SnackBar snackBar = SnackBar(
+        content: Text("unsubscribeGithub: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToCodebase.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -27,8 +35,12 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar =
-        SnackBar(content: Text("subscribeCodebase: " + response.statusCode.toString()));
+    globalContainer.service.add(Service(name: "codebase", token: value));
+    final SnackBar snackBar = SnackBar(
+        content: Text("subscribeCodebase: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToCodebase.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -36,8 +48,11 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/codebase/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar =
-        SnackBar(content: Text("unsubscribeCodebase: " + response.statusCode.toString()));
+    final SnackBar snackBar = SnackBar(
+        content: Text("unsubscribeCodebase: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToCodebase.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -46,8 +61,12 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar =
-        SnackBar(content: Text("subscribeGitlab: " + response.statusCode.toString()));
+    globalContainer.service.add(Service(name: "gitlab", token: value));
+    final SnackBar snackBar = SnackBar(
+        content: Text("subscribeGitlab: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToGitlab.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -55,8 +74,11 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/gitlab/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar =
-        SnackBar(content: Text("unsubscribeGitlab: " + response.statusCode.toString()));
+    final SnackBar snackBar = SnackBar(
+        content: Text("unsubscribeGitlab: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToGitlab.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -65,8 +87,12 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar =
-        SnackBar(content: Text("subscribeDiscord: " + response.statusCode.toString()));
+    globalContainer.service.add(Service(name: "discord", token: value));
+    final SnackBar snackBar = SnackBar(
+        content: Text("subscribeDiscord: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToDiscord.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -74,27 +100,31 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/discord/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar =
-        SnackBar(content: Text("unsubscribeDiscord: " + response.statusCode.toString()));
+    final SnackBar snackBar = SnackBar(
+        content: Text("unsubscribeDiscord: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToDiscord.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void subscribeGoogle() async {
+  Future subscribeGoogle() async {
     final url = Uri.parse('$urlPrefix/services/google/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await post(url, headers: header);
-    final SnackBar snackBar =
-        SnackBar(content: Text("subscribeGoogle: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
+    globalContainer.service.add(Service(name: "google", token: ""));
+     final SnackBar snackBar = SnackBar(
+     content: Text("subscribeGoogle: " + response.statusCode.toString()));
+     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
-  void unsubscribeGoogle() async {
+  Future unsubscribeGoogle() async {
     final url = Uri.parse('$urlPrefix/services/google/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar =
-        SnackBar(content: Text("unsubscribeGoogle: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
+     final SnackBar snackBar = SnackBar(
+     content: Text("unsubscribeGoogle: " + response.statusCode.toString()));
+     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
   void subscribeTwitter(String appToken, String appSecret, String userToken,
@@ -108,8 +138,12 @@ class SubscribeModel {
       "accessToken": userToken
     };
     var response = await post(url, headers: header, body: body);
-    final SnackBar snackBar =
-        SnackBar(content: Text("subscribeTwitter: " + response.statusCode.toString()));
+    globalContainer.service.add(Service(name: "twitter", token: ""));
+    final SnackBar snackBar = SnackBar(
+        content: Text("subscribeTwitter: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToTwitter.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
@@ -117,8 +151,11 @@ class SubscribeModel {
     final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     var response = await delete(url, headers: header);
-    final SnackBar snackBar =
-        SnackBar(content: Text("unsubscribeTwitter: " + response.statusCode.toString()));
+    final SnackBar snackBar = SnackBar(
+        content: Text("unsubscribeTwitter: " +
+            response.statusCode.toString() +
+            'bool = ' +
+            connectedToTwitter.toString()));
     snackbarKey.currentState?.showSnackBar(snackBar);
   }
 }

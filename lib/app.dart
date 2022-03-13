@@ -18,7 +18,7 @@ class AreaApp extends StatelessWidget {
   final sharedZAxisTransitionBuilder = const SharedAxisPageTransitionsBuilder(
       transitionType: SharedAxisTransitionType.scaled,
       fillColor: ClientColors.primaryBackground);
-
+  
   TextTheme _buildClientTextTheme(TextTheme base) {
     return base
         .copyWith(

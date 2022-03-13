@@ -9,7 +9,6 @@ class CodebaseButton extends StatefulWidget {
 }
 
 class _CodebaseButtonState extends State<CodebaseButton> {
-  bool _connectedToCodebase = false;
   String answer = "";
   void onClickCodebaseLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
@@ -33,16 +32,9 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                     backgroundColor:
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
-                onPressed: () {
-                  setState(() {
-                    if (_connectedToCodebase == true) {
-                      SubscribeController.unsubscribeCodebase();
-                      _connectedToCodebase = false;
-                    } else {
-                      SubscribeController.subscribeCodebase(answer);
-                      _connectedToCodebase = true;
-                    }
-                  });
+                onPressed: () async {
+                  await SubscribeController.subscribeCodebase(answer);
+                  setState(() => connectedToCodebase = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -59,20 +51,17 @@ class _CodebaseButtonState extends State<CodebaseButton> {
 
   @override
   Widget build(BuildContext context) {
-    // if (globalContainer.service.isEmpty) {
-    //   return Container();
-    // }
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "codebase") {
-        _connectedToCodebase = true;
+        connectedToCodebase = true;
       }
     }
     return TextButton(
-        onPressed: () => setState(() {
-              if (!_connectedToCodebase) {
-                onClickCodebaseLoginButton(context);
-              }
-            }),
+        onPressed: () {
+          if (!connectedToCodebase) {
+            setState(() => onClickCodebaseLoginButton(context));
+          }
+        },
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -88,8 +77,9 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!_connectedToCodebase)
-              ? const Text('Connect to Codebase')
+          (!connectedToCodebase)
+              ? const Text('Connect to Codebase',
+                  style: TextStyle(color: Colors.black))
               : const Text('Connected to Codebase',
                   style: TextStyle(color: Colors.green))
         ]));

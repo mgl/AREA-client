@@ -18,7 +18,6 @@ import 'package:client/views/home/addActionButtons/button_action_gitlab_wiki.dar
 
 class SelectActionPage extends StatefulWidget {
   const SelectActionPage({Key? key}) : super(key: key);
-
   @override
   State<SelectActionPage> createState() => _SelectActionPageState();
 }
@@ -27,7 +26,13 @@ class _SelectActionPageState extends State<SelectActionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Action selection')),
+        appBar: AppBar(
+            title: const Text('Action selection'),
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back))),
         body: Container(
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.deepPurple),

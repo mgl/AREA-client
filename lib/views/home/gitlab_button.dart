@@ -9,7 +9,6 @@ class GitlabButton extends StatefulWidget {
 }
 
 class _GitlabButtonState extends State<GitlabButton> {
-  bool _connectedToGitlab = false;
   String answer = "";
 
   void onClickGitlabLoginButton(BuildContext context) {
@@ -34,16 +33,9 @@ class _GitlabButtonState extends State<GitlabButton> {
                     backgroundColor:
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
-                onPressed: () {
-                  setState(() {
-                    if (_connectedToGitlab == true) {
-                      SubscribeController.unsubscribeGitlab();
-                      _connectedToGitlab = false;
-                    } else {
-                      SubscribeController.subscribeGitlab(answer);
-                      _connectedToGitlab = true;
-                    }
-                  });
+                onPressed: () async {
+                  await SubscribeController.subscribeGitlab(answer);
+                  setState(() => connectedToGitlab = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -60,20 +52,17 @@ class _GitlabButtonState extends State<GitlabButton> {
 
   @override
   Widget build(BuildContext context) {
-    // if (globalContainer.service.isEmpty) {
-    //   return Container();
-    // }
     for (int i = 0; i < globalContainer.service.length; i++) {
       if (globalContainer.service[i].name == "gitlab") {
-        _connectedToGitlab = true;
+        connectedToGitlab = true;
       }
     }
     return TextButton(
-        onPressed: () => setState(() {
-              if (!_connectedToGitlab) {
-                onClickGitlabLoginButton(context);
-              }
-            }),
+        onPressed: () {
+          if (!connectedToGitlab) {
+            setState(() => onClickGitlabLoginButton(context));
+          }
+        },
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
             primary: Colors.black,
@@ -89,8 +78,9 @@ class _GitlabButtonState extends State<GitlabButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!_connectedToGitlab)
-              ? const Text('Connect to Gitlab')
+          (!connectedToGitlab)
+              ? const Text('Connect to Gitlab',
+                  style: TextStyle(color: Colors.black))
               : const Text('Connected to Gitlab',
                   style: TextStyle(color: Colors.green))
         ]));
