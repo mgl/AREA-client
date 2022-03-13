@@ -42,7 +42,7 @@ class _DiscordButtonState extends State<DiscordButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeDiscord(
+                   SubscribeController.subscribeDiscord(
                       answer,
                       widget.globalToken,
                       widget.god);

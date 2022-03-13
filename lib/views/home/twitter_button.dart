@@ -68,7 +68,7 @@ class _TwitterButtonState extends State<TwitterButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeTwitter(
+                   SubscribeController.subscribeTwitter(
                       appToken,
                       userToken,
                       userToken,

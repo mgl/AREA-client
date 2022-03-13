@@ -41,7 +41,7 @@ class _GoogleButtonState extends State<GoogleButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeGoogle(
+                  SubscribeController.subscribeGoogle(
                       answer, widget.globalToken, widget.god);
                   setState(() => widget.god.connectedToGoogle = true);
                   Navigator.of(context).pop(context);

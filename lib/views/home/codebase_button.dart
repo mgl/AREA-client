@@ -40,7 +40,7 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeCodebase(
+                  SubscribeController.subscribeCodebase(
                       answer,
                       widget.globalToken,
                       widget.god);

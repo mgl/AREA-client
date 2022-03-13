@@ -42,7 +42,7 @@ class _GitlabButtonState extends State<GitlabButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeGitlab(
+                   SubscribeController.subscribeGitlab(
                       answer,
                       widget.globalToken,
                       widget.god);

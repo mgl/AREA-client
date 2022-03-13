@@ -50,7 +50,9 @@ class _HomePageState extends State<HomePage> {
       String token = await FirebaseAuth.instance.currentUser!.getIdToken();
       SetupController.setupArea(token, god, globalToken);
     }
-    setState(() {});
+    setState(() {
+      print("\nrefresh 1\n");
+    });
   }
 
   void onClickOnAddButton(BuildContext context) {
@@ -68,15 +70,22 @@ class _HomePageState extends State<HomePage> {
   refreshHome() => setState(() {});
 
   FutureOr onGoBack(dynamic value) {
-    // print("\nhello\n");
+    print("\nhello\n");
     setState(() {});
   }
 
   void navigateToSelectAction() {
     Route route = MaterialPageRoute(
-        builder: (context) => SelectActionPage(
-            god: god, globalToken: globalToken));
+        builder: (context) =>
+            SelectActionPage(god: god, globalToken: globalToken));
     Navigator.push(context, route).then(onGoBack);
+  }
+
+  Widget returnActionList() {
+    setState(() {
+      print("\nrefresh 2\n");
+    });
+    return ActionList(god: god);
   }
 
   @override
@@ -92,9 +101,6 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
                 padding: const EdgeInsets.all(50.0),
                 child: ActionList(god: god))),
-        drawer: Drawer(
-            child: HomeDrawer(
-                god: god,
-                globalToken: globalToken)));
+        drawer: Drawer(child: HomeDrawer(god: god, globalToken: globalToken)));
   }
 }

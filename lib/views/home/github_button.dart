@@ -42,7 +42,7 @@ class _GithubButtonState extends State<GithubButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  await SubscribeController.subscribeGithub(
+                   SubscribeController.subscribeGithub(
                       answer,
                       widget.globalToken,
                       widget.god);
