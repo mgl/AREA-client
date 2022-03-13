@@ -47,12 +47,15 @@ class _HomePageState extends State<HomePage> {
 
   void setup() async {
     if (!god.setuped) {
-      String token = await FirebaseAuth.instance.currentUser!.getIdToken();
-      SetupController.setupArea(token, god, globalToken);
+      try {
+        String? token = await FirebaseAuth.instance.currentUser?.getIdToken();
+        SetupController.setupArea(
+            (token != null) ? token : "", god, globalToken);
+      } catch (e) {
+        return;
+      }
     }
-    setState(() {
-      print("\nrefresh 1\n");
-    });
+    setState(() {});
   }
 
   void onClickOnAddButton(BuildContext context) {
@@ -70,7 +73,6 @@ class _HomePageState extends State<HomePage> {
   refreshHome() => setState(() {});
 
   FutureOr onGoBack(dynamic value) {
-    print("\nhello\n");
     setState(() {});
   }
 
@@ -82,9 +84,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget returnActionList() {
-    setState(() {
-      print("\nrefresh 2\n");
-    });
+    setState(() {});
     return ActionList(god: god);
   }
 

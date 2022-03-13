@@ -31,11 +31,12 @@ class SetupModel {
     final url = Uri.parse('$urlPrefix/service_list');
     final header = {"Authorization": "Bearer " + globalToken};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text(
-            "getServices: " + response.statusCode.toString() + response.body));
-    snackbarKey.currentState?.showSnackBar(snackBar);
-    final splitted = response.body.split(';');
+    // final SnackBar snackBar = SnackBar(
+    // content: Text(
+    // "getServices: " + response.statusCode.toString() + response.body));
+    // snackbarKey.currentState?.showSnackBar(snackBar);
+    var splitted = [];
+    if (response.body.length > 2) splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final serviceData = splitted.first.split('=');
       Service service = Service(

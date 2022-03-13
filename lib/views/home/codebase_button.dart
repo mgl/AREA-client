@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
 import 'package:client/views/home/home.dart';
 
-
 class CodebaseButton extends StatefulWidget {
-  const CodebaseButton(
-      {Key? key,
-      required this.god,
-      required this.globalToken})
+  const CodebaseButton({Key? key, required this.god, required this.globalToken})
       : super(key: key);
   final String globalToken;
   final God god;
@@ -16,12 +12,13 @@ class CodebaseButton extends StatefulWidget {
 }
 
 class _CodebaseButtonState extends State<CodebaseButton> {
-  String answer = "";
+  String username = "";
+  String apiKey = "";
   void onClickCodebaseLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Codebase Connection',
             style: TextStyle(color: Colors.black)),
-        content: const Text('Please enter your API key.',
+        content: const Text('Please enter your Username and your API key.',
             style: TextStyle(color: Colors.black)),
         actions: [
           TextField(
@@ -31,7 +28,16 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                   border: OutlineInputBorder(), labelText: 'Username'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) => setState(() => answer = value)),
+              onChanged: (value) => setState(() => username = value)),
+          const SizedBox(height: 10),
+          TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'API key'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) => setState(() => apiKey = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -39,24 +45,15 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                     backgroundColor:
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
-                onPressed: () async {
+                onPressed: () {
                   SubscribeController.subscribeCodebase(
-                      answer,
-                      widget.globalToken,
-                      widget.god);
+                      username, apiKey, widget.globalToken, widget.god);
                   setState(() => widget.god.connectedToCodebase = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue =
-        showDialog(context: context, builder: (BuildContext context) => dialog)
-            as Future<String>;
-    Stream<String> stream = futureValue.asStream();
-    stream.listen((String data) {
-      String answerValue = data;
-      setState(() => answer = answerValue);
-    });
+    showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
   @override

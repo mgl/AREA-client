@@ -4,21 +4,13 @@ import 'package:http/http.dart';
 import 'package:flutter/material.dart';
 import 'package:client/views/home/home.dart';
 
-
 class SubscribeModel {
-  void subscribeGithub(String value, String globalToken,
-     God god) async {
+  void subscribeGithub(String value, String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/github/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
-    var response = await post(url, headers: header, body: body);
+    post(url, headers: header, body: body);
     god.globalContainer.service.add(Service(name: "github", token: value));
-    final SnackBar snackBar = SnackBar(
-        content: Text("subscribeGithub: " +
-            response.statusCode.toString() +
-            'bool = ' +
-            god.connectedToGithub.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
   // void unsubscribeGithub(String globalToken, GlobalContainer globalContainer,
@@ -34,19 +26,16 @@ class SubscribeModel {
   //   snackbarKey.currentState?.showSnackBar(snackBar);
   // }
 
-  void subscribeCodebase(String value, String globalToken,
-      God god) async {
+  void subscribeCodebase(
+      String apiKey, String userName, String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/codebase/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-    final body = {"token": value};
-    var response = await post(url, headers: header, body: body);
-    god.globalContainer.service.add(Service(name: "codebase", token: value));
-    final SnackBar snackBar = SnackBar(
-        content: Text("subscribeCodebase: " +
-            response.statusCode.toString() +
-            'bool = ' +
-            god.connectedToCodebase.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
+    final body = {
+      "username": userName,
+      "apiKey": apiKey,
+    };
+    post(url, headers: header, body: body);
+    god.globalContainer.service.add(Service(name: "codebase", token: ""));
   }
 
   // void unsubscribeCodebase(String globalToken, GlobalContainer globalContainer,
@@ -62,19 +51,12 @@ class SubscribeModel {
   //   snackbarKey.currentState?.showSnackBar(snackBar);
   // }
 
-  void subscribeGitlab(String value, String globalToken,
-      God god) async {
+  void subscribeGitlab(String value, String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/gitlab/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {"token": value};
-    var response = await post(url, headers: header, body: body);
+    post(url, headers: header, body: body);
     god.globalContainer.service.add(Service(name: "gitlab", token: value));
-    final SnackBar snackBar = SnackBar(
-        content: Text("subscribeGitlab: " +
-            response.statusCode.toString() +
-            'bool = ' +
-            god.connectedToGitlab.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
   // void unsubscribeGitlab(String globalToken, God god) async {
@@ -89,19 +71,11 @@ class SubscribeModel {
   //   snackbarKey.currentState?.showSnackBar(snackBar);
   // }
 
-  void subscribeDiscord(String value, String globalToken,
-      God god) async {
+  void subscribeDiscord(String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/discord/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-    final body = {"token": value};
-    var response = await post(url, headers: header, body: body);
-    god.globalContainer.service.add(Service(name: "discord", token: value));
-    final SnackBar snackBar = SnackBar(
-        content: Text("subscribeDiscord: " +
-            response.statusCode.toString() +
-            'bool = ' +
-            god.connectedToDiscord.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
+    post(url, headers: header);
+    god.globalContainer.service.add(Service(name: "discord", token: ""));
   }
 
   // void unsubscribeDiscord(String globalToken, bool connectedToDiscord) async {
@@ -117,14 +91,15 @@ class SubscribeModel {
   // }
 
   Future subscribeGoogle(
-      String globalToken, God god) async {
+      String userName, String appPassword, String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/google/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
-    var response = await post(url, headers: header);
+    final body = {
+      "username": userName,
+      "appPassword": appPassword,
+    };
+    post(url, headers: header, body: body);
     god.globalContainer.service.add(Service(name: "google", token: ""));
-    final SnackBar snackBar = SnackBar(
-        content: Text("subscribeGoogle: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
   }
 
   // Future unsubscribeGoogle(String globalToken) async {
@@ -136,32 +111,18 @@ class SubscribeModel {
   //   snackbarKey.currentState?.showSnackBar(snackBar);
   // }
 
-  void subscribeTwitter(
-      String appToken,
-      String appSecret,
-      String userToken,
-      String userSecret,
-      String globalToken,
-      God god) async {
+  void subscribeTwitter(String bearerToken, String globalToken, God god) async {
     final url = Uri.parse('$urlPrefix/services/twitter/subscribe');
     final header = {"Authorization": "Bearer " + globalToken};
     final body = {
-      "appKey": appToken,
-      "appSecret": appSecret,
-      "accessSecret": userSecret,
-      "accessToken": userToken
+      "bearerToken": bearerToken,
     };
-    var response = await post(url, headers: header, body: body);
-    god.globalContainer.service.add(Service(name: "twitter", token: ""));
-    final SnackBar snackBar = SnackBar(
-        content: Text("subscribeTwitter: " +
-            response.statusCode.toString() +
-            'bool = ' +
-            god.connectedToTwitter.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
+    post(url, headers: header, body: body);
+    god.globalContainer.service
+        .add(Service(name: "twitter", token: bearerToken));
   }
 
-  // void unsubscribeTwitter(String globalToken, bool connectedToTwitter) async {
+  // void unsubscribeTwitter(String globalToken,  bool connectedToTwitter) async {
   //   final url = Uri.parse('$urlPrefix/services/twitter/unsubscribe');
   //   final header = {"Authorization": "Bearer " + globalToken};
   //   var response = await delete(url, headers: header);

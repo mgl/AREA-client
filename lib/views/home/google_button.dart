@@ -16,12 +16,13 @@ class GoogleButton extends StatefulWidget {
 }
 
 class _GoogleButtonState extends State<GoogleButton> {
-  String answer = "";
+  String userName = "";
+  String appPassword = "";
   void onClickGoogleLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
-        title: const Text('Google Connection',
+        title: const Text('Gmail Connection',
             style: TextStyle(color: Colors.black)),
-        content: const Text('Please enter your access token.',
+        content: const Text('Please enter your username and App password',
             style: TextStyle(color: Colors.black)),
         actions: [
           if (!widget.god.connectedToGoogle)
@@ -29,10 +30,18 @@ class _GoogleButtonState extends State<GoogleButton> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Token'),
+                    border: OutlineInputBorder(), labelText: 'UserName'),
                 maxLines: 1,
                 maxLength: 100,
-                onChanged: (value) => setState(() => answer = value)),
+                onChanged: (value) => setState(() => userName = value)),
+            TextField(
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: 'AppPassword'),
+                maxLines: 1,
+                maxLength: 100,
+                onChanged: (value) => setState(() => userName = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -42,7 +51,7 @@ class _GoogleButtonState extends State<GoogleButton> {
                 child: const Text("Done"),
                 onPressed: () async {
                   SubscribeController.subscribeGoogle(
-                      answer, widget.globalToken, widget.god);
+                      userName, appPassword, widget.globalToken, widget.god);
                   setState(() => widget.god.connectedToGoogle = true);
                   Navigator.of(context).pop(context);
                 })
@@ -80,9 +89,9 @@ class _GoogleButtonState extends State<GoogleButton> {
           ),
           const SizedBox(width: 20),
           (!widget.god.connectedToGoogle)
-              ? const Text('Connect to Google',
+              ? const Text('Connect to Gmail',
                   style: TextStyle(color: Colors.black))
-              : const Text('Connected to Google',
+              : const Text('Connected to Gmail',
                   style: TextStyle(color: Colors.green))
         ]));
   }

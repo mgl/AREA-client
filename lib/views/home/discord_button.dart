@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:client/controller/subscribe_controller.dart';
 import 'package:client/views/home/home.dart';
 
-
 class DiscordButton extends StatefulWidget {
-  const DiscordButton(
-      {Key? key,
-      required this.god,
-      required this.globalToken})
+  const DiscordButton({Key? key, required this.god, required this.globalToken})
       : super(key: key);
   final God god;
   final String globalToken;
@@ -23,42 +19,25 @@ class _DiscordButtonState extends State<DiscordButton> {
         title: const Text('Discord Connection',
             style: TextStyle(color: Colors.black)),
         content: const Text(
-            'Please enter the URL of the webhook of your server.',
+            'Click on this button to add the bot on your server',
             style: TextStyle(color: Colors.black)),
         actions: [
-          TextField(
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Webhook URL'),
-              maxLines: 1,
-              maxLength: 300,
-              onChanged: (value) => setState(() => answer = value)),
-          const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all(Colors.deepPurple)),
-                child: const Text("Done"),
-                onPressed: () async {
-                   SubscribeController.subscribeDiscord(
-                      answer,
-                      widget.globalToken,
-                      widget.god);
+                child: const Text("Invite Discord Bot"),
+                onPressed: () {
+                  SubscribeController.subscribeDiscord(
+                      widget.globalToken, widget.god);
+                  // invit the bot
                   setState(() => widget.god.connectedToDiscord = true);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
         ]);
-    Future<String> futureValue =
-        showDialog(context: context, builder: (BuildContext context) => dialog)
-            as Future<String>;
-    Stream<String> stream = futureValue.asStream();
-    stream.listen((String data) {
-      String answerValue = data;
-      setState(() => answer = answerValue);
-    });
+    showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
   @override

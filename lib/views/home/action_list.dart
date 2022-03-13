@@ -585,7 +585,6 @@ class _ActionListState extends State<ActionList> {
       ));
     }
     setState(() {
-      print("\nrefresh 3\n");
     });
     return actionList;
   }

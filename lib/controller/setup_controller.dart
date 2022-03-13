@@ -2,7 +2,12 @@ import 'package:client/models/setup_model.dart';
 import 'package:client/views/home/home.dart';
 
 class SetupController {
-  static void setupArea(String tokenJWT, God god, String globalToken,) {
+  static void setupArea(
+    String tokenJWT,
+    God god,
+    String globalToken,
+  ) {
+    if (tokenJWT == "") return;
     god.setuped = true;
     globalToken = tokenJWT;
     SetupModel().getServices(globalToken, god);
