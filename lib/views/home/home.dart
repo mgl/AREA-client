@@ -1,6 +1,6 @@
 import 'package:client/views/home/action_list.dart';
 import 'package:client/controller/setup_controller.dart';
-import 'package:client/views/home/select_action_page.dart';
+import 'package:client/views/select_action/select_action_page.dart';
 import 'package:client/views/home/home_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
@@ -83,11 +83,6 @@ class _HomePageState extends State<HomePage> {
     Navigator.push(context, route).then(onGoBack);
   }
 
-  Widget returnActionList() {
-    setState(() {});
-    return ActionList(god: god);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +95,10 @@ class _HomePageState extends State<HomePage> {
         body: Center(
             child: Padding(
                 padding: const EdgeInsets.all(50.0),
-                child: ActionList(god: god))),
+                child: ActionList(
+                  god: god,
+                  globalToken: globalToken,
+                ))),
         drawer: Drawer(child: HomeDrawer(god: god, globalToken: globalToken)));
   }
 }

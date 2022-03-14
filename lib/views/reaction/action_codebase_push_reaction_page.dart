@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:client/views/home/home.dart';
+import 'package:client/views/reaction/add_reaction_page.dart';
 import 'package:flutter/material.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';
@@ -9,11 +12,15 @@ import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class ActionCodebasePushReactionPage extends StatefulWidget {
   const ActionCodebasePushReactionPage(
-      {Key? key, required this.id, required this.god})
+      {Key? key,
+      required this.id,
+      required this.god,
+      required this.globalToken})
       : super(key: key);
 
   final String id;
   final God god;
+  final String globalToken;
 
   @override
   State<ActionCodebasePushReactionPage> createState() =>
@@ -30,30 +37,48 @@ class _ActionCodebasePushReactionPageState
   List<ReactionTwitterRetweet> reactionTwitterRetweet = [];
 
   void getReaction() {
-    for (int i = 0; i < widget.god.globalContainer.actionCodebasePush.length; i++) {
+    for (int i = 0;
+        i < widget.god.globalContainer.actionCodebasePush.length;
+        i++) {
       if (widget.god.globalContainer.actionCodebasePush[i].id == widget.id) {
-        reactionDiscordMessage =
-            widget.god.globalContainer.actionCodebasePush[i].reactionDiscordMessage;
-        reactionGoogleCalendarEvent = widget
-            .god.globalContainer.actionCodebasePush[i].reactionGoogleCalendarEvent;
-        reactionTwitterFollowUser = widget
-            .god.globalContainer.actionCodebasePush[i].reactionTwitterFollowUser;
-        reactionTwitterFollowUser = widget
-            .god.globalContainer.actionCodebasePush[i].reactionTwitterFollowUser;
-        reactionTwitterLike =
-            widget.god.globalContainer.actionCodebasePush[i].reactionTwitterLike;
+        reactionDiscordMessage = widget
+            .god.globalContainer.actionCodebasePush[i].reactionDiscordMessage;
+        reactionGoogleCalendarEvent = widget.god.globalContainer
+            .actionCodebasePush[i].reactionGoogleCalendarEvent;
+        reactionTwitterFollowUser = widget.god.globalContainer
+            .actionCodebasePush[i].reactionTwitterFollowUser;
+        reactionTwitterFollowUser = widget.god.globalContainer
+            .actionCodebasePush[i].reactionTwitterFollowUser;
+        reactionTwitterLike = widget
+            .god.globalContainer.actionCodebasePush[i].reactionTwitterLike;
         reactionTwitterPostTweet = widget
             .god.globalContainer.actionCodebasePush[i].reactionTwitterPostTweet;
-        reactionTwitterRetweet =
-            widget.god.globalContainer.actionCodebasePush[i].reactionTwitterRetweet;
+        reactionTwitterRetweet = widget
+            .god.globalContainer.actionCodebasePush[i].reactionTwitterRetweet;
       }
     }
+  }
+
+  FutureOr onGoBack(dynamic value) {
+    setState(() {});
+  }
+
+  void navigateToAddReaction() {
+    Route route = MaterialPageRoute(
+        builder: (context) => AddReactionPage(
+            id: widget.id, god: widget.god, globalToken: widget.globalToken));
+    Navigator.push(context, route).then(onGoBack);
   }
 
   @override
   Widget build(BuildContext context) {
     getReaction();
     return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+            onPressed: navigateToAddReaction,
+            backgroundColor: Colors.deepPurple,
+            child: const Icon(Icons.add, color: Colors.black)),
         appBar: AppBar(title: const Text('Reaction List')),
         body: Container(
             decoration: BoxDecoration(

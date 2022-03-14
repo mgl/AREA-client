@@ -1,7 +1,6 @@
 import 'package:client/models/globals.dart';
 import 'package:client/models/service.dart';
 import 'package:http/http.dart';
-import 'package:flutter/material.dart';
 import 'package:client/views/home/home.dart';
 
 class SubscribeModel {

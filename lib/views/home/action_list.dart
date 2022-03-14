@@ -15,26 +15,16 @@ import 'package:client/views/reaction/action_gitlab_issue_reaction_page.dart';
 import 'package:client/views/reaction/action_gitlab_merge_request_reaction_page.dart';
 import 'package:client/views/reaction/action_gitlab_push_reaction_page.dart';
 import 'package:client/views/reaction/action_gitlab_wiki_reaction_page.dart';
-import 'package:client/views/reaction/add_reaction_page.dart';
 import 'package:flutter/material.dart';
 
 class ActionList extends StatefulWidget {
-  const ActionList({Key? key, required this.god}) : super(key: key);
+  const ActionList({Key? key, required this.god, required this.globalToken})
+      : super(key: key);
   final God god;
-
+  final String globalToken;
   @override
   State<ActionList> createState() => _ActionListState();
 }
-
-// floatingActionButton: FloatingActionButton(
-//     onPressed: () => Navigator.push(
-//         context,
-//         MaterialPageRoute(
-//             builder: (BuildContext context) =>
-//                 const AddReactionPage())),
-//     backgroundColor: Colors.deepPurple,
-//     child: const Icon(Icons.add, color: Colors.black)),
-// floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
 class _ActionListState extends State<ActionList> {
   List<Widget> list = [];
@@ -49,18 +39,6 @@ class _ActionListState extends State<ActionList> {
 
   List<Widget> getAllActions() {
     List<Widget> actionList = [];
-
-    // actionList.add(TextButton(
-    //     leading: ExcludeSemantics(child: CircleAvatar(child: Text('X'))),
-    //     title: const Text('Issue'),
-    //     trailing: Row(children: [
-    //       const Text('Add Reactions'),
-    //       IconButton(
-    //           onPressed: () {},
-    //           icon: const Icon(Icons.add, color: Colors.deepPurple)),
-    //     ]),
-    //     subtitle: const Text('Github')));
-
     for (int i = 0;
         i < widget.god.globalContainer.actionCodebaseMergeRequest.length;
         i++) {
@@ -94,20 +72,12 @@ class _ActionListState extends State<ActionList> {
               const Text('Codebase - Merge request')
             ])),
       ));
-      // trailing: Row(children: [
-      // const Text('Add Reactions'),
-      // IconButton(
-      // onPressed: () => Navigator.push(
-      // context,
-      // MaterialPageRoute(
-      // builder: (BuildContext context) => AddReactionPage(
-      // id: widget.god.globalContainer
-      // .actionCodebaseMergeRequest[i].id))),
-      // icon: const Icon(Icons.add, color: Colors.deepPurple)),
-      // ]),
-      // subtitle: const Text('Codebase')));
-
     }
+    /*
+    **
+    ** oui
+    **
+    */
     for (int i = 0;
         i < widget.god.globalContainer.actionCodebasePush.length;
         i++) {
@@ -124,8 +94,9 @@ class _ActionListState extends State<ActionList> {
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
                         ActionCodebasePushReactionPage(
-                            id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                            globalToken: widget.globalToken,
+                            id: widget
+                                .god.globalContainer.actionCodebasePush[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -159,7 +130,7 @@ class _ActionListState extends State<ActionList> {
                     builder: (BuildContext context) =>
                         ActionCodebaseTicketCreationReactionPage(
                             id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                                .actionCodebaseTicketCreation[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -193,7 +164,7 @@ class _ActionListState extends State<ActionList> {
                     builder: (BuildContext context) =>
                         ActionCodebaseTicketUpdateReactionPage(
                             id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                                .actionCodebaseTicketUpdate[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -227,7 +198,7 @@ class _ActionListState extends State<ActionList> {
                     builder: (BuildContext context) =>
                         ActionGithubIssueCommentReactionPage(
                             id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                                .actionGithubIssueComment[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -260,8 +231,8 @@ class _ActionListState extends State<ActionList> {
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
                         ActionGithubIssueReactionPage(
-                            id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                            id: widget
+                                .god.globalContainer.actionGithubIssue[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -294,8 +265,8 @@ class _ActionListState extends State<ActionList> {
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
                         ActionGithubLabelReactionPage(
-                            id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                            id: widget
+                                .god.globalContainer.actionGithubLabel[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -329,7 +300,7 @@ class _ActionListState extends State<ActionList> {
                     builder: (BuildContext context) =>
                         ActionGithubMilestoneReactionPage(
                             id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                                .actionGithubMilestone[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -363,7 +334,7 @@ class _ActionListState extends State<ActionList> {
                     builder: (BuildContext context) =>
                         ActionGithubPullRequestReactionPage(
                             id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                                .actionGithubPullRequest[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -396,8 +367,8 @@ class _ActionListState extends State<ActionList> {
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
                         ActionGithubPushReactionPage(
-                            id: widget.god.globalContainer
-                                .actionCodebaseMergeRequest[i].id,
+                            id: widget
+                                .god.globalContainer.actionGithubPush[i].id,
                             god: widget.god))),
             child: Row(children: [
               Container(
@@ -584,8 +555,7 @@ class _ActionListState extends State<ActionList> {
             ])),
       ));
     }
-    setState(() {
-    });
+    setState(() {});
     return actionList;
   }
 
