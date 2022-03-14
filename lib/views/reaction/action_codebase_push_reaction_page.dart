@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:client/views/add_reaction_page.dart/add_reaction_page.dart';
 import 'package:client/views/home/home.dart';
-import 'package:client/views/reaction/add_reaction_page.dart';
 import 'package:flutter/material.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
 import 'package:client/models/reactions/reaction_google_calendar_event.dart';

@@ -1,5 +1,7 @@
 import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:client/models/globals.dart';
+
 import 'package:client/controller/add_action_controller.dart';
 
 class ButtonActionCodebasePush extends StatefulWidget {
@@ -16,8 +18,12 @@ class ButtonActionCodebasePush extends StatefulWidget {
 class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
   void onClickButtonActionCodebasePush(BuildContext context) {
     AlertDialog dialog = AlertDialog(
-        title: const Text('Push', style: TextStyle(color: Colors.black)),
-        content: const Text('Codebase', style: TextStyle(color: Colors.black)),
+        title:
+            const Text('Push', style: TextStyle(color: Colors.black)),
+        content: const Text(
+            'Codebase\n\nGo to Codebase and create a webhook using this url :\n' +
+                urlPrefix,
+            style: TextStyle(color: Colors.black)),
         actions: [
           const SizedBox(height: 10),
           Row(children: [

@@ -73,11 +73,6 @@ class _ActionListState extends State<ActionList> {
             ])),
       ));
     }
-    /*
-    **
-    ** oui
-    **
-    */
     for (int i = 0;
         i < widget.god.globalContainer.actionCodebasePush.length;
         i++) {

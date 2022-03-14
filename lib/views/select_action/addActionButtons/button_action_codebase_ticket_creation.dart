@@ -1,6 +1,8 @@
 import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:client/controller/add_action_controller.dart';
+import 'package:client/models/globals.dart';
+
 
 class ButtonActionCodebaseTicketCreation extends StatefulWidget {
   const ButtonActionCodebaseTicketCreation(
@@ -17,9 +19,12 @@ class _ButtonActionCodebaseTicketCreationState
     extends State<ButtonActionCodebaseTicketCreation> {
   void onClickButtonActionCodebaseTicketCreation(BuildContext context) {
     AlertDialog dialog = AlertDialog(
-        title: const Text('Ticket creation',
+           title:
+            const Text('Ticket Creation', style: TextStyle(color: Colors.black)),
+        content: const Text(
+            'Codebase\n\nGo to Codebase and create a webhook using this url :\n' +
+                urlPrefix,
             style: TextStyle(color: Colors.black)),
-        content: const Text('Codebase', style: TextStyle(color: Colors.black)),
         actions: [
           const SizedBox(height: 10),
           Row(children: [
