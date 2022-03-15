@@ -1,11 +1,8 @@
-import 'package:client/models/action_container.dart';
 import 'package:flutter/material.dart';
 import 'package:client/app.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'models/globals.dart';
 
 void main() async {
-  globalContainer = ActionContainer();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: const FirebaseOptions(

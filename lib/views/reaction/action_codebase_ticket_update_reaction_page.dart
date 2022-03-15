@@ -1,17 +1,21 @@
-import 'package:client/models/globals.dart';
+import 'dart:async';
+
+import 'package:client/views/add_reaction_page.dart/add_reaction_page.dart';
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
-import 'package:client/models/reactions/reaction_google_calendar_event.dart';
-import 'package:client/views/reaction/add_reaction_page.dart';
+import 'package:client/models/reactions/reaction_mail.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class ActionCodebaseTicketUpdateReactionPage extends StatefulWidget {
-  const ActionCodebaseTicketUpdateReactionPage({Key? key, required this.id})
+  const ActionCodebaseTicketUpdateReactionPage(
+      {Key? key, required this.id, required this.god})
       : super(key: key);
 
+  final God god;
   final String id;
 
   @override
@@ -22,7 +26,7 @@ class ActionCodebaseTicketUpdateReactionPage extends StatefulWidget {
 class _ActionCodebaseTicketUpdateReactionPageState
     extends State<ActionCodebaseTicketUpdateReactionPage> {
   List<ReactionDiscordMessage> reactionDiscordMessage = [];
-  List<ReactionGoogleCalendarEvent> reactionGoogleCalendarEvent = [];
+  List<ReactionMail> reactionGoogleCalendarEvent = [];
   List<ReactionTwitterFollowUser> reactionTwitterFollowUser = [];
   List<ReactionTwitterLike> reactionTwitterLike = [];
   List<ReactionTwitterPostTweet> reactionTwitterPostTweet = [];
@@ -30,31 +34,47 @@ class _ActionCodebaseTicketUpdateReactionPageState
 
   void getReaction() {
     for (int i = 0;
-        i < globalContainer.actionCodebaseTicketUpdate.length;
+        i < widget.god.globalContainer.actionCodebaseTicketUpdate.length;
         i++) {
-      if (globalContainer.actionCodebaseTicketUpdate[i].id == widget.id) {
-        reactionDiscordMessage = globalContainer
+      if (widget.god.globalContainer.actionCodebaseTicketUpdate[i].id ==
+          widget.id) {
+        reactionDiscordMessage = widget.god.globalContainer
             .actionCodebaseTicketUpdate[i].reactionDiscordMessage;
-        reactionGoogleCalendarEvent = globalContainer
-            .actionCodebaseTicketUpdate[i].reactionGoogleCalendarEvent;
-        reactionTwitterFollowUser = globalContainer
+        reactionGoogleCalendarEvent = widget
+            .god.globalContainer.actionCodebaseTicketUpdate[i].reactionMail;
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionCodebaseTicketUpdate[i].reactionTwitterFollowUser;
-        reactionTwitterFollowUser = globalContainer
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionCodebaseTicketUpdate[i].reactionTwitterFollowUser;
-        reactionTwitterLike =
-            globalContainer.actionCodebaseTicketUpdate[i].reactionTwitterLike;
-        reactionTwitterPostTweet = globalContainer
+        reactionTwitterLike = widget.god.globalContainer
+            .actionCodebaseTicketUpdate[i].reactionTwitterLike;
+        reactionTwitterPostTweet = widget.god.globalContainer
             .actionCodebaseTicketUpdate[i].reactionTwitterPostTweet;
-        reactionTwitterRetweet = globalContainer
+        reactionTwitterRetweet = widget.god.globalContainer
             .actionCodebaseTicketUpdate[i].reactionTwitterRetweet;
       }
     }
+  }
+
+  FutureOr onGoBack(dynamic value) {
+    setState(() {});
+  }
+
+  void navigateToAddReaction() {
+    Route route = MaterialPageRoute(
+        builder: (context) => AddReactionPage(id: widget.id, god: widget.god));
+    Navigator.push(context, route).then(onGoBack);
   }
 
   @override
   Widget build(BuildContext context) {
     getReaction();
     return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+            onPressed: navigateToAddReaction,
+            backgroundColor: Colors.deepPurple,
+            child: const Icon(Icons.add, color: Colors.black)),
         appBar: AppBar(title: const Text('Reaction List')),
         body: Container(
             decoration: BoxDecoration(

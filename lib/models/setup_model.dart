@@ -18,36 +18,33 @@ import 'package:client/models/actions/action_gitlab_wiki.dart';
 import 'package:client/models/actions/action_github_push.dart';
 import 'dart:core';
 import 'package:client/models/reactions/reaction_discord_message.dart';
-import 'package:client/models/reactions/reaction_google_calendar_event.dart';
+import 'package:client/models/reactions/reaction_mail.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
-import 'package:flutter/material.dart';
+import 'package:client/views/home/home.dart';
 
 class SetupModel {
-  void getServices() async {
+  void getServices(God god) async {
     final url = Uri.parse('$urlPrefix/service_list');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getServices: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
-    final splitted = response.body.split(';');
+    var splitted = [];
+    if (response.body.length > 2) splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final serviceData = splitted.first.split('=');
-      Service service =
-          Service(serviceData.elementAt(0), serviceData.elementAt(1));
-      globalContainer.service.add(service);
+      Service service = Service(
+          name: serviceData.elementAt(0), token: serviceData.elementAt(1));
+      god.globalContainer.service.add(service);
       splitted.removeAt(0);
     }
   }
 
-  void getActions() async {
+  void getActions(God god) async {
     final url = Uri.parse('$urlPrefix/action_list');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getActions: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -58,8 +55,8 @@ class SetupModel {
               ActionCodebaseMergeRequest action = ActionCodebaseMergeRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseMergeRequest(action.id, action);
-              globalContainer.actionCodebaseMergeRequest.add(action);
+              getReactionCodeBaseMergeRequest(action.id, action, god);
+              god.globalContainer.actionCodebaseMergeRequest.add(action);
             }
             break;
           case "codebase_push":
@@ -67,8 +64,8 @@ class SetupModel {
               ActionCodebasePush action = ActionCodebasePush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodebasePush(action.id, action);
-              globalContainer.actionCodebasePush.add(action);
+              getReactionCodebasePush(action.id, action, god);
+              god.globalContainer.actionCodebasePush.add(action);
             }
             break;
           case "codebase_ticket_creation":
@@ -77,8 +74,8 @@ class SetupModel {
                   ActionCodebaseTicketCreation();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseTicketCreation(action.id, action);
-              globalContainer.actionCodebaseTicketCreation.add(action);
+              getReactionCodeBaseTicketCreation(action.id, action, god);
+              god.globalContainer.actionCodebaseTicketCreation.add(action);
             }
             break;
           case "codebase_ticket_update":
@@ -86,8 +83,8 @@ class SetupModel {
               ActionCodebaseTicketUpdate action = ActionCodebaseTicketUpdate();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseTicketUpdate(action.id, action);
-              globalContainer.actionCodebaseTicketUpdate.add(action);
+              getReactionCodeBaseTicketUpdate(action.id, action, god);
+              god.globalContainer.actionCodebaseTicketUpdate.add(action);
             }
             break;
           case "github_issue_comment":
@@ -95,8 +92,8 @@ class SetupModel {
               ActionGithubIssueComment action = ActionGithubIssueComment();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssueComment(action.id, action);
-              globalContainer.actionGithubIssueComment.add(action);
+              getReactionGithubIssueComment(action.id, action, god);
+              god.globalContainer.actionGithubIssueComment.add(action);
             }
             break;
           case "github_issue":
@@ -104,8 +101,8 @@ class SetupModel {
               ActionGithubIssue action = ActionGithubIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssue(action.id, action);
-              globalContainer.actionGithubIssue.add(action);
+              getReactionGithubIssue(action.id, action, god);
+              god.globalContainer.actionGithubIssue.add(action);
             }
             break;
           case "github_label":
@@ -113,8 +110,8 @@ class SetupModel {
               ActionGithubLabel action = ActionGithubLabel();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubLabel(action.id, action);
-              globalContainer.actionGithubLabel.add(action);
+              getReactionGithubLabel(action.id, action, god);
+              god.globalContainer.actionGithubLabel.add(action);
             }
             break;
           case "github_milestone":
@@ -122,8 +119,8 @@ class SetupModel {
               ActionGithubMilestone action = ActionGithubMilestone();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubMilestone(action.id, action);
-              globalContainer.actionGithubMilestone.add(action);
+              getReactionGithubMilestone(action.id, action, god);
+              god.globalContainer.actionGithubMilestone.add(action);
             }
             break;
           case "github_pull_request":
@@ -131,8 +128,8 @@ class SetupModel {
               ActionGithubPullRequest action = ActionGithubPullRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubPullRequest(action.id, action);
-              globalContainer.actionGithubPullRequest.add(action);
+              getReactionGithubPullRequest(action.id, action, god);
+              god.globalContainer.actionGithubPullRequest.add(action);
             }
             break;
           case "github_push":
@@ -140,8 +137,8 @@ class SetupModel {
               ActionGithubPush action = ActionGithubPush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubPush(action.id, action);
-              globalContainer.actionGithubPush.add(action);
+              getReactionGithubPush(action.id, action, god);
+              god.globalContainer.actionGithubPush.add(action);
             }
             break;
           case "github_issues":
@@ -149,8 +146,8 @@ class SetupModel {
               ActionGithubIssue action = ActionGithubIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssue(action.id, action);
-              globalContainer.actionGithubIssue.add(action);
+              getReactionGithubIssue(action.id, action, god);
+              god.globalContainer.actionGithubIssue.add(action);
             }
             break;
           case "gitlab_comment":
@@ -158,8 +155,8 @@ class SetupModel {
               ActionGitlabComment action = ActionGitlabComment();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabComment(action.id, action);
-              globalContainer.actionGitlabComment.add(action);
+              getReactionGitlabComment(action.id, action, god);
+              god.globalContainer.actionGitlabComment.add(action);
             }
             break;
           case "gitlab_issue":
@@ -167,8 +164,8 @@ class SetupModel {
               ActionGitlabIssue action = ActionGitlabIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabIssue(action.id, action);
-              globalContainer.actionGitlabIssue.add(action);
+              getReactionGitlabIssue(action.id, action, god);
+              god.globalContainer.actionGitlabIssue.add(action);
             }
             break;
           case "gitlab_merge_request":
@@ -176,8 +173,8 @@ class SetupModel {
               ActionGitlabMergeRequest action = ActionGitlabMergeRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabMergeRequest(action.id, action);
-              globalContainer.actionGitlabMergeRequest.add(action);
+              getReactionGitlabMergeRequest(action.id, action, god);
+              god.globalContainer.actionGitlabMergeRequest.add(action);
             }
             break;
           case "gitlab_push":
@@ -185,8 +182,8 @@ class SetupModel {
               ActionGitlabPush action = ActionGitlabPush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabPush(action.id, action);
-              globalContainer.actionGitlabPush.add(action);
+              getReactionGitlabPush(action.id, action, god);
+              god.globalContainer.actionGitlabPush.add(action);
             }
             break;
           case "gitlab_wiki":
@@ -194,8 +191,8 @@ class SetupModel {
               ActionGitlabWiki action = ActionGitlabWiki();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabWiki(action.id, action);
-              globalContainer.actionGitlabWiki.add(action);
+              getReactionGitlabWiki(action.id, action, god);
+              god.globalContainer.actionGitlabWiki.add(action);
             }
             break;
           default:
@@ -208,12 +205,10 @@ class SetupModel {
   }
 
   void getReactionCodeBaseMergeRequest(
-      String id, ActionCodebaseMergeRequest action) async {
+      String id, ActionCodebaseMergeRequest action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionCodeBaseMergeRequest: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -228,11 +223,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -275,12 +270,11 @@ class SetupModel {
     }
   }
 
-  void getReactionCodebasePush(String id, ActionCodebasePush action) async {
+  void getReactionCodebasePush(
+      String id, ActionCodebasePush action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionCodebasePush: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -295,11 +289,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -342,13 +336,11 @@ class SetupModel {
     }
   }
 
-  void getReactionCodeBaseTicketCreation(
-      String id, ActionCodebaseTicketCreation action) async {
+  void getReactionCodeBaseTicketCreation(String id,
+      ActionCodebaseTicketCreation action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionCodeBaseTicketCreation: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -363,11 +355,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -411,12 +403,10 @@ class SetupModel {
   }
 
   void getReactionCodeBaseTicketUpdate(
-      String id, ActionCodebaseTicketUpdate action) async {
+      String id, ActionCodebaseTicketUpdate action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionCodeBaseTicketUpdate: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -431,11 +421,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -479,12 +469,10 @@ class SetupModel {
   }
 
   void getReactionGithubIssueComment(
-      String id, ActionGithubIssueComment action) async {
+      String id, ActionGithubIssueComment action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGithubIssueComment: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -499,11 +487,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -546,12 +534,11 @@ class SetupModel {
     }
   }
 
-  void getReactionGithubIssue(String id, ActionGithubIssue action) async {
+  void getReactionGithubIssue(
+      String id, ActionGithubIssue action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGithubIssue: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -566,11 +553,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -613,12 +600,11 @@ class SetupModel {
     }
   }
 
-  void getReactionGithubLabel(String id, ActionGithubLabel action) async {
+  void getReactionGithubLabel(
+      String id, ActionGithubLabel action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGithubLabe: l" + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -633,11 +619,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -681,12 +667,10 @@ class SetupModel {
   }
 
   void getReactionGithubMilestone(
-      String id, ActionGithubMilestone action) async {
+      String id, ActionGithubMilestone action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGithubMilestone: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -701,11 +685,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -749,12 +733,10 @@ class SetupModel {
   }
 
   void getReactionGithubPullRequest(
-      String id, ActionGithubPullRequest action) async {
+      String id, ActionGithubPullRequest action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGithubPullRequest: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -769,11 +751,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -816,12 +798,11 @@ class SetupModel {
     }
   }
 
-  void getReactionGithubPush(String id, ActionGithubPush action) async {
+  void getReactionGithubPush(
+      String id, ActionGithubPush action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGithubPush: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -836,11 +817,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -883,12 +864,11 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabComment(String id, ActionGitlabComment action) async {
+  void getReactionGitlabComment(
+      String id, ActionGitlabComment action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGitlabComment: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -903,11 +883,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -950,12 +930,11 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabIssue(String id, ActionGitlabIssue action) async {
+  void getReactionGitlabIssue(
+      String id, ActionGitlabIssue action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGitlabIssue: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -970,11 +949,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -1018,12 +997,10 @@ class SetupModel {
   }
 
   void getReactionGitlabMergeRequest(
-      String id, ActionGitlabMergeRequest action) async {
+      String id, ActionGitlabMergeRequest action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGitlabMergeRequest: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -1038,11 +1015,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -1085,12 +1062,11 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabPush(String id, ActionGitlabPush action) async {
+  void getReactionGitlabPush(
+      String id, ActionGitlabPush action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGitlabPush: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -1105,11 +1081,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -1152,12 +1128,11 @@ class SetupModel {
     }
   }
 
-  void getReactionGitlabWiki(String id, ActionGitlabWiki action) async {
+  void getReactionGitlabWiki(
+      String id, ActionGitlabWiki action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(content: Text("getReactionGitlabWiki: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -1172,11 +1147,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":

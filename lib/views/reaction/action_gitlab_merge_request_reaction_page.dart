@@ -1,19 +1,22 @@
+import 'dart:async';
+
+import 'package:client/views/add_reaction_page.dart/add_reaction_page.dart';
+import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:client/models/globals.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
-import 'package:client/models/reactions/reaction_google_calendar_event.dart';
+import 'package:client/models/reactions/reaction_mail.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
-import 'package:client/views/reaction/add_reaction_page.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class ActionGitlabMergeRequestReactionPage extends StatefulWidget {
-  const ActionGitlabMergeRequestReactionPage({Key? key, required this.id})
+  const ActionGitlabMergeRequestReactionPage(
+      {Key? key, required this.id, required this.god})
       : super(key: key);
 
   final String id;
-
+  final God god;
   @override
   State<ActionGitlabMergeRequestReactionPage> createState() =>
       _ActionGitlabMergeRequestReactionPageState();
@@ -22,37 +25,55 @@ class ActionGitlabMergeRequestReactionPage extends StatefulWidget {
 class _ActionGitlabMergeRequestReactionPageState
     extends State<ActionGitlabMergeRequestReactionPage> {
   List<ReactionDiscordMessage> reactionDiscordMessage = [];
-  List<ReactionGoogleCalendarEvent> reactionGoogleCalendarEvent = [];
+  List<ReactionMail> reactionGoogleCalendarEvent = [];
   List<ReactionTwitterFollowUser> reactionTwitterFollowUser = [];
   List<ReactionTwitterLike> reactionTwitterLike = [];
   List<ReactionTwitterPostTweet> reactionTwitterPostTweet = [];
   List<ReactionTwitterRetweet> reactionTwitterRetweet = [];
 
   void getReaction() {
-    for (int i = 0; i < globalContainer.actionGitlabMergeRequest.length; i++) {
-      if (globalContainer.actionGitlabMergeRequest[i].id == widget.id) {
-        reactionDiscordMessage =
-            globalContainer.actionGitlabMergeRequest[i].reactionDiscordMessage;
-        reactionGoogleCalendarEvent = globalContainer
-            .actionGitlabMergeRequest[i].reactionGoogleCalendarEvent;
-        reactionTwitterFollowUser = globalContainer
+    for (int i = 0;
+        i < widget.god.globalContainer.actionGitlabMergeRequest.length;
+        i++) {
+      if (widget.god.globalContainer.actionGitlabMergeRequest[i].id ==
+          widget.id) {
+        reactionDiscordMessage = widget.god.globalContainer
+            .actionGitlabMergeRequest[i].reactionDiscordMessage;
+        reactionGoogleCalendarEvent =
+            widget.god.globalContainer.actionGitlabMergeRequest[i].reactionMail;
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionGitlabMergeRequest[i].reactionTwitterFollowUser;
-        reactionTwitterFollowUser = globalContainer
+        reactionTwitterFollowUser = widget.god.globalContainer
             .actionGitlabMergeRequest[i].reactionTwitterFollowUser;
-        reactionTwitterLike =
-            globalContainer.actionGitlabMergeRequest[i].reactionTwitterLike;
-        reactionTwitterPostTweet = globalContainer
+        reactionTwitterLike = widget.god.globalContainer
+            .actionGitlabMergeRequest[i].reactionTwitterLike;
+        reactionTwitterPostTweet = widget.god.globalContainer
             .actionGitlabMergeRequest[i].reactionTwitterPostTweet;
-        reactionTwitterRetweet =
-            globalContainer.actionGitlabMergeRequest[i].reactionTwitterRetweet;
+        reactionTwitterRetweet = widget.god.globalContainer
+            .actionGitlabMergeRequest[i].reactionTwitterRetweet;
       }
     }
+  }
+
+  FutureOr onGoBack(dynamic value) {
+    setState(() {});
+  }
+
+  void navigateToAddReaction() {
+    Route route = MaterialPageRoute(
+        builder: (context) => AddReactionPage(id: widget.id, god: widget.god));
+    Navigator.push(context, route).then(onGoBack);
   }
 
   @override
   Widget build(BuildContext context) {
     getReaction();
     return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+            onPressed: navigateToAddReaction,
+            backgroundColor: Colors.deepPurple,
+            child: const Icon(Icons.add, color: Colors.black)),
         appBar: AppBar(title: const Text('Reaction List')),
         body: Container(
             decoration: BoxDecoration(
