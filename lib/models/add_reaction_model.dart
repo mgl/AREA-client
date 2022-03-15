@@ -148,7 +148,7 @@ class AddReactionModel {
   void mailReaction(String actionId, String object, String content,
       String receiver, God god) {
     final url =
-        Uri.parse('$urlPrefix/services/mail/reaction');
+        Uri.parse('$urlPrefix/services/mail/reaction/mail');
     final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
