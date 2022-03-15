@@ -16,8 +16,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter build web --web-renderer html --release
-      - run: flutter build apk --release
+      - run: flutter build web --web-renderer html --release --dart-define="SERVER_API_URL=https://europe-west1-area-37a17.cloudfunctions.net/api/"
+      - run: flutter build apk --release --dart-define="SERVER_API_URL=https://europe-west1-area-37a17.cloudfunctions.net/api/"
       - run: mv build/app/outputs/flutter-apk/app-release.apk build/web/client.apk
       - uses: actions/upload-artifact@master
         with:
