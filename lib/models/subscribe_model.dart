@@ -52,14 +52,17 @@ class SubscribeModel {
     god.globalContainer.service.add(Service(name: "mail", token: ""));
   }
 
-  void subscribeTwitter(String bearerToken, God god) async {
+  void subscribeTwitter(String accessToken ,String accessPassword, String appKeyToken, String appPassword, God god) async {
     final url = Uri.parse('$urlPrefix/services/twitter/subscribe');
     final header = {"Authorization": "Bearer " + god.globalToken};
     final body = {
-      "bearerToken": bearerToken,
+      "accessToken": accessToken,
+      "accessPassword": accessPassword,
+      "appKeyToken": appKeyToken,
+      "appPassword": appPassword,
     };
     post(url, headers: header, body: body);
     god.globalContainer.service
-        .add(Service(name: "twitter", token: bearerToken));
+        .add(Service(name: "twitter", token: accessToken));
   }
 }
