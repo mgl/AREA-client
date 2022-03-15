@@ -14,7 +14,10 @@ class TwitterButton extends StatefulWidget {
 }
 
 class _TwitterButtonState extends State<TwitterButton> {
-  String bearerToken = "";
+  String accessToken = "";
+  String appKeyToken = "";
+  String accessPassword = "";
+  String appPassword = "";
 
   void onClickTwitterLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
@@ -27,10 +30,34 @@ class _TwitterButtonState extends State<TwitterButton> {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: ''),
+                  border: OutlineInputBorder(), labelText: 'accessToken'),
               maxLines: 1,
               maxLength: 100,
-              onChanged: (value) => setState(() => bearerToken = value)),
+              onChanged: (value) => setState(() => accessToken = value)),
+               TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'accessPassword'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) => setState(() => accessPassword = value)),
+               TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'appKeyToken'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) => setState(() => appKeyToken = value)),
+               TextField(
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'appPassword'),
+              maxLines: 1,
+              maxLength: 100,
+              onChanged: (value) => setState(() => appPassword = value)),
           const SizedBox(height: 10),
           Row(children: [
             ElevatedButton(
@@ -40,7 +67,7 @@ class _TwitterButtonState extends State<TwitterButton> {
                 child: const Text("Done"),
                 onPressed: () async {
                    SubscribeController.subscribeTwitter(
-                      bearerToken,
+                      accessToken, accessPassword, appKeyToken, appPassword,
                       widget.god);
                   setState(() => widget.god.connectedToTwitter = true);
                   Navigator.of(context).pop(context);

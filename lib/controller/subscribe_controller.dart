@@ -37,8 +37,8 @@ class SubscribeController {
 
   // }
 
-  static Future subscribeTwitter(String bearerToken, God god) async {
-    return SubscribeModel().subscribeTwitter(bearerToken, god);
+  static Future subscribeTwitter(String accessToken ,String accessPassword, String appKeyToken, String appPassword, God god) async {
+    return SubscribeModel().subscribeTwitter(accessToken, accessPassword, appKeyToken, appPassword, god);
   }
 
   // static void unsubscribeTwitter() => SubscribeModel().unsubscribeTwitter();
