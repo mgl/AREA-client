@@ -1,13 +1,13 @@
 import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:client/views/home/discord_button.dart';
-import 'package:client/views/home/github_button.dart';
-import 'package:client/views/home/gitlab_button.dart';
-import 'package:client/views/home/mail_button.dart';
-import 'package:client/views/home/codebase_button.dart';
-import 'package:client/views/home/twitter_button.dart';
-import 'package:client/views/home/logout_button.dart';
+import 'package:client/views/home_drawer/discord_button.dart';
+import 'package:client/views/home_drawer/github_button.dart';
+import 'package:client/views/home_drawer/gitlab_button.dart';
+import 'package:client/views/home_drawer/mail_button.dart';
+import 'package:client/views/home_drawer/codebase_button.dart';
+import 'package:client/views/home_drawer/twitter_button.dart';
+import 'package:client/views/home_drawer/logout_button.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer({Key? key, required this.god})

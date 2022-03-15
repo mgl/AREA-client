@@ -16,7 +16,7 @@ class _MailButtonState extends State<MailButton> {
     AlertDialog dialog = AlertDialog(
         title: const Text('Mail Connection',
             style: TextStyle(color: Colors.black)),
-        content: const Text('Please enter your username and App password',
+        content: const Text('Please enter your email and app password',
             style: TextStyle(color: Colors.black)),
         actions: [
           if (!widget.god.connectedToGoogle)
@@ -24,7 +24,7 @@ class _MailButtonState extends State<MailButton> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'UserName'),
+                    border: OutlineInputBorder(), labelText: 'Your eMail'),
                 maxLines: 1,
                 maxLength: 100,
                 onChanged: (value) => setState(() => userName = value)),
@@ -44,7 +44,7 @@ class _MailButtonState extends State<MailButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("Done"),
                 onPressed: () async {
-                  SubscribeController.subscribeMail(
+                  SubscribeController.subscribeMail( 
                       userName, appPassword, widget.god);
                   setState(() => widget.god.connectedToGoogle = true);
                   Navigator.of(context).pop(context);

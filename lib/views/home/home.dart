@@ -1,7 +1,7 @@
 import 'package:client/views/home/action_list.dart';
 import 'package:client/controller/setup_controller.dart';
 import 'package:client/views/select_action/select_action_page.dart';
-import 'package:client/views/home/home_drawer.dart';
+import 'package:client/views/home_drawer/home_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import 'package:client/models/action_container.dart';

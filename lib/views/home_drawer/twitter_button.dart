@@ -23,7 +23,6 @@ class _TwitterButtonState extends State<TwitterButton> {
         content: const Text('Please enter your Beerer token',
             style: TextStyle(color: Colors.black)),
         actions: [
-          
           TextField(
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
