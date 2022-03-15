@@ -36,8 +36,8 @@ RUN flutter config --no-analytics && flutter channel stable && flutter upgrade
 
 WORKDIR /app
 COPY . /app
-RUN flutter build web --release
-RUN flutter build apk --release
+RUN flutter build web --web-renderer html --release --dart-define="SERVER_API_URL=http://localhost:8080/"
+RUN flutter build apk --release --dart-define="SERVER_API_URL=http://localhost:8080/"
 
 FROM nginx:mainline-alpine
 COPY --from=builder /app/build/web /usr/share/nginx/html
