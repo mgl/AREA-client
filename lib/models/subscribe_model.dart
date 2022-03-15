@@ -40,7 +40,7 @@ class SubscribeModel {
   }
 
 
-  Future subscribeGoogle(
+  Future subscribeMail(
       String userName, String appPassword, God god) async {
     final url = Uri.parse('$urlPrefix/services/mail/subscribe');
     final header = {"Authorization": "Bearer " + god.globalToken};
@@ -49,7 +49,7 @@ class SubscribeModel {
       "appPassword": appPassword,
     };
     post(url, headers: header, body: body);
-    god.globalContainer.service.add(Service(name: "google", token: ""));
+    god.globalContainer.service.add(Service(name: "mail", token: ""));
   }
 
   void subscribeTwitter(String bearerToken, God god) async {

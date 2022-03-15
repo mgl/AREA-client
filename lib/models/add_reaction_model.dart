@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'dart:core';
 import 'package:uuid/uuid.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
-import 'package:client/models/reactions/reaction_google_calendar_event.dart';
+import 'package:client/models/reactions/reaction_mail.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';
@@ -166,7 +166,7 @@ class AddReactionModel {
       "receiver": receiver
     };
 
-    ReactionGoogleCalendarEvent reaction = ReactionGoogleCalendarEvent();
+    ReactionMail reaction = ReactionMail();
     reaction.id = uuid;
     reaction.content = content;
     reaction.receiver = receiver;
@@ -177,13 +177,13 @@ class AddReactionModel {
         i < god.globalContainer.actionCodebaseMergeRequest.length;
         i++) {
       if (god.globalContainer.actionCodebaseMergeRequest[i].id == actionId) {
-        god.globalContainer.actionCodebaseMergeRequest[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionCodebaseMergeRequest[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionCodebasePush.length; i++) {
       if (god.globalContainer.actionCodebasePush[i].id == actionId) {
-        god.globalContainer.actionCodebasePush[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionCodebasePush[i].reactionMail
             .add(reaction);
       }
     }
@@ -192,7 +192,7 @@ class AddReactionModel {
         i++) {
       if (god.globalContainer.actionCodebaseTicketCreation[i].id == actionId) {
         god.globalContainer.actionCodebaseTicketCreation[i]
-            .reactionGoogleCalendarEvent
+            .reactionMail
             .add(reaction);
       }
     }
@@ -200,7 +200,7 @@ class AddReactionModel {
         i < god.globalContainer.actionCodebaseTicketUpdate.length;
         i++) {
       if (god.globalContainer.actionCodebaseTicketUpdate[i].id == actionId) {
-        god.globalContainer.actionCodebaseTicketUpdate[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionCodebaseTicketUpdate[i].reactionMail
             .add(reaction);
       }
     }
@@ -208,25 +208,25 @@ class AddReactionModel {
         i < god.globalContainer.actionGithubIssueComment.length;
         i++) {
       if (god.globalContainer.actionGithubIssueComment[i].id == actionId) {
-        god.globalContainer.actionGithubIssueComment[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGithubIssueComment[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionGithubIssue.length; i++) {
       if (god.globalContainer.actionGithubIssue[i].id == actionId) {
-        god.globalContainer.actionGithubIssue[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGithubIssue[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionGithubLabel.length; i++) {
       if (god.globalContainer.actionGithubLabel[i].id == actionId) {
-        god.globalContainer.actionGithubLabel[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGithubLabel[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionGithubMilestone.length; i++) {
       if (god.globalContainer.actionGithubMilestone[i].id == actionId) {
-        god.globalContainer.actionGithubMilestone[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGithubMilestone[i].reactionMail
             .add(reaction);
       }
     }
@@ -234,31 +234,31 @@ class AddReactionModel {
         i < god.globalContainer.actionGithubPullRequest.length;
         i++) {
       if (god.globalContainer.actionGithubPullRequest[i].id == actionId) {
-        god.globalContainer.actionGithubPullRequest[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGithubPullRequest[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionGithubPush.length; i++) {
       if (god.globalContainer.actionGithubPush[i].id == actionId) {
-        god.globalContainer.actionGithubPush[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGithubPush[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionGitlabComment.length; i++) {
       if (god.globalContainer.actionGitlabComment[i].id == actionId) {
-        god.globalContainer.actionGitlabComment[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGitlabComment[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionGitlabIssue.length; i++) {
       if (god.globalContainer.actionGitlabIssue[i].id == actionId) {
-        god.globalContainer.actionGitlabIssue[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGitlabIssue[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionGitlabPush.length; i++) {
       if (god.globalContainer.actionGitlabPush[i].id == actionId) {
-        god.globalContainer.actionGitlabPush[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGitlabPush[i].reactionMail
             .add(reaction);
       }
     }
@@ -266,13 +266,13 @@ class AddReactionModel {
         i < god.globalContainer.actionGitlabMergeRequest.length;
         i++) {
       if (god.globalContainer.actionGitlabMergeRequest[i].id == actionId) {
-        god.globalContainer.actionGitlabMergeRequest[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGitlabMergeRequest[i].reactionMail
             .add(reaction);
       }
     }
     for (int i = 0; i < god.globalContainer.actionGitlabWiki.length; i++) {
       if (god.globalContainer.actionGitlabWiki[i].id == actionId) {
-        god.globalContainer.actionGitlabWiki[i].reactionGoogleCalendarEvent
+        god.globalContainer.actionGitlabWiki[i].reactionMail
             .add(reaction);
       }
     }

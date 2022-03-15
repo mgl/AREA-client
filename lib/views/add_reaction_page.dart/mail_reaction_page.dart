@@ -2,8 +2,8 @@ import 'package:client/controller/add_reaction_controller.dart';
 import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 
-class GmailReactionPage extends StatefulWidget {
-  const GmailReactionPage(
+class MailReactionPage extends StatefulWidget {
+  const MailReactionPage(
       {Key? key,
       required this.god,
       required this.id})
@@ -13,17 +13,17 @@ class GmailReactionPage extends StatefulWidget {
   final String id;
 
   @override
-  State<GmailReactionPage> createState() => _GmailReactionPageState();
+  State<MailReactionPage> createState() => _MailReactionPageState();
 }
 
-class _GmailReactionPageState extends State<GmailReactionPage> {
+class _MailReactionPageState extends State<MailReactionPage> {
   String objet = "";
   String toSend = "";
   String message = "";
   void onClick(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Message', style: TextStyle(color: Colors.black)),
-        content: const Text('Gmail', style: TextStyle(color: Colors.black)),
+        content: const Text('Mail', style: TextStyle(color: Colors.black)),
         actions: [
           TextField(
               textInputAction: TextInputAction.next,
@@ -81,7 +81,7 @@ class _GmailReactionPageState extends State<GmailReactionPage> {
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
-      if (widget.god.globalContainer.service[i].name == 'gmail') {
+      if (widget.god.globalContainer.service[i].name == 'Mail') {
         return TextButton(
             onPressed: () => onClick(context),
             child: Row(children: [
@@ -94,7 +94,7 @@ class _GmailReactionPageState extends State<GmailReactionPage> {
                           fit: BoxFit.cover),
                       shape: BoxShape.circle)),
               const SizedBox(width: 20),
-              const Text('Gmail - Message')
+              const Text('Mail - Message')
             ]));
       }
     }

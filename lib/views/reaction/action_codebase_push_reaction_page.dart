@@ -4,7 +4,7 @@ import 'package:client/views/add_reaction_page.dart/add_reaction_page.dart';
 import 'package:client/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:client/models/reactions/reaction_discord_message.dart';
-import 'package:client/models/reactions/reaction_google_calendar_event.dart';
+import 'package:client/models/reactions/reaction_mail.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
@@ -28,7 +28,7 @@ class ActionCodebasePushReactionPage extends StatefulWidget {
 class _ActionCodebasePushReactionPageState
     extends State<ActionCodebasePushReactionPage> {
   List<ReactionDiscordMessage> reactionDiscordMessage = [];
-  List<ReactionGoogleCalendarEvent> reactionGoogleCalendarEvent = [];
+  List<ReactionMail> reactionGoogleCalendarEvent = [];
   List<ReactionTwitterFollowUser> reactionTwitterFollowUser = [];
   List<ReactionTwitterLike> reactionTwitterLike = [];
   List<ReactionTwitterPostTweet> reactionTwitterPostTweet = [];
@@ -42,7 +42,7 @@ class _ActionCodebasePushReactionPageState
         reactionDiscordMessage = widget
             .god.globalContainer.actionCodebasePush[i].reactionDiscordMessage;
         reactionGoogleCalendarEvent = widget.god.globalContainer
-            .actionCodebasePush[i].reactionGoogleCalendarEvent;
+            .actionCodebasePush[i].reactionMail;
         reactionTwitterFollowUser = widget.god.globalContainer
             .actionCodebasePush[i].reactionTwitterFollowUser;
         reactionTwitterFollowUser = widget.god.globalContainer

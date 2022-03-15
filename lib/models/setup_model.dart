@@ -18,7 +18,7 @@ import 'package:client/models/actions/action_gitlab_wiki.dart';
 import 'package:client/models/actions/action_github_push.dart';
 import 'dart:core';
 import 'package:client/models/reactions/reaction_discord_message.dart';
-import 'package:client/models/reactions/reaction_google_calendar_event.dart';
+import 'package:client/models/reactions/reaction_mail.dart';
 import 'package:client/models/reactions/reaction_twitter_follow_user.dart';
 import 'package:client/models/reactions/reaction_twitter_like.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
@@ -223,11 +223,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -289,11 +289,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -355,11 +355,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -421,11 +421,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -487,11 +487,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -553,11 +553,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -619,11 +619,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -685,11 +685,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -751,11 +751,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -817,11 +817,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -883,11 +883,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -949,11 +949,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -1015,11 +1015,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -1081,11 +1081,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":
@@ -1147,11 +1147,11 @@ class SetupModel {
           break;
         case "google_calendar_event":
           {
-            ReactionGoogleCalendarEvent reaction =
-                ReactionGoogleCalendarEvent();
+            ReactionMail reaction =
+                ReactionMail();
             reaction.id = actionData.elementAt(0);
             reaction.token = actionData.elementAt(1);
-            action.reactionGoogleCalendarEvent.add(reaction);
+            action.reactionMail.add(reaction);
           }
           break;
         case "twitter_follow_user":

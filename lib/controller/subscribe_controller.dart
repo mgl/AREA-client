@@ -27,9 +27,9 @@ class SubscribeController {
 
   // static void unsubscribeDiscord() => SubscribeModel().unsubscribeDiscord();
 
-  static Future subscribeGoogle(
+  static Future subscribeMail(
       String username, String appPasword, God god) async {
-    return SubscribeModel().subscribeGoogle(username, appPasword, god);
+    return SubscribeModel().subscribeMail(username, appPasword, god);
   }
 
   // static Future unsubscribeGoogle() async {

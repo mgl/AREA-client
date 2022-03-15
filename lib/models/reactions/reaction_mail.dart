@@ -1,4 +1,4 @@
-class ReactionGoogleCalendarEvent {
+class ReactionMail {
   String id = "";
   String token = "";
   String content = "";

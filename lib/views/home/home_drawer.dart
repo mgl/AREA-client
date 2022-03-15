@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:client/views/home/discord_button.dart';
 import 'package:client/views/home/github_button.dart';
 import 'package:client/views/home/gitlab_button.dart';
-import 'package:client/views/home/google_button.dart';
+import 'package:client/views/home/mail_button.dart';
 import 'package:client/views/home/codebase_button.dart';
 import 'package:client/views/home/twitter_button.dart';
 import 'package:client/views/home/logout_button.dart';
@@ -37,7 +37,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
             backgroundColor: const Color(0xFF33333D)));
     final drawerItems = ListView(children: [
       drawerHeader,
-      GoogleButton(
+      MailButton(
           god: widget.god),
       const SizedBox(height: 10),
       GithubButton(

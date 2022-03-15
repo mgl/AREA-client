@@ -1,5 +1,5 @@
 import 'package:client/views/add_reaction_page.dart/discord_message_reaction_page.dart';
-import 'package:client/views/add_reaction_page.dart/gmail_reaction_page.dart';
+import 'package:client/views/add_reaction_page.dart/mail_reaction_page.dart';
 import 'package:client/views/add_reaction_page.dart/twitter_follow_user_reaction_page.dart';
 import 'package:client/views/add_reaction_page.dart/twitter_like_reaction_page.dart';
 import 'package:client/views/add_reaction_page.dart/twitter_post_reaction_page.dart';
@@ -41,7 +41,7 @@ class _AddReactionPageState extends State<AddReactionPage> {
                 id: widget.id),
             const SizedBox(height: 5),
             const SizedBox(height: 5),
-            GmailReactionPage(
+            MailReactionPage(
                 god: widget.god,
                 id: widget.id),
             const SizedBox(height: 5),
