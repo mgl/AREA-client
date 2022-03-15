@@ -42,7 +42,7 @@ class SubscribeModel {
 
   Future subscribeGoogle(
       String userName, String appPassword, God god) async {
-    final url = Uri.parse('$urlPrefix/services/google/subscribe');
+    final url = Uri.parse('$urlPrefix/services/mail/subscribe');
     final header = {"Authorization": "Bearer " + god.globalToken};
     final body = {
       "username": userName,

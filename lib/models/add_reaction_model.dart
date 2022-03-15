@@ -16,7 +16,7 @@ class AddReactionModel {
   void discordReaction(String actionId, String message, String server,
       String channel, God god) {
     final url =
-        Uri.parse('$urlPrefix/services/discord/reaction/classic_reaction');
+        Uri.parse('$urlPrefix/services/discord/reaction/message');
     final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
