@@ -5,10 +5,9 @@ import 'package:client/controller/add_action_controller.dart';
 
 class ButtonActionCodebaseMergeRequest extends StatefulWidget {
   const ButtonActionCodebaseMergeRequest(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<ButtonActionCodebaseMergeRequest> createState() =>
       _ButtonActionCodebaseMergeRequestState();
@@ -34,7 +33,7 @@ class _ButtonActionCodebaseMergeRequestState
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.codebaseMergueRequest(
-                      widget.globalToken, widget.god);
+                      widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

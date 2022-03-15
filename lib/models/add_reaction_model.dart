@@ -14,10 +14,10 @@ import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 
 class AddReactionModel {
   void discordReaction(String actionId, String message, String server,
-      String channel, String globalToken, God god) {
+      String channel, God god) {
     final url =
         Uri.parse('$urlPrefix/services/discord/reaction/classic_reaction');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "discord") {
@@ -146,10 +146,10 @@ class AddReactionModel {
   }
 
   void mailReaction(String actionId, String object, String content,
-      String receiver, String globalToken, God god) {
+      String receiver, God god) {
     final url =
         Uri.parse('$urlPrefix/services/mail/reaction');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "google") {
@@ -279,10 +279,10 @@ class AddReactionModel {
     post(url, headers: header, body: body);
   }
 
-  void twitterTweetReaction(String actionId, String message, String globalToken, God god) {
+  void twitterTweetReaction(String actionId, String message, God god) {
     final url =
         Uri.parse('$urlPrefix/services/twitter/reaction/tweet');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "twitter") {
@@ -408,10 +408,10 @@ class AddReactionModel {
   }
 
   
-  void twitterFollowReaction(String actionId, String user, String globalToken, God god) {
+  void twitterFollowReaction(String actionId, String user, God god) {
     final url =
         Uri.parse('$urlPrefix/services/twitter/reaction/follow');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "twitter") {
@@ -536,10 +536,10 @@ class AddReactionModel {
     post(url, headers: header, body: body);
   }
 
-  void twitterRetweetReaction(String actionId, String tweetId, String globalToken, God god) {
+  void twitterRetweetReaction(String actionId, String tweetId, God god) {
     final url =
         Uri.parse('$urlPrefix/services/twitter/reaction/retweet');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "twitter") {
@@ -664,10 +664,10 @@ class AddReactionModel {
     post(url, headers: header, body: body);
   }
 
-  void twitterLikeReaction(String actionId, String tweetId, String globalToken, God god) {
+  void twitterLikeReaction(String actionId, String tweetId, God god) {
     final url =
         Uri.parse('$urlPrefix/services/twitter/reaction/like');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "twitter") {

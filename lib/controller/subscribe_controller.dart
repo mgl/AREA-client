@@ -2,37 +2,34 @@ import 'package:client/models/subscribe_model.dart';
 import 'package:client/views/home/home.dart';
 
 class SubscribeController {
-  static Future subscribeGithub(
-      String value, String globalToken, God god) async {
-    return SubscribeModel().subscribeGithub(value, globalToken, god);
+  static Future subscribeGithub(String value, God god) async {
+    return SubscribeModel().subscribeGithub(value, god);
   }
 
   // static void unsubscribeGithub() => SubscribeModel().unsubscribeGithub();
 
   static Future subscribeCodebase(
-      String apiKey, String userName, String globalToken, God god) async {
-    return SubscribeModel().subscribeCodebase(apiKey, userName, globalToken, god);
+      String apiKey, String userName, God god) async {
+    return SubscribeModel().subscribeCodebase(apiKey, userName, god);
   }
 
   // static void unsubscribeCodebase() => SubscribeModel().unsubscribeCodebase();
 
-  static Future subscribeGitlab(
-      String value, String globalToken, God god) async {
-    return SubscribeModel().subscribeGitlab(value, globalToken, god);
+  static Future subscribeGitlab(String value, God god) async {
+    return SubscribeModel().subscribeGitlab(value, god);
   }
 
   // static void unsubscribeGitlab() => SubscribeModel().unsubscribeGitlab();
 
-  static Future subscribeDiscord(
-     String globalToken, God god) async {
-    return SubscribeModel().subscribeDiscord(globalToken, god);
+  static Future subscribeDiscord(God god) async {
+    return SubscribeModel().subscribeDiscord(god);
   }
 
   // static void unsubscribeDiscord() => SubscribeModel().unsubscribeDiscord();
 
   static Future subscribeGoogle(
-      String username, String appPasword, String globalToken, God god) async {
-    return SubscribeModel().subscribeGoogle(username, appPasword, globalToken, god);
+      String username, String appPasword, God god) async {
+    return SubscribeModel().subscribeGoogle(username, appPasword, god);
   }
 
   // static Future unsubscribeGoogle() async {
@@ -40,12 +37,8 @@ class SubscribeController {
 
   // }
 
-  static Future subscribeTwitter(
-      String bearerToken,
-      String globalToken,
-      God god) async {
-    return SubscribeModel().subscribeTwitter(
-        bearerToken, globalToken, god);
+  static Future subscribeTwitter(String bearerToken, God god) async {
+    return SubscribeModel().subscribeTwitter(bearerToken, god);
   }
 
   // static void unsubscribeTwitter() => SubscribeModel().unsubscribeTwitter();

@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 class TwitterRetweetReactionPage extends StatefulWidget {
   const TwitterRetweetReactionPage(
       {Key? key,
-      required this.globalToken,
       required this.god,
       required this.id})
       : super(key: key);
 
   final God god;
-  final String globalToken;
   final String id;
 
   @override
@@ -44,7 +42,7 @@ class _TwitterRetweetReactionPageState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 onPressed: () {
                   AddReactionController.reactionTwitterRetweet(
-                      widget.id, postID, widget.god, widget.globalToken);
+                      widget.id, postID, widget.god);
                   Navigator.of(context).pop('Done');
                 },
                 child: const Text('Done')),

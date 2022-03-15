@@ -6,11 +6,9 @@ import 'package:client/views/home/home.dart';
 class GoogleButton extends StatefulWidget {
   const GoogleButton(
       {Key? key,
-      required this.globalToken,
       required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<GoogleButton> createState() => _GoogleButtonState();
 }
@@ -51,7 +49,7 @@ class _GoogleButtonState extends State<GoogleButton> {
                 child: const Text("Done"),
                 onPressed: () async {
                   SubscribeController.subscribeGoogle(
-                      userName, appPassword, widget.globalToken, widget.god);
+                      userName, appPassword, widget.god);
                   setState(() => widget.god.connectedToGoogle = true);
                   Navigator.of(context).pop(context);
                 })

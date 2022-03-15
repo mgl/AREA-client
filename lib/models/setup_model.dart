@@ -24,17 +24,12 @@ import 'package:client/models/reactions/reaction_twitter_like.dart';
 import 'package:client/models/reactions/reaction_twitter_post_tweet.dart';
 import 'package:client/models/reactions/reaction_twitter_retwet.dart';
 import 'package:client/views/home/home.dart';
-import 'package:flutter/material.dart';
 
 class SetupModel {
-  void getServices(String globalToken, God god) async {
+  void getServices(God god) async {
     final url = Uri.parse('$urlPrefix/service_list');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     final response = await get(url, headers: header);
-    // final SnackBar snackBar = SnackBar(
-    // content: Text(
-    // "getServices: " + response.statusCode.toString() + response.body));
-    // snackbarKey.currentState?.showSnackBar(snackBar);
     var splitted = [];
     if (response.body.length > 2) splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
@@ -46,14 +41,10 @@ class SetupModel {
     }
   }
 
-  void getActions(String globalToken, God god) async {
+  void getActions(God god) async {
     final url = Uri.parse('$urlPrefix/action_list');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text(
-            "getActions: " + response.statusCode.toString() + response.body));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -64,7 +55,7 @@ class SetupModel {
               ActionCodebaseMergeRequest action = ActionCodebaseMergeRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseMergeRequest(action.id, action, globalToken);
+              getReactionCodeBaseMergeRequest(action.id, action, god);
               god.globalContainer.actionCodebaseMergeRequest.add(action);
             }
             break;
@@ -73,7 +64,7 @@ class SetupModel {
               ActionCodebasePush action = ActionCodebasePush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodebasePush(action.id, action, globalToken);
+              getReactionCodebasePush(action.id, action, god);
               god.globalContainer.actionCodebasePush.add(action);
             }
             break;
@@ -83,7 +74,7 @@ class SetupModel {
                   ActionCodebaseTicketCreation();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseTicketCreation(action.id, action, globalToken);
+              getReactionCodeBaseTicketCreation(action.id, action, god);
               god.globalContainer.actionCodebaseTicketCreation.add(action);
             }
             break;
@@ -92,7 +83,7 @@ class SetupModel {
               ActionCodebaseTicketUpdate action = ActionCodebaseTicketUpdate();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionCodeBaseTicketUpdate(action.id, action, globalToken);
+              getReactionCodeBaseTicketUpdate(action.id, action, god);
               god.globalContainer.actionCodebaseTicketUpdate.add(action);
             }
             break;
@@ -101,7 +92,7 @@ class SetupModel {
               ActionGithubIssueComment action = ActionGithubIssueComment();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssueComment(action.id, action, globalToken);
+              getReactionGithubIssueComment(action.id, action, god);
               god.globalContainer.actionGithubIssueComment.add(action);
             }
             break;
@@ -110,7 +101,7 @@ class SetupModel {
               ActionGithubIssue action = ActionGithubIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssue(action.id, action, globalToken);
+              getReactionGithubIssue(action.id, action, god);
               god.globalContainer.actionGithubIssue.add(action);
             }
             break;
@@ -119,7 +110,7 @@ class SetupModel {
               ActionGithubLabel action = ActionGithubLabel();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubLabel(action.id, action, globalToken);
+              getReactionGithubLabel(action.id, action, god);
               god.globalContainer.actionGithubLabel.add(action);
             }
             break;
@@ -128,7 +119,7 @@ class SetupModel {
               ActionGithubMilestone action = ActionGithubMilestone();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubMilestone(action.id, action, globalToken);
+              getReactionGithubMilestone(action.id, action, god);
               god.globalContainer.actionGithubMilestone.add(action);
             }
             break;
@@ -137,7 +128,7 @@ class SetupModel {
               ActionGithubPullRequest action = ActionGithubPullRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubPullRequest(action.id, action, globalToken);
+              getReactionGithubPullRequest(action.id, action, god);
               god.globalContainer.actionGithubPullRequest.add(action);
             }
             break;
@@ -146,7 +137,7 @@ class SetupModel {
               ActionGithubPush action = ActionGithubPush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubPush(action.id, action, globalToken);
+              getReactionGithubPush(action.id, action, god);
               god.globalContainer.actionGithubPush.add(action);
             }
             break;
@@ -155,7 +146,7 @@ class SetupModel {
               ActionGithubIssue action = ActionGithubIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGithubIssue(action.id, action, globalToken);
+              getReactionGithubIssue(action.id, action, god);
               god.globalContainer.actionGithubIssue.add(action);
             }
             break;
@@ -164,7 +155,7 @@ class SetupModel {
               ActionGitlabComment action = ActionGitlabComment();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabComment(action.id, action, globalToken);
+              getReactionGitlabComment(action.id, action, god);
               god.globalContainer.actionGitlabComment.add(action);
             }
             break;
@@ -173,7 +164,7 @@ class SetupModel {
               ActionGitlabIssue action = ActionGitlabIssue();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabIssue(action.id, action, globalToken);
+              getReactionGitlabIssue(action.id, action, god);
               god.globalContainer.actionGitlabIssue.add(action);
             }
             break;
@@ -182,7 +173,7 @@ class SetupModel {
               ActionGitlabMergeRequest action = ActionGitlabMergeRequest();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabMergeRequest(action.id, action, globalToken);
+              getReactionGitlabMergeRequest(action.id, action, god);
               god.globalContainer.actionGitlabMergeRequest.add(action);
             }
             break;
@@ -191,7 +182,7 @@ class SetupModel {
               ActionGitlabPush action = ActionGitlabPush();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabPush(action.id, action, globalToken);
+              getReactionGitlabPush(action.id, action, god);
               god.globalContainer.actionGitlabPush.add(action);
             }
             break;
@@ -200,7 +191,7 @@ class SetupModel {
               ActionGitlabWiki action = ActionGitlabWiki();
               action.id = actionData.elementAt(0);
               action.token = actionData.elementAt(1);
-              getReactionGitlabWiki(action.id, action, globalToken);
+              getReactionGitlabWiki(action.id, action, god);
               god.globalContainer.actionGitlabWiki.add(action);
             }
             break;
@@ -214,14 +205,10 @@ class SetupModel {
   }
 
   void getReactionCodeBaseMergeRequest(
-      String id, ActionCodebaseMergeRequest action, String globalToken) async {
+      String id, ActionCodebaseMergeRequest action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text("getReactionCodeBaseMergeRequest: " +
-            response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -284,14 +271,10 @@ class SetupModel {
   }
 
   void getReactionCodebasePush(
-      String id, ActionCodebasePush action, String globalToken) async {
+      String id, ActionCodebasePush action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content:
-            Text("getReactionCodebasePush: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -354,14 +337,10 @@ class SetupModel {
   }
 
   void getReactionCodeBaseTicketCreation(String id,
-      ActionCodebaseTicketCreation action, String globalToken) async {
+      ActionCodebaseTicketCreation action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text("getReactionCodeBaseTicketCreation: " +
-            response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -424,14 +403,10 @@ class SetupModel {
   }
 
   void getReactionCodeBaseTicketUpdate(
-      String id, ActionCodebaseTicketUpdate action, String globalToken) async {
+      String id, ActionCodebaseTicketUpdate action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text("getReactionCodeBaseTicketUpdate: " +
-            response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -494,14 +469,10 @@ class SetupModel {
   }
 
   void getReactionGithubIssueComment(
-      String id, ActionGithubIssueComment action, String globalToken) async {
+      String id, ActionGithubIssueComment action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text("getReactionGithubIssueComment: " +
-            response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -564,14 +535,10 @@ class SetupModel {
   }
 
   void getReactionGithubIssue(
-      String id, ActionGithubIssue action, String globalToken) async {
+      String id, ActionGithubIssue action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content:
-            Text("getReactionGithubIssue: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -634,14 +601,10 @@ class SetupModel {
   }
 
   void getReactionGithubLabel(
-      String id, ActionGithubLabel action, String globalToken) async {
+      String id, ActionGithubLabel action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content:
-            Text("getReactionGithubLabe: l" + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -704,14 +667,10 @@ class SetupModel {
   }
 
   void getReactionGithubMilestone(
-      String id, ActionGithubMilestone action, String globalToken) async {
+      String id, ActionGithubMilestone action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text(
-            "getReactionGithubMilestone: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -774,14 +733,10 @@ class SetupModel {
   }
 
   void getReactionGithubPullRequest(
-      String id, ActionGithubPullRequest action, String globalToken) async {
+      String id, ActionGithubPullRequest action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text(
-            "getReactionGithubPullRequest: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -844,14 +799,10 @@ class SetupModel {
   }
 
   void getReactionGithubPush(
-      String id, ActionGithubPush action, String globalToken) async {
+      String id, ActionGithubPush action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content:
-            Text("getReactionGithubPush: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -914,14 +865,10 @@ class SetupModel {
   }
 
   void getReactionGitlabComment(
-      String id, ActionGitlabComment action, String globalToken) async {
+      String id, ActionGitlabComment action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text(
-            "getReactionGitlabComment: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -984,14 +931,10 @@ class SetupModel {
   }
 
   void getReactionGitlabIssue(
-      String id, ActionGitlabIssue action, String globalToken) async {
+      String id, ActionGitlabIssue action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content:
-            Text("getReactionGitlabIssue: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -1054,14 +997,10 @@ class SetupModel {
   }
 
   void getReactionGitlabMergeRequest(
-      String id, ActionGitlabMergeRequest action, String globalToken) async {
+      String id, ActionGitlabMergeRequest action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content: Text("getReactionGitlabMergeRequest: " +
-            response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -1124,14 +1063,10 @@ class SetupModel {
   }
 
   void getReactionGitlabPush(
-      String id, ActionGitlabPush action, String globalToken) async {
+      String id, ActionGitlabPush action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content:
-            Text("getReactionGitlabPush: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
@@ -1194,14 +1129,10 @@ class SetupModel {
   }
 
   void getReactionGitlabWiki(
-      String id, ActionGitlabWiki action, String globalToken) async {
+      String id, ActionGitlabWiki action, God god) async {
     final url = Uri.parse('$urlPrefix/reaction_list');
-    final header = {"Authorization": "Bearer " + globalToken, "id": id};
+    final header = {"Authorization": "Bearer " + god.globalToken, "id": id};
     final response = await get(url, headers: header);
-    final SnackBar snackBar = SnackBar(
-        content:
-            Text("getReactionGitlabWiki: " + response.statusCode.toString()));
-    snackbarKey.currentState?.showSnackBar(snackBar);
     final splitted = response.body.split(';');
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');

@@ -6,10 +6,9 @@ import 'package:client/models/globals.dart';
 
 class ButtonActionCodebaseTicketUpdate extends StatefulWidget {
   const ButtonActionCodebaseTicketUpdate(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<ButtonActionCodebaseTicketUpdate> createState() =>
       _ButtonActionCodebaseTicketUpdateState();
@@ -35,7 +34,7 @@ class _ButtonActionCodebaseTicketUpdateState
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.codebaseTicketUpdate(
-                      widget.globalToken, widget.god);
+                      widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

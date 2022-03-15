@@ -6,10 +6,9 @@ import 'package:client/controller/add_action_controller.dart';
 
 class ButtonActionCodebasePush extends StatefulWidget {
   const ButtonActionCodebasePush(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<ButtonActionCodebasePush> createState() =>
       _ButtonActionCodebasePushState();
@@ -34,7 +33,7 @@ class _ButtonActionCodebasePushState extends State<ButtonActionCodebasePush> {
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.codebasePush(
-                      widget.globalToken, widget.god);
+                    widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

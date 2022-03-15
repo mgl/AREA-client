@@ -3,9 +3,8 @@ import 'package:client/controller/subscribe_controller.dart';
 import 'package:client/views/home/home.dart';
 
 class CodebaseButton extends StatefulWidget {
-  const CodebaseButton({Key? key, required this.god, required this.globalToken})
+  const CodebaseButton({Key? key, required this.god})
       : super(key: key);
-  final String globalToken;
   final God god;
   @override
   State<CodebaseButton> createState() => _CodebaseButtonState();
@@ -47,7 +46,7 @@ class _CodebaseButtonState extends State<CodebaseButton> {
                 child: const Text("Done"),
                 onPressed: () {
                   SubscribeController.subscribeCodebase(
-                      username, apiKey, widget.globalToken, widget.god);
+                      username, apiKey, widget.god);
                   setState(() => widget.god.connectedToCodebase = true);
                   Navigator.of(context).pop('OK');
                 })

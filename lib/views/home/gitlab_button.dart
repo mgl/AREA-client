@@ -3,10 +3,9 @@ import 'package:client/controller/subscribe_controller.dart';
 import 'package:client/views/home/home.dart';
 
 class GitlabButton extends StatefulWidget {
-  const GitlabButton({Key? key, required this.globalToken, required this.god})
+  const GitlabButton({Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
 
   @override
   State<GitlabButton> createState() => _GitlabButtonState();
@@ -39,7 +38,7 @@ class _GitlabButtonState extends State<GitlabButton> {
                 child: const Text("Done"),
                 onPressed: () async {
                   SubscribeController.subscribeGitlab(
-                      answer, widget.globalToken, widget.god);
+                      answer, widget.god);
                   setState(() => widget.god.connectedToGitlab = true);
                   Navigator.of(context).pop('OK');
                 })

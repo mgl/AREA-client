@@ -4,10 +4,9 @@ import 'package:client/views/home/home.dart';
 
 class ButtonActionGitlabPush extends StatefulWidget {
   const ButtonActionGitlabPush(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
 
   @override
   State<ButtonActionGitlabPush> createState() => _ButtonActionGitlabPushState();
@@ -37,7 +36,7 @@ class _ButtonActionGitlabPushState extends State<ButtonActionGitlabPush> {
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.gitlabPush(
-                      repoId, widget.god, widget.globalToken);
+                      repoId, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

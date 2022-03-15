@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 class GmailReactionPage extends StatefulWidget {
   const GmailReactionPage(
       {Key? key,
-      required this.globalToken,
       required this.god,
       required this.id})
       : super(key: key);
 
   final God god;
-  final String globalToken;
   final String id;
 
   @override
@@ -71,7 +69,7 @@ class _GmailReactionPageState extends State<GmailReactionPage> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 onPressed: () {
                   AddReactionController.reactionMail(widget.id, objet, message,
-                      toSend, widget.god, widget.globalToken);
+                      toSend, widget.god);
                   Navigator.of(context).pop('Done');
                 },
                 child: const Text('Done')),

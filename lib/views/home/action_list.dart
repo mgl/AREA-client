@@ -18,10 +18,9 @@ import 'package:client/views/reaction/action_gitlab_wiki_reaction_page.dart';
 import 'package:flutter/material.dart';
 
 class ActionList extends StatefulWidget {
-  const ActionList({Key? key, required this.god, required this.globalToken})
+  const ActionList({Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<ActionList> createState() => _ActionListState();
 }
@@ -89,7 +88,6 @@ class _ActionListState extends State<ActionList> {
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
                         ActionCodebasePushReactionPage(
-                            globalToken: widget.globalToken,
                             id: widget
                                 .god.globalContainer.actionCodebasePush[i].id,
                             god: widget.god))),

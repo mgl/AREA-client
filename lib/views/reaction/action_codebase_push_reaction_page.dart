@@ -14,13 +14,11 @@ class ActionCodebasePushReactionPage extends StatefulWidget {
   const ActionCodebasePushReactionPage(
       {Key? key,
       required this.id,
-      required this.god,
-      required this.globalToken})
+      required this.god,})
       : super(key: key);
 
   final String id;
   final God god;
-  final String globalToken;
 
   @override
   State<ActionCodebasePushReactionPage> createState() =>
@@ -66,7 +64,7 @@ class _ActionCodebasePushReactionPageState
   void navigateToAddReaction() {
     Route route = MaterialPageRoute(
         builder: (context) => AddReactionPage(
-            id: widget.id, god: widget.god, globalToken: widget.globalToken));
+            id: widget.id, god: widget.god));
     Navigator.push(context, route).then(onGoBack);
   }
 

@@ -5,12 +5,11 @@ class SetupController {
   static void setupArea(
     String tokenJWT,
     God god,
-    String globalToken,
   ) {
     if (tokenJWT == "") return;
     god.setuped = true;
-    globalToken = tokenJWT;
-    SetupModel().getServices(globalToken, god);
-    SetupModel().getActions(globalToken, god);
+    god.globalToken = tokenJWT;
+    SetupModel().getServices(god);
+    SetupModel().getActions(god);
   }
 }

@@ -4,10 +4,9 @@ import 'package:client/views/home/home.dart';
 
 class ButtonActionGitlabComment extends StatefulWidget {
   const ButtonActionGitlabComment(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<ButtonActionGitlabComment> createState() =>
       _ButtonActionGitlabCommentState();
@@ -37,7 +36,7 @@ class _ButtonActionGitlabCommentState extends State<ButtonActionGitlabComment> {
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.gitlabComment(
-                      repoId, widget.god, widget.globalToken);
+                      repoId, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

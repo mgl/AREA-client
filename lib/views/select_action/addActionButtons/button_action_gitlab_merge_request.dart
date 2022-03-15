@@ -5,10 +5,9 @@ import 'package:client/views/home/home.dart';
 
 class ButtonActionGitlabMergeRequest extends StatefulWidget {
   const ButtonActionGitlabMergeRequest(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
 
   @override
   State<ButtonActionGitlabMergeRequest> createState() =>
@@ -41,7 +40,7 @@ class _ButtonActionGitlabMergeRequestState
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.gitlabMergeRequest(
-                      repoId, widget.god, widget.globalToken);
+                      repoId, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

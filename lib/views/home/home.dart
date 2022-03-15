@@ -24,11 +24,11 @@ class God {
   bool connectedToGoogle = false;
   bool connectedToTwitter = false;
   GlobalContainer globalContainer = GlobalContainer();
+  String globalToken = "";
 }
 
 class _HomePageState extends State<HomePage> {
   Timer? timer;
-  String globalToken = "";
 
   God god = God();
 
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       try {
         String? token = await FirebaseAuth.instance.currentUser?.getIdToken();
         SetupController.setupArea(
-            (token != null) ? token : "", god, globalToken);
+            (token != null) ? token : "", god);
       } catch (e) {
         return;
       }
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
   void navigateToSelectAction() {
     Route route = MaterialPageRoute(
         builder: (context) =>
-            SelectActionPage(god: god, globalToken: globalToken));
+            SelectActionPage(god: god));
     Navigator.push(context, route).then(onGoBack);
   }
 
@@ -97,8 +97,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(50.0),
                 child: ActionList(
                   god: god,
-                  globalToken: globalToken,
                 ))),
-        drawer: Drawer(child: HomeDrawer(god: god, globalToken: globalToken)));
+        drawer: Drawer(child: HomeDrawer(god: god)));
   }
 }

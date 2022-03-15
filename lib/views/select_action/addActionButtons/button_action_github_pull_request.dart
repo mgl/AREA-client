@@ -4,10 +4,9 @@ import 'package:client/views/home/home.dart';
 
 class ButtonActionGithubPullRequest extends StatefulWidget {
   const ButtonActionGithubPullRequest(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
 
   @override
   State<ButtonActionGithubPullRequest> createState() =>
@@ -49,7 +48,7 @@ class _ButtonActionGithubPullRequestState
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.githubPullRequest(
-                      repo, owner, widget.globalToken, widget.god);
+                      repo, owner, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

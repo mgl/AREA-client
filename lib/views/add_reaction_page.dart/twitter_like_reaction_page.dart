@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 class TwitterLikeReactionReactionPage extends StatefulWidget {
   const TwitterLikeReactionReactionPage(
       {Key? key,
-      required this.globalToken,
       required this.god,
       required this.id})
       : super(key: key);
 
   final God god;
-  final String globalToken;
   final String id;
 
   @override
@@ -44,7 +42,7 @@ class _TwitterLikeReactionReactionPageState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 onPressed: () {
                   AddReactionController.reactionTwitterLike(
-                      widget.id, postID, widget.god, widget.globalToken);
+                      widget.id, postID, widget.god);
                   Navigator.of(context).pop('Done');
                 },
                 child: const Text('Done')),

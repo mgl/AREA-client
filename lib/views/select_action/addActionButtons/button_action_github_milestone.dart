@@ -4,10 +4,9 @@ import 'package:client/views/home/home.dart';
 
 class ButtonActionGithubMilestone extends StatefulWidget {
   const ButtonActionGithubMilestone(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
 
   @override
   State<ButtonActionGithubMilestone> createState() =>
@@ -48,7 +47,7 @@ class _ButtonActionGithubMilestoneState
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.githubMilestone(
-                      repo, owner, widget.globalToken, widget.god);
+                      repo, owner, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

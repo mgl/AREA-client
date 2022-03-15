@@ -3,10 +3,9 @@ import 'package:client/controller/subscribe_controller.dart';
 import 'package:client/views/home/home.dart';
 
 class DiscordButton extends StatefulWidget {
-  const DiscordButton({Key? key, required this.god, required this.globalToken})
+  const DiscordButton({Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<DiscordButton> createState() => _DiscordButtonState();
 }
@@ -30,7 +29,7 @@ class _DiscordButtonState extends State<DiscordButton> {
                 child: const Text("Invite Discord Bot"),
                 onPressed: () {
                   SubscribeController.subscribeDiscord(
-                      widget.globalToken, widget.god);
+                      widget.god);
                   // invit the bot
                   setState(() => widget.god.connectedToDiscord = true);
                   Navigator.of(context).pop('OK');

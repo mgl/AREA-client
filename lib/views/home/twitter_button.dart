@@ -6,11 +6,9 @@ import 'package:client/views/home/home.dart';
 class TwitterButton extends StatefulWidget {
   const TwitterButton(
       {Key? key,
-      required this.globalToken,
       required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<TwitterButton> createState() => _TwitterButtonState();
 }
@@ -43,7 +41,6 @@ class _TwitterButtonState extends State<TwitterButton> {
                 onPressed: () async {
                    SubscribeController.subscribeTwitter(
                       bearerToken,
-                      widget.globalToken,
                       widget.god);
                   setState(() => widget.god.connectedToTwitter = true);
                   Navigator.of(context).pop(context);

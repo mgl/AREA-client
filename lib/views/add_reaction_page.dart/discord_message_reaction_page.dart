@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 class DiscordMessageReactionPage extends StatefulWidget {
   const DiscordMessageReactionPage(
       {Key? key,
-      required this.globalToken,
       required this.god,
       required this.id})
       : super(key: key);
 
   final God god;
-  final String globalToken;
   final String id;
 
   @override
@@ -69,7 +67,7 @@ class _DiscordMessageReactionPageState
                         MaterialStateProperty.all(Colors.deepPurple)),
                 onPressed: () {
                   AddReactionController.reactionDiscord(widget.id, message,
-                      server, channel, widget.god, widget.globalToken);
+                      server, channel, widget.god);
                   Navigator.of(context).pop('Done');
                 },
                 child: const Text('Done')),

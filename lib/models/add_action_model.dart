@@ -21,9 +21,9 @@ import 'package:client/models/actions/action_codebase_push.dart';
 
 class AddActionModel {
   void githubCreateIssuesActionCreate(
-      String repoID, String owner, String globalToken, God god) {
+      String repoID, String owner, God god) {
     final url = Uri.parse('$urlPrefix/services/github/action/issues');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "github") {
@@ -47,9 +47,9 @@ class AddActionModel {
   }
 
   void githubCreateIssueCommentActionCreate(
-      String repoID, String owner, String globalToken, God god) {
+      String repoID, String owner, God god) {
     final url = Uri.parse('$urlPrefix/services/github/action/issue_comment');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "github") {
@@ -73,9 +73,9 @@ class AddActionModel {
   }
 
   void githubCreateLabelActionCreate(
-      String repoID, String owner, String globalToken, God god) {
+      String repoID, String owner, God god) {
     final url = Uri.parse('$urlPrefix/services/github/action/label');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "github") {
@@ -99,9 +99,9 @@ class AddActionModel {
   }
 
   void githubCreateMilestoneActionCreate(
-      String repoID, String owner, String globalToken, God god) {
+      String repoID, String owner, God god) {
     final url = Uri.parse('$urlPrefix/services/github/action/milestone');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "github") {
@@ -125,9 +125,9 @@ class AddActionModel {
   }
 
   void githubCreatePullRequestActionCreate(
-      String repoID, String owner, String globalToken, God god) {
+      String repoID, String owner, God god) {
     final url = Uri.parse('$urlPrefix/services/github/action/pull_request');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "github") {
@@ -151,9 +151,9 @@ class AddActionModel {
   }
 
   void githubCreatePushActionCreate(
-      String repoID, String owner, String globalToken, God god) {
+      String repoID, String owner, God god) {
     final url = Uri.parse('$urlPrefix/services/github/action/push');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "github") {
@@ -176,9 +176,9 @@ class AddActionModel {
     post(url, headers: header, body: body);
   }
 
-  void gitlabWikiActionCreate(String repoID, String globalToken, God god) {
+  void gitlabWikiActionCreate(String repoID, God god) {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/wiki_page_events');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
 
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
@@ -201,10 +201,10 @@ class AddActionModel {
   }
 
   void gitlabMergeRequestActionCreate(
-      String repoID, String globalToken, God god) {
+      String repoID, God god) {
     final url =
         Uri.parse('$urlPrefix/services/gitlab/action/merge_requests_events');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "gitlab") {
@@ -226,9 +226,9 @@ class AddActionModel {
     post(url, headers: header, body: body);
   }
 
-  void gitlabIssuesActionCreate(String repoID, String globalToken, God god) {
-    final url = Uri.parse('$urlPrefix/services/gitlab/action/push');
-    final header = {"Authorization": "Bearer " + globalToken};
+  void gitlabIssuesActionCreate(String repoID, God god) {
+    final url = Uri.parse('$urlPrefix/services/gitlab/action/issue');
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "gitlab") {
@@ -249,9 +249,9 @@ class AddActionModel {
     post(url, headers: header, body: body);
   }
 
-  void gitlabCommentActionCreate(String repoID, String globalToken, God god) {
+  void gitlabCommentActionCreate(String repoID, God god) {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "gitlab") {
@@ -272,9 +272,9 @@ class AddActionModel {
     post(url, headers: header, body: body);
   }
 
-  void gitlabPushActionCreate(String repoID, String globalToken, God god) {
+  void gitlabPushActionCreate(String repoID, God god) {
     final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "gitlab") {
@@ -295,10 +295,10 @@ class AddActionModel {
     post(url, headers: header, body: body);
   }
 
-  void codebaseMergeRequestActionCreate(String globalToken, God god) {
+  void codebaseMergeRequestActionCreate(God god) {
     final url =
         Uri.parse('$urlPrefix/services/codebase/action/codebase_merge_request');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
 
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
@@ -314,9 +314,9 @@ class AddActionModel {
     post(url, headers: header);
   }
 
-  void codebasePushActionCreate(String globalToken, God god) {
+  void codebasePushActionCreate(God god) {
     final url = Uri.parse('$urlPrefix/services/codebase/action/codebase_push');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
 
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
@@ -332,10 +332,10 @@ class AddActionModel {
     post(url, headers: header);
   }
 
-  void codebaseTicketCreationActionCreate(String globalToken, God god) {
+  void codebaseTicketCreationActionCreate(God god) {
     final url = Uri.parse(
         '$urlPrefix/services/codebase/action/codebase_ticket_creation');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
       if (god.globalContainer.service[i].name == "codebase") {
@@ -350,10 +350,10 @@ class AddActionModel {
     post(url, headers: header);
   }
 
-  void codebaseTicketUpdateActionCreate(String globalToken, God god) {
+  void codebaseTicketUpdateActionCreate(God god) {
     final url =
         Uri.parse('$urlPrefix/services/codebase/action/codebase_ticket_update');
-    final header = {"Authorization": "Bearer " + globalToken};
+    final header = {"Authorization": "Bearer " + god.globalToken};
 
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {

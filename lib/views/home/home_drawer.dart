@@ -10,10 +10,9 @@ import 'package:client/views/home/twitter_button.dart';
 import 'package:client/views/home/logout_button.dart';
 
 class HomeDrawer extends StatefulWidget {
-  const HomeDrawer({Key? key, required this.god, required this.globalToken})
+  const HomeDrawer({Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
   @override
   State<HomeDrawer> createState() => _HomeDrawerState();
 }
@@ -39,28 +38,22 @@ class _HomeDrawerState extends State<HomeDrawer> {
     final drawerItems = ListView(children: [
       drawerHeader,
       GoogleButton(
-          globalToken: widget.globalToken,
           god: widget.god),
       const SizedBox(height: 10),
       GithubButton(
-          globalToken: widget.globalToken,
           god: widget.god),
       const SizedBox(height: 10),
       GitlabButton(
-          globalToken: widget.globalToken,
           god: widget.god),
       const SizedBox(height: 10),
       TwitterButton(
           god: widget.god,
-          globalToken: widget.globalToken
           ),
       const SizedBox(height: 10),
       DiscordButton(
-          globalToken: widget.globalToken,
           god: widget.god),
       const SizedBox(height: 10),
       CodebaseButton(
-          globalToken: widget.globalToken,
           god: widget.god),
       const SizedBox(height: 10),
       const LogOutButton()

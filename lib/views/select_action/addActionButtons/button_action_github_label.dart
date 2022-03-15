@@ -5,10 +5,9 @@ import 'package:client/views/home/home.dart';
 
 class ButtonActionGithubLabel extends StatefulWidget {
   const ButtonActionGithubLabel(
-      {Key? key, required this.god, required this.globalToken})
+      {Key? key, required this.god})
       : super(key: key);
   final God god;
-  final String globalToken;
 
   @override
   State<ButtonActionGithubLabel> createState() =>
@@ -52,7 +51,7 @@ class _ButtonActionGithubLabelState extends State<ButtonActionGithubLabel> {
                 child: const Text("Done"),
                 onPressed: () {
                   AddActionController.githubLabel(
-                      repo, owner, widget.globalToken, widget.god);
+                      repo, owner, widget.god);
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
