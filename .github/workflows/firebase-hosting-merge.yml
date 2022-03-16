@@ -17,16 +17,19 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter build web --web-renderer html --release --dart-define="SERVER_API_URL=https://europe-west1-area-37a17.cloudfunctions.net/api/"
+        working-directory: ./clt
       - run: flutter build apk --release --dart-define="SERVER_API_URL=https://europe-west1-area-37a17.cloudfunctions.net/api/"
+        working-directory: ./clt
       - run: mv build/app/outputs/flutter-apk/app-release.apk build/web/client.apk
+        working-directory: ./clt
       - uses: actions/upload-artifact@master
         with:
           name: web
-          path: build/web
+          path: clt/build/web
       - uses: actions/upload-artifact@master
         with:
           name: client.apk
-          path: build/web/client.apk
+          path: clt/build/web/client.apk
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
