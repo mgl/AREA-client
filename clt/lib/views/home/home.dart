@@ -21,7 +21,7 @@ class God {
   bool connectedToGithub = false;
   bool connectedToCodebase = false;
   bool connectedToDiscord = false;
-  bool connectedToGoogle = false;
+  bool connectedToMail = false;
   bool connectedToTwitter = false;
   GlobalContainer globalContainer = GlobalContainer();
   String globalToken = "";

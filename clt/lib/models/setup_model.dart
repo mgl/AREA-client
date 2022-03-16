@@ -213,7 +213,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -221,7 +221,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -229,7 +229,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -245,7 +245,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -253,7 +253,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -278,7 +278,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -286,7 +286,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -294,7 +294,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -310,7 +310,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -318,7 +318,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -343,7 +343,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -351,7 +351,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -359,7 +359,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -375,7 +375,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -383,7 +383,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -408,7 +408,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -416,7 +416,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -424,7 +424,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -440,7 +440,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -448,7 +448,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -473,7 +473,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -481,7 +481,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -489,7 +489,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -505,7 +505,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -513,7 +513,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -538,7 +538,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -546,7 +546,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -554,7 +554,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -570,7 +570,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -578,7 +578,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -603,7 +603,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -611,7 +611,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -619,7 +619,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -635,7 +635,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -643,7 +643,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -668,7 +668,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -676,7 +676,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -684,7 +684,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -700,7 +700,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -708,7 +708,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -733,7 +733,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -741,7 +741,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -749,7 +749,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -765,7 +765,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -773,7 +773,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -798,7 +798,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -806,7 +806,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -814,7 +814,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -830,7 +830,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -838,7 +838,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -863,7 +863,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -871,7 +871,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -879,7 +879,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -895,7 +895,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -903,7 +903,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -928,7 +928,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -936,7 +936,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -944,7 +944,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -960,7 +960,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -968,7 +968,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -993,7 +993,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -1001,7 +1001,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -1009,7 +1009,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -1025,7 +1025,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -1033,7 +1033,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -1058,7 +1058,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -1066,7 +1066,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -1074,7 +1074,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -1090,7 +1090,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -1098,7 +1098,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);
@@ -1123,7 +1123,7 @@ class SetupModel {
     while (splitted.isNotEmpty) {
       final actionData = splitted.first.split('=');
       switch (actionData.elementAt(2)) {
-        case "discord_message":
+        case "discord_classic_reaction":
           {
             ReactionDiscordMessage reaction = ReactionDiscordMessage();
             reaction.id = actionData.elementAt(0);
@@ -1131,7 +1131,7 @@ class SetupModel {
             action.reactionDiscordMessage.add(reaction);
           }
           break;
-        case "google_calendar_event":
+        case "mail_reaction":
           {
             ReactionMail reaction = ReactionMail();
             reaction.id = actionData.elementAt(0);
@@ -1139,7 +1139,7 @@ class SetupModel {
             action.reactionMail.add(reaction);
           }
           break;
-        case "twitter_follow_user":
+        case "twitter_follow":
           {
             ReactionTwitterFollowUser reaction = ReactionTwitterFollowUser();
             reaction.id = actionData.elementAt(0);
@@ -1155,7 +1155,7 @@ class SetupModel {
             action.reactionTwitterLike.add(reaction);
           }
           break;
-        case "twitte_post_tweet":
+        case "twitter_tweet":
           {
             ReactionTwitterPostTweet reaction = ReactionTwitterPostTweet();
             reaction.id = actionData.elementAt(0);
@@ -1163,7 +1163,7 @@ class SetupModel {
             action.reactionTwitterPostTweet.add(reaction);
           }
           break;
-        case "twitter_post_retweet":
+        case "twitter_retweet":
           {
             ReactionTwitterRetweet reaction = ReactionTwitterRetweet();
             reaction.id = actionData.elementAt(0);

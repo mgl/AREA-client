@@ -25,7 +25,7 @@ class _LogOutButtonState extends State<LogOutButton> {
               widget.god.connectedToGithub = false;
               widget.god.connectedToGitlab = false;
               widget.god.connectedToTwitter = false;
-              widget.god.connectedToGoogle = false;
+              widget.god.connectedToMail = false;
               widget.god.globalContainer = GlobalContainer();
               widget.god.globalToken = "";
               widget.god.setuped = false;

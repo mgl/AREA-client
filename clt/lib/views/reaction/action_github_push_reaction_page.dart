@@ -25,7 +25,7 @@ class ActionGithubPushReactionPage extends StatefulWidget {
 class _ActionGithubPushReactionPageState
     extends State<ActionGithubPushReactionPage> {
   List<ReactionDiscordMessage> reactionDiscordMessage = [];
-  List<ReactionMail> reactionGoogleCalendarEvent = [];
+  List<ReactionMail> reactionMail = [];
   List<ReactionTwitterFollowUser> reactionTwitterFollowUser = [];
   List<ReactionTwitterLike> reactionTwitterLike = [];
   List<ReactionTwitterPostTweet> reactionTwitterPostTweet = [];
@@ -38,7 +38,7 @@ class _ActionGithubPushReactionPageState
       if (widget.god.globalContainer.actionGithubPush[i].id == widget.id) {
         reactionDiscordMessage = widget
             .god.globalContainer.actionGithubPush[i].reactionDiscordMessage;
-        reactionGoogleCalendarEvent =
+        reactionMail =
             widget.god.globalContainer.actionGithubPush[i].reactionMail;
         reactionTwitterFollowUser = widget
             .god.globalContainer.actionGithubPush[i].reactionTwitterFollowUser;
@@ -79,73 +79,135 @@ class _ActionGithubPushReactionPageState
                 border: Border.all(color: Colors.deepPurple),
                 borderRadius: BorderRadius.circular(20)),
             child: Scrollbar(
-                child: ListView(children: [
-              for (int i = 0; i < reactionDiscordMessage.length; i++)
-                ListTile(
-                    leading: const CircleAvatar(
-                        backgroundColor: Colors.black,
-                        backgroundImage: AssetImage('assets/epilogo.png')),
-                    title: const Text('Message'),
-                    subtitle: const Text('Discord'),
-                    trailing: Row(children: [
-                      IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.delete))
-                    ])),
-              for (int i = 0; i < reactionGoogleCalendarEvent.length; i++)
-                ListTile(
-                    leading: const CircleAvatar(
-                        backgroundColor: Colors.black,
-                        backgroundImage: AssetImage('assets/epilogo.png')),
-                    title: const Text('Calendar Event'),
-                    subtitle: const Text('Google'),
-                    trailing: Row(children: [
-                      IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.delete))
-                    ])),
-              for (int i = 0; i < reactionTwitterFollowUser.length; i++)
-                ListTile(
-                    leading: const CircleAvatar(
-                        backgroundColor: Colors.black,
-                        backgroundImage: AssetImage('assets/epilogo.png')),
-                    title: const Text('Follow User'),
-                    subtitle: const Text('Twitter'),
-                    trailing: Row(children: [
-                      IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.delete))
-                    ])),
-              for (int i = 0; i < reactionTwitterLike.length; i++)
-                ListTile(
-                    leading: const CircleAvatar(
-                        backgroundColor: Colors.black,
-                        backgroundImage: AssetImage('assets/epilogo.png')),
-                    title: const Text('Like'),
-                    subtitle: const Text('Twitter'),
-                    trailing: Row(children: [
-                      IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.delete))
-                    ])),
-              for (int i = 0; i < reactionTwitterPostTweet.length; i++)
-                ListTile(
-                    leading: const CircleAvatar(
-                        backgroundColor: Colors.black,
-                        backgroundImage: AssetImage('assets/epilogo.png')),
-                    title: const Text('Post Tweet'),
-                    subtitle: const Text('Tweeter'),
-                    trailing: Row(children: [
-                      IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.delete))
-                    ])),
-              for (int i = 0; i < reactionTwitterRetweet.length; i++)
-                ListTile(
-                    leading: const CircleAvatar(
-                        backgroundColor: Colors.black,
-                        backgroundImage: AssetImage('assets/epilogo.png')),
-                    title: const Text('Retweet'),
-                    subtitle: const Text('Twetter'),
-                    trailing: Row(children: [
-                      IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.delete))
-                    ]))
-            ]))));
+                child: ListView(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    children: [
+                  for (int i = 0; i < reactionDiscordMessage.length; i++)
+                    TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.grey[200],
+                            primary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12))),
+                        onPressed: () {},
+                        child: Row(children: [
+                          Container(
+                            height: 30,
+                            width: 30,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/code.png'),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle),
+                          ),
+                          const SizedBox(width: 20),
+                          const Text('Discord - Message')
+                        ])),
+                  for (int i = 0; i < reactionMail.length; i++)
+                    TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.grey[200],
+                            primary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12))),
+                        onPressed: () {},
+                        child: Row(children: [
+                          Container(
+                            height: 30,
+                            width: 30,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/code.png'),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle),
+                          ),
+                          const SizedBox(width: 20),
+                          const Text('Mail - Reaction')
+                        ])),
+                  for (int i = 0; i < reactionTwitterFollowUser.length; i++)
+                    TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.grey[200],
+                            primary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12))),
+                        onPressed: () {},
+                        child: Row(children: [
+                          Container(
+                            height: 30,
+                            width: 30,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/code.png'),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle),
+                          ),
+                          const SizedBox(width: 20),
+                          const Text('Twitter - Follow User')
+                        ])),
+                  for (int i = 0; i < reactionTwitterLike.length; i++)
+                    TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.grey[200],
+                            primary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12))),
+                        onPressed: () {},
+                        child: Row(children: [
+                          Container(
+                            height: 30,
+                            width: 30,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/code.png'),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle),
+                          ),
+                          const SizedBox(width: 20),
+                          const Text('Twitter - Like')
+                        ])),
+                  for (int i = 0; i < reactionTwitterPostTweet.length; i++)
+                    TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.grey[200],
+                            primary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12))),
+                        onPressed: () {},
+                        child: Row(children: [
+                          Container(
+                            height: 30,
+                            width: 30,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/code.png'),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle),
+                          ),
+                          const SizedBox(width: 20),
+                          const Text('Twitter - Post a Tweet')
+                        ])),
+                  for (int i = 0; i < reactionTwitterRetweet.length; i++)
+                    TextButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.grey[200],
+                            primary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12))),
+                        onPressed: () {},
+                        child: Row(children: [
+                          Container(
+                            height: 30,
+                            width: 30,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage('assets/code.png'),
+                                    fit: BoxFit.cover),
+                                shape: BoxShape.circle),
+                          ),
+                          const SizedBox(width: 20),
+                          const Text('Tweeter - Retweet')
+                        ])),
+                ]))));
   }
 }

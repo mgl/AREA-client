@@ -19,7 +19,7 @@ class _MailButtonState extends State<MailButton> {
         content: const Text('Please enter your email and app password',
             style: TextStyle(color: Colors.black)),
         actions: [
-          if (!widget.god.connectedToGoogle)
+          if (!widget.god.connectedToMail)
             TextField(
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
@@ -46,7 +46,7 @@ class _MailButtonState extends State<MailButton> {
                 onPressed: () async {
                   SubscribeController.subscribeMail(
                       userName, appPassword, widget.god);
-                  setState(() => widget.god.connectedToGoogle = true);
+                  setState(() => widget.god.connectedToMail = true);
                   Navigator.of(context).pop(context);
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)
@@ -58,12 +58,12 @@ class _MailButtonState extends State<MailButton> {
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
       if (widget.god.globalContainer.service[i].name == "mail") {
-        widget.god.connectedToGoogle = true;
+        widget.god.connectedToMail = true;
       }
     }
     return TextButton(
         onPressed: () {
-          if (!widget.god.connectedToGoogle) {
+          if (!widget.god.connectedToMail) {
             setState(() => onClickGoogleLoginButton(context));
           }
         },
@@ -82,7 +82,7 @@ class _MailButtonState extends State<MailButton> {
                 shape: BoxShape.circle),
           ),
           const SizedBox(width: 20),
-          (!widget.god.connectedToGoogle)
+          (!widget.god.connectedToMail)
               ? const Text('Connect to Mail',
                   style: TextStyle(color: Colors.black))
               : const Text('Connected to Mail',
