@@ -156,6 +156,13 @@ class SubscribeModel {
     post(url, headers: header, body: body);
     god.globalContainer.service
         .add(Service(name: "mail", token: const Uuid().v4()));
+  }
+
+  Future unsubscribeMail(God god) async {
+    final url = Uri.parse('$urlPrefix/services/mail/unsubscribe');
+    final header = {"Authorization": "Bearer " + god.globalToken};
+    delete(url, headers: header);
+    god.connectedToMail = false;
     for (int i = 0;
         i < god.globalContainer.actionCodebaseMergeRequest.length;
         i++) {
@@ -213,13 +220,6 @@ class SubscribeModel {
     for (int i = 0; i < god.globalContainer.actionGitlabWiki.length; i++) {
       god.globalContainer.actionGitlabWiki[i].reactionMail = [];
     }
-  }
-
-  Future unsubscribeMail(God god) async {
-    final url = Uri.parse('$urlPrefix/services/mail/unsubscribe');
-    final header = {"Authorization": "Bearer " + god.globalToken};
-    delete(url, headers: header);
-    god.connectedToMail = false;
   }
 
   void subscribeTwitter(String accessToken, String accessPassword,

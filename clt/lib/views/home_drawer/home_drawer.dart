@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:clt/views/home/home.dart';
+import 'package:clt/views/home_drawer/downloadButton.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:clt/views/home_drawer/discord_button.dart';
@@ -59,15 +60,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
       const SizedBox(height: 10),
       GitlabButton(god: widget.god),
       const SizedBox(height: 10),
-      TwitterButton(
-        god: widget.god,
-      ),
+      TwitterButton(god: widget.god),
       const SizedBox(height: 10),
       DiscordButton(god: widget.god),
       const SizedBox(height: 10),
       CodebaseButton(god: widget.god),
       const SizedBox(height: 10),
-      LogOutButton(god: widget.god)
+      ApkButton(god: widget.god),
+      const SizedBox(height: 10),
+      LogOutButton(god: widget.god),
     ]);
     return drawerItems;
   }
