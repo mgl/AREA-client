@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:clt/controller/subscribe_controller.dart';
 import 'package:clt/views/home/home.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DiscordButton extends StatefulWidget {
   const DiscordButton({Key? key, required this.god}) : super(key: key);
@@ -11,6 +12,12 @@ class DiscordButton extends StatefulWidget {
 
 class _DiscordButtonState extends State<DiscordButton> {
   String answer = "";
+
+  void invitDiscord() async {
+    const String url =
+        'https://discord.com/oauth2/authorize?client_id=950800074328391711&scope=bot&permissions=2048';
+    await launch(url);
+  }
 
   void onClickDiscordLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
@@ -28,8 +35,8 @@ class _DiscordButtonState extends State<DiscordButton> {
                 child: const Text("Invite Discord Bot"),
                 onPressed: () {
                   SubscribeController.subscribeDiscord(widget.god);
-                  // invit the bot
                   setState(() => widget.god.connectedToDiscord = true);
+                  invitDiscord();
                   Navigator.of(context).pop('OK');
                 })
           ], mainAxisAlignment: MainAxisAlignment.end)

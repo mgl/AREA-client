@@ -2,6 +2,7 @@ import 'package:clt/models/globals.dart';
 import 'package:clt/models/service.dart';
 import 'package:http/http.dart';
 import 'package:clt/views/home/home.dart';
+import 'package:uuid/uuid.dart';
 
 class SubscribeModel {
   void subscribeGithub(String value, God god) async {
@@ -17,10 +18,10 @@ class SubscribeModel {
     final header = {"Authorization": "Bearer " + god.globalToken};
     final body = {
       "username": userName,
-      "apiKey": apiKey,
+      "token": apiKey,
     };
     post(url, headers: header, body: body);
-    god.globalContainer.service.add(Service(name: "codebase", token: ""));
+    god.globalContainer.service.add(Service(name: "Codebase", token: apiKey));
   }
 
   void subscribeGitlab(String value, God god) async {
@@ -34,8 +35,9 @@ class SubscribeModel {
   void subscribeDiscord(God god) async {
     final url = Uri.parse('$urlPrefix/services/discord/subscribe');
     final header = {"Authorization": "Bearer " + god.globalToken};
-    post(url, headers: header);
-    god.globalContainer.service.add(Service(name: "discord", token: ""));
+    post(url, headers: header, body: {'token': const Uuid().v4()});
+    god.globalContainer.service
+        .add(Service(name: "discord", token: const Uuid().v4()));
   }
 
   Future subscribeMail(String userName, String appPassword, God god) async {
@@ -46,7 +48,8 @@ class SubscribeModel {
       "appPassword": appPassword,
     };
     post(url, headers: header, body: body);
-    god.globalContainer.service.add(Service(name: "mail", token: ""));
+    god.globalContainer.service
+        .add(Service(name: "mail", token: const Uuid().v4()));
   }
 
   void subscribeTwitter(String accessToken, String accessPassword,

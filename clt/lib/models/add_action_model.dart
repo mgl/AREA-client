@@ -186,7 +186,7 @@ class AddActionModel {
     final body = {
       "id": uuid,
       "token": tmp,
-      "repoName": repoID,
+      "repoId": repoID,
     };
     ActionGitlabWiki action = ActionGitlabWiki();
     action.id = uuid;
@@ -210,7 +210,7 @@ class AddActionModel {
     final body = {
       "id": uuid,
       "token": tmp,
-      "repoName": repoID,
+      "repoId": repoID,
     };
     ActionGitlabMergeRequest action = ActionGitlabMergeRequest();
     action.id = uuid;
@@ -234,7 +234,7 @@ class AddActionModel {
     final body = {
       "id": uuid,
       "token": tmp,
-      "repoName": repoID,
+      "repoId": repoID,
     };
     ActionGitlabIssue action = ActionGitlabIssue();
     action.id = uuid;
@@ -245,7 +245,7 @@ class AddActionModel {
   }
 
   void gitlabCommentActionCreate(String repoID, God god) {
-    final url = Uri.parse('$urlPrefix/services/gitlab/action/push_events');
+    final url = Uri.parse('$urlPrefix/services/gitlab/action/note_events');
     final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
@@ -257,7 +257,7 @@ class AddActionModel {
     final body = {
       "id": uuid,
       "token": tmp,
-      "repoName": repoID,
+      "repoId": repoID,
     };
     ActionGitlabComment action = ActionGitlabComment();
     action.id = uuid;
@@ -280,7 +280,7 @@ class AddActionModel {
     final body = {
       "id": uuid,
       "token": tmp,
-      "repoName": repoID,
+      "repoId": repoID,
     };
     ActionGitlabPush action = ActionGitlabPush();
     action.id = uuid;
@@ -297,7 +297,7 @@ class AddActionModel {
 
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
-      if (god.globalContainer.service[i].name == "codebase") {
+      if (god.globalContainer.service[i].name == "Codebase") {
         tmp = god.globalContainer.service[i].token;
       }
     }
@@ -306,7 +306,7 @@ class AddActionModel {
     action.id = uuid;
     action.token = tmp;
     god.globalContainer.actionCodebaseMergeRequest.add(action);
-    post(url, headers: header);
+    post(url, headers: header, body: {"id": uuid, "token": tmp});
   }
 
   void codebasePushActionCreate(God god) {
@@ -315,7 +315,7 @@ class AddActionModel {
 
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
-      if (god.globalContainer.service[i].name == "codebase") {
+      if (god.globalContainer.service[i].name == "Codebase") {
         tmp = god.globalContainer.service[i].token;
       }
     }
@@ -324,7 +324,7 @@ class AddActionModel {
     action.id = uuid;
     action.token = tmp;
     god.globalContainer.actionCodebasePush.add(action);
-    post(url, headers: header);
+    post(url, headers: header, body: {"id": uuid, "token": tmp});
   }
 
   void codebaseTicketCreationActionCreate(God god) {
@@ -333,7 +333,7 @@ class AddActionModel {
     final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
-      if (god.globalContainer.service[i].name == "codebase") {
+      if (god.globalContainer.service[i].name == "Codebase") {
         tmp = god.globalContainer.service[i].token;
       }
     }
@@ -342,7 +342,7 @@ class AddActionModel {
     action.id = uuid;
     action.token = tmp;
     god.globalContainer.actionCodebaseTicketCreation.add(action);
-    post(url, headers: header);
+    post(url, headers: header, body: {"id": uuid, "token": tmp});
   }
 
   void codebaseTicketUpdateActionCreate(God god) {
@@ -352,7 +352,7 @@ class AddActionModel {
 
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
-      if (god.globalContainer.service[i].name == "codebase") {
+      if (god.globalContainer.service[i].name == "Codebase") {
         tmp = god.globalContainer.service[i].token;
       }
     }
@@ -363,6 +363,6 @@ class AddActionModel {
     action.token = tmp;
     god.globalContainer.actionCodebaseTicketUpdate.add(action);
 
-    post(url, headers: header);
+    post(url, headers: header, body: {"id": uuid, "token": tmp});
   }
 }

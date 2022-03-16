@@ -54,6 +54,11 @@ class _TwitterFollowUserReactionPageState
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
       if (widget.god.globalContainer.service[i].name == 'twitter') {
         return TextButton(
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                primary: Colors.black,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12))),
             onPressed: () => onClick(context),
             child: Row(children: [
               Container(
@@ -61,7 +66,7 @@ class _TwitterFollowUserReactionPageState
                   width: 30,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('asset/code.png'),
+                          image: AssetImage('assets/code.png'),
                           fit: BoxFit.cover),
                       shape: BoxShape.circle)),
               const SizedBox(width: 20),

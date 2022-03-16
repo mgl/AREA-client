@@ -42,7 +42,7 @@ class _ButtonActionCodebaseTicketUpdateState
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
-      if (widget.god.globalContainer.service[i].name == "codebase") {
+      if (widget.god.globalContainer.service[i].name == "Codebase") {
         return TextButton(
             onPressed: () => onClickButtonActionCodebaseTicketUpdate(context),
             style: TextButton.styleFrom(

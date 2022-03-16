@@ -150,7 +150,7 @@ class SetupModel {
               god.globalContainer.actionGithubIssue.add(action);
             }
             break;
-          case "gitlab_comment":
+          case "gitlab_comment_events":
             {
               ActionGitlabComment action = ActionGitlabComment();
               action.id = actionData.elementAt(0);
@@ -159,7 +159,7 @@ class SetupModel {
               god.globalContainer.actionGitlabComment.add(action);
             }
             break;
-          case "gitlab_issue":
+          case "gitlab_issues_events":
             {
               ActionGitlabIssue action = ActionGitlabIssue();
               action.id = actionData.elementAt(0);
@@ -168,7 +168,7 @@ class SetupModel {
               god.globalContainer.actionGitlabIssue.add(action);
             }
             break;
-          case "gitlab_merge_request":
+          case "gitlab_merge_requests_events":
             {
               ActionGitlabMergeRequest action = ActionGitlabMergeRequest();
               action.id = actionData.elementAt(0);
@@ -177,7 +177,7 @@ class SetupModel {
               god.globalContainer.actionGitlabMergeRequest.add(action);
             }
             break;
-          case "gitlab_push":
+          case "gitlab_push_events":
             {
               ActionGitlabPush action = ActionGitlabPush();
               action.id = actionData.elementAt(0);
@@ -186,7 +186,7 @@ class SetupModel {
               god.globalContainer.actionGitlabPush.add(action);
             }
             break;
-          case "gitlab_wiki":
+          case "gitlab_wiki_events":
             {
               ActionGitlabWiki action = ActionGitlabWiki();
               action.id = actionData.elementAt(0);

@@ -28,7 +28,7 @@ class _MailReactionPageState extends State<MailReactionPage> {
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), labelText: 'email to send'),
               maxLines: 1,
-              maxLength: 25,
+              maxLength: 150,
               onChanged: (value) {
                 setState(() {
                   toSend = value;
@@ -40,7 +40,7 @@ class _MailReactionPageState extends State<MailReactionPage> {
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), labelText: 'Object'),
               maxLines: 1,
-              maxLength: 25,
+              maxLength: 50,
               onChanged: (value) {
                 setState(() {
                   objet = value;
@@ -52,7 +52,7 @@ class _MailReactionPageState extends State<MailReactionPage> {
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), labelText: 'Message'),
               maxLines: 1,
-              maxLength: 25,
+              maxLength: 500,
               onChanged: (value) {
                 setState(() {
                   message = value;
@@ -78,8 +78,13 @@ class _MailReactionPageState extends State<MailReactionPage> {
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
-      if (widget.god.globalContainer.service[i].name == 'Mail') {
+      if (widget.god.globalContainer.service[i].name == 'mail') {
         return TextButton(
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                primary: Colors.black,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12))),
             onPressed: () => onClick(context),
             child: Row(children: [
               Container(
@@ -87,7 +92,7 @@ class _MailReactionPageState extends State<MailReactionPage> {
                   width: 30,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('asset/code.png'),
+                          image: AssetImage('assets/code.png'),
                           fit: BoxFit.cover),
                       shape: BoxShape.circle)),
               const SizedBox(width: 20),

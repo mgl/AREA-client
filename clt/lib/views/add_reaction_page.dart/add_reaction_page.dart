@@ -38,7 +38,6 @@ class _AddReactionPageState extends State<AddReactionPage> {
               child: Column(children: [
             DiscordMessageReactionPage(god: widget.god, id: widget.id),
             const SizedBox(height: 5),
-            const SizedBox(height: 5),
             MailReactionPage(god: widget.god, id: widget.id),
             const SizedBox(height: 5),
             TwitterFollowUserReactionPage(god: widget.god, id: widget.id),

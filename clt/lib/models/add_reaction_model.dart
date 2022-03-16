@@ -148,7 +148,7 @@ class AddReactionModel {
     final header = {"Authorization": "Bearer " + god.globalToken};
     String tmp = "";
     for (int i = 0; i < god.globalContainer.service.length; i++) {
-      if (god.globalContainer.service[i].name == "google") {
+      if (god.globalContainer.service[i].name == "mail") {
         tmp = god.globalContainer.service[i].token;
       }
     }

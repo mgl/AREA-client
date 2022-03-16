@@ -42,7 +42,7 @@ class _TwitterButtonState extends State<TwitterButton> {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'appKeyToken'),
+                  border: OutlineInputBorder(), labelText: 'Appkey'),
               maxLines: 1,
               maxLength: 100,
               onChanged: (value) => setState(() => appKeyToken = value)),
@@ -50,7 +50,7 @@ class _TwitterButtonState extends State<TwitterButton> {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'appPassword'),
+                  border: OutlineInputBorder(), labelText: 'API Secret'),
               maxLines: 1,
               maxLength: 100,
               onChanged: (value) => setState(() => appPassword = value)),

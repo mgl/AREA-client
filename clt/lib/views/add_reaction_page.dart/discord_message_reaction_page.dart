@@ -33,9 +33,7 @@ class _DiscordMessageReactionPageState
               maxLines: 1,
               maxLength: 25,
               onChanged: (value) {
-                setState(() {
-                  server = value;
-                });
+                setState(() => server = value);
               }),
           TextField(
               textInputAction: TextInputAction.next,
@@ -49,13 +47,11 @@ class _DiscordMessageReactionPageState
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Server'),
+                  border: OutlineInputBorder(), labelText: 'Message'),
               maxLines: 1,
               maxLength: 25,
               onChanged: (value) {
-                setState(() {
-                  message = value;
-                });
+                setState(() => message = value);
               }),
           const SizedBox(height: 10),
           Row(children: [
@@ -79,6 +75,11 @@ class _DiscordMessageReactionPageState
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
       if (widget.god.globalContainer.service[i].name == 'discord') {
         return TextButton(
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                primary: Colors.black,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12))),
             onPressed: () => onClick(context),
             child: Row(children: [
               Container(
@@ -86,7 +87,7 @@ class _DiscordMessageReactionPageState
                   width: 30,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('asset/code.png'),
+                          image: AssetImage('assets/code.png'),
                           fit: BoxFit.cover),
                       shape: BoxShape.circle)),
               const SizedBox(width: 20),
