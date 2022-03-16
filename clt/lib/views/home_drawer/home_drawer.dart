@@ -50,7 +50,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
       const SizedBox(height: 10),
       CodebaseButton(god: widget.god),
       const SizedBox(height: 10),
-      const LogOutButton()
+      LogOutButton(god: widget.god)
     ]);
     return drawerItems;
   }
