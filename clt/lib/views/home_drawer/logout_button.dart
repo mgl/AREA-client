@@ -1,10 +1,13 @@
+import 'package:clt/models/action_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:clt/routes.dart' as routes;
+import 'package:clt/views/home/home.dart';
 
 class LogOutButton extends StatefulWidget {
-  const LogOutButton({Key? key}) : super(key: key);
+  const LogOutButton({Key? key, required this.god}) : super(key: key);
   @override
+  final God god;
   State<LogOutButton> createState() => _LogOutButtonState();
 }
 
@@ -17,6 +20,15 @@ class _LogOutButtonState extends State<LogOutButton> {
         onPressed: () => setState(() {
               FirebaseAuth.instance.signOut();
               Navigator.of(context).pushReplacementNamed(_loginRoute);
+              widget.god.connectedToCodebase = false;
+              widget.god.connectedToDiscord = false;
+              widget.god.connectedToGithub = false;
+              widget.god.connectedToGitlab = false;
+              widget.god.connectedToTwitter = false;
+              widget.god.connectedToGoogle = false;
+              widget.god.globalContainer = GlobalContainer();
+              widget.god.globalToken = "";
+              widget.god.setuped = false;
             }),
         style: TextButton.styleFrom(
             backgroundColor: Colors.grey[200],
