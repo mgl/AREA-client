@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:clt/controller/subscribe_controller.dart';
 import 'package:clt/views/home/home.dart';
@@ -12,6 +14,21 @@ class GitlabButton extends StatefulWidget {
 
 class _GitlabButtonState extends State<GitlabButton> {
   String answer = "";
+
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(
+        const Duration(seconds: 3), (Timer t) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   void onClickGitlabLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
@@ -45,6 +62,11 @@ class _GitlabButtonState extends State<GitlabButton> {
     showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
+  void unSubsribe() {
+    SubscribeController.unsubscribeGitlab(widget.god);
+    widget.god.connectedToGitlab = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
@@ -54,8 +76,11 @@ class _GitlabButtonState extends State<GitlabButton> {
     }
     return TextButton(
         onPressed: () {
-          if (!widget.god.connectedToGitlab) {
-            setState(() => onClickGitlabLoginButton(context));
+          if (widget.god.connectedToGithub) {
+            unSubsribe();
+          }
+          else if (!widget.god.connectedToGitlab) {
+            onClickGitlabLoginButton(context);
           }
         },
         style: TextButton.styleFrom(

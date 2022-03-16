@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:clt/controller/subscribe_controller.dart';
 import 'package:clt/views/home/home.dart';
@@ -13,6 +15,21 @@ class GithubButton extends StatefulWidget {
 
 class _GithubButtonState extends State<GithubButton> {
   String answer = "";
+
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(
+        const Duration(seconds: 3), (Timer t) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   void onClickGitHubLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
@@ -46,6 +63,11 @@ class _GithubButtonState extends State<GithubButton> {
     showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
+  void unSubsribe() {
+    SubscribeController.unsubscribeGithub(widget.god);
+    widget.god.connectedToGithub = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
@@ -55,8 +77,11 @@ class _GithubButtonState extends State<GithubButton> {
     }
     return TextButton(
         onPressed: () {
-          if (!widget.god.connectedToGithub) {
-            setState(() => onClickGitHubLoginButton(context));
+          if (widget.god.connectedToGithub) {
+            unSubsribe();
+          }
+          else if (!widget.god.connectedToGithub) {
+            onClickGitHubLoginButton(context);
           }
         },
         style: TextButton.styleFrom(

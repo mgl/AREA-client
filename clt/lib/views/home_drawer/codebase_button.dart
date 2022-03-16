@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:clt/controller/subscribe_controller.dart';
 import 'package:clt/views/home/home.dart';
@@ -12,6 +14,22 @@ class CodebaseButton extends StatefulWidget {
 class _CodebaseButtonState extends State<CodebaseButton> {
   String username = "";
   String apiKey = "";
+
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(
+        const Duration(seconds: 3), (Timer t) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
   void onClickCodebaseLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Codebase Connection',
@@ -54,6 +72,11 @@ class _CodebaseButtonState extends State<CodebaseButton> {
     showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
+  void unSubsribe() {
+    SubscribeController.unsubscribeCodebase(widget.god);
+    widget.god.connectedToCodebase = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
@@ -63,8 +86,11 @@ class _CodebaseButtonState extends State<CodebaseButton> {
     }
     return TextButton(
         onPressed: () {
-          if (!widget.god.connectedToCodebase) {
-            setState(() => onClickCodebaseLoginButton(context));
+          if (widget.god.connectedToCodebase) {
+            unSubsribe();
+          }
+          else if (!widget.god.connectedToCodebase) {
+            onClickCodebaseLoginButton(context);
           }
         },
         style: TextButton.styleFrom(

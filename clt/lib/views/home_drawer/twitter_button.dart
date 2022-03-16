@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:clt/controller/subscribe_controller.dart';
 import 'package:clt/views/home/home.dart';
@@ -14,6 +16,21 @@ class _TwitterButtonState extends State<TwitterButton> {
   String appKeyToken = "";
   String accessPassword = "";
   String appPassword = "";
+
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(
+        const Duration(seconds: 3), (Timer t) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   void onClickTwitterLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
@@ -72,6 +89,11 @@ class _TwitterButtonState extends State<TwitterButton> {
     showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
+  void unSubsribe() {
+    SubscribeController.unsubscribeTwitter(widget.god);
+    widget.god.connectedToTwitter = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
@@ -81,8 +103,10 @@ class _TwitterButtonState extends State<TwitterButton> {
     }
     return TextButton(
         onPressed: () {
-          if (!widget.god.connectedToTwitter) {
-            setState(() => onClickTwitterLoginButton(context));
+          if (widget.god.connectedToTwitter) {
+            unSubsribe();
+          } else if (!widget.god.connectedToTwitter) {
+            onClickTwitterLoginButton(context);
           }
         },
         style: TextButton.styleFrom(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:clt/controller/subscribe_controller.dart';
 import 'package:clt/views/home/home.dart';
@@ -12,6 +14,22 @@ class MailButton extends StatefulWidget {
 class _MailButtonState extends State<MailButton> {
   String userName = "";
   String appPassword = "";
+
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(
+        const Duration(seconds: 3), (Timer t) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
   void onClickGoogleLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Mail Connection',
@@ -54,6 +72,11 @@ class _MailButtonState extends State<MailButton> {
     showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
+  void unSubsribe() {
+      SubscribeController.unsubscribeMail(widget.god);
+      widget.god.connectedToMail = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
@@ -63,8 +86,11 @@ class _MailButtonState extends State<MailButton> {
     }
     return TextButton(
         onPressed: () {
-          if (!widget.god.connectedToMail) {
-            setState(() => onClickGoogleLoginButton(context));
+          if (widget.god.connectedToMail) {
+            unSubsribe();
+          }
+          else if (!widget.god.connectedToMail) {
+            onClickGoogleLoginButton(context);
           }
         },
         style: TextButton.styleFrom(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:clt/controller/subscribe_controller.dart';
 import 'package:clt/views/home/home.dart';
@@ -12,6 +14,21 @@ class DiscordButton extends StatefulWidget {
 
 class _DiscordButtonState extends State<DiscordButton> {
   String answer = "";
+
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(
+        const Duration(seconds: 3), (Timer t) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   void invitDiscord() async {
     const String url =
@@ -44,6 +61,11 @@ class _DiscordButtonState extends State<DiscordButton> {
     showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
+  void unSubsribe() {
+    SubscribeController.unsubscribeDiscord(widget.god);
+    widget.god.connectedToDiscord = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.god.globalContainer.service.length; i++) {
@@ -53,8 +75,11 @@ class _DiscordButtonState extends State<DiscordButton> {
     }
     return TextButton(
         onPressed: () {
-          if (!widget.god.connectedToDiscord) {
-            setState(() => onClickDiscordLoginButton(context));
+          if (widget.god.connectedToDiscord) {
+            unSubsribe();
+          }
+          else if (!widget.god.connectedToDiscord) {
+            onClickDiscordLoginButton(context);
           }
         },
         style: TextButton.styleFrom(
