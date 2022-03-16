@@ -12,8 +12,6 @@ class ApkButton extends StatefulWidget {
 }
 
 class _ApkButtonState extends State<ApkButton> {
-  String answer = "";
-
   Timer? timer;
 
   @override
@@ -37,8 +35,7 @@ class _ApkButtonState extends State<ApkButton> {
   void onClickDiscordLoginButton(BuildContext context) {
     AlertDialog dialog = AlertDialog(
         title: const Text('Download', style: TextStyle(color: Colors.black)),
-        content: const Text(
-            'Click on this button to add the bot on your server',
+        content: const Text('Click on this button to download the APK',
             style: TextStyle(color: Colors.black)),
         actions: [
           Row(children: [
@@ -48,8 +45,6 @@ class _ApkButtonState extends State<ApkButton> {
                         MaterialStateProperty.all(Colors.deepPurple)),
                 child: const Text("APK"),
                 onPressed: () {
-                  SubscribeController.subscribeDiscord(widget.god);
-                  setState(() => widget.god.connectedToDiscord = true);
                   downloadApk();
                   Navigator.of(context).pop('OK');
                 })
