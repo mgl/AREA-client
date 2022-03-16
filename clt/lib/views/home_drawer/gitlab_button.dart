@@ -76,7 +76,7 @@ class _GitlabButtonState extends State<GitlabButton> {
     }
     return TextButton(
         onPressed: () {
-          if (widget.god.connectedToGithub) {
+          if (widget.god.connectedToGitlab) {
             unSubsribe();
           }
           else if (!widget.god.connectedToGitlab) {
