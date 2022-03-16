@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    god.setuped = false;
     super.initState();
     timer = Timer.periodic(const Duration(seconds: 3), (Timer t) => setup());
   }
